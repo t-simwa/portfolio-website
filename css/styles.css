@@ -3310,8 +3310,32 @@ h1.hero-subtitle {
     padding-right : 5vw;
 }
 
+.intro-content .column {
+    position: relative;
+}
+
 .intro-content .hero-subtitle {
     padding-right : 5vw;
+}
+
+.intro-content .hero-subtitle br {
+    display: block;
+}
+
+/* --------------------------------------------------------------------
+ * ## intro content buttons
+ * -------------------------------------------------------------------- */
+.intro-content-btns {
+    margin-top    : var(--vspace-2);
+    padding-right : 5vw;
+    display       : flex;
+    flex-wrap     : wrap;
+    gap           : var(--vspace-0_75);
+}
+
+.intro-content-btns .btn {
+    margin-right : 0;
+    margin-bottom: 0;
 }
 
 /* --------------------------------------------------------------------
@@ -3342,15 +3366,16 @@ h1.hero-subtitle {
 }
 
 .intro-social a {
-    display     : flex;
-    align-items : center;
+    display             : flex;
+    align-items         : center;
+    transition-property : color, background-color;
 }
 
 .intro-social a:focus svg path,
 .intro-social a:focus svg circle,
 .intro-social a:hover svg path,
 .intro-social a:hover svg circle {
-    fill : var(--color-white);
+    fill : var(--color-1);
 }
 
 /* --------------------------------------------------------------------
@@ -3362,6 +3387,23 @@ h1.hero-subtitle {
     position     : absolute;
     bottom       : calc(var(--vspace-2) + 11rem);
     right        : calc(var(--gutter) + var(--vspace-0_75));
+}
+
+/* Scroll down button inside column - desktop positioning relative to section */
+@media screen and (min-width: 1081px) {
+    .intro-content .column .intro-scrolldown {
+        position: absolute;
+        bottom: calc(var(--vspace-2) + 11rem);
+        right: calc(var(--gutter) + var(--vspace-0_75));
+    }
+    
+    .intro-content {
+        position: static;
+    }
+    
+    .intro-content .column {
+        position: static;
+    }
 }
 
 .intro-scrolldown::before {
@@ -3405,7 +3447,13 @@ h1.hero-subtitle {
 }
 
 .intro-scrolldown svg path {
-    fill: white;
+    fill       : white;
+    transition : all 0.3s ease-in-out;
+}
+
+.intro-scrolldown a:focus svg path,
+.intro-scrolldown a:hover svg path {
+    fill : var(--color-1);
 }
 
 /* ------------------------------------------------------------------- 
@@ -3423,7 +3471,8 @@ h1.hero-subtitle {
         right : calc(var(--gutter) + var(--vspace-0_5));
     }
 
-    .intro-scrolldown {
+    .intro-scrolldown,
+    .intro-content .column .intro-scrolldown {
         right : var(--gutter);
     }
 }
@@ -3455,6 +3504,64 @@ h1.hero-subtitle {
 }
 
 @media screen and (max-width: 1080px) {
+    .s-intro {
+        --content-padding-top   : max(12rem, 16vh);
+        --content-padding-bottom: 9.6rem;
+    }
+
+    .intro-content {
+        padding-bottom: var(--vspace-0_75);
+        align-items   : center;
+    }
+
+    .intro-content .column {
+        text-align : center;
+        max-width  : 70vw;
+        margin     : 0 auto;
+        display    : flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .intro-content .text-pretitle {
+        text-align: center;
+    }
+
+    .intro-content .text-pretitle.with-line {
+        padding-left : 3rem;
+        transform    : none;
+        position     : relative;
+        display      : inline-block;
+    }
+
+    .intro-content .text-pretitle.with-line::before {
+        left: 0;
+        width: 2rem;
+        transform: none;
+    }
+
+    .intro-content .hero-subtitle {
+        font-size     : clamp(4.2rem, 8.2vw, 8.8rem);
+        color         : var(--color-text-dark);
+        padding-right : 0;
+        text-align    : center;
+    }
+
+    .intro-content .hero-subtitle br {
+        display: none;
+    }
+
+    .intro-content-btns {
+        padding-right                : 0;
+        max-width                    : 400px;
+        margin                       : var(--vspace-1) auto 0;
+        justify-content              : center;
+    }
+
+    .intro-content-btns .btn {
+        margin-right: 0;
+    }
+
     .intro-social {
         right : calc(2.4rem + var(--vspace-0_375));
     }
@@ -3464,9 +3571,15 @@ h1.hero-subtitle {
         width  : var(--vspace-0_625);
     }
 
-    .intro-scrolldown {
-        bottom: var(--vspace-1);
-        right : 2.4rem;
+    .intro-content .column .intro-scrolldown {
+        position   : static;
+        margin-top : var(--vspace-2);
+        margin-left: auto;
+        margin-right: 0;
+        width      : fit-content;
+        display    : flex;
+        justify-content: flex-end;
+        align-self : flex-end;
     }
 
     .intro-scrolldown .scroll-icon {
@@ -3483,13 +3596,28 @@ h1.hero-subtitle {
 
     .intro-content {
         min-height  : 0;
-        align-items : flex-start;
+        align-items : center;
         padding-top : calc(9.6rem + var(--header-height));
+    }
+
+    .intro-content .column {
+        max-width: 85vw;
     }
 
     .intro-content .text-huge-title {
         padding-right : 0;
         margin-bottom : var(--vspace-1_5);
+    }
+
+    .intro-content .hero-subtitle {
+        padding-right : 0;
+        font-size     : clamp(3.5rem, 7vw, 6rem);
+    }
+
+    .intro-content-btns {
+        padding-right : 0;
+        margin-top    : var(--vspace-1_5);
+        max-width     : 100%;
     }
 }
 
@@ -3512,6 +3640,16 @@ h1.hero-subtitle {
     }
 }
 
+@media screen and (max-width: 600px) {
+    .intro-content .column {
+        max-width: 90vw;
+    }
+
+    .intro-content .hero-subtitle {
+        font-size: clamp(3rem, 6vw, 5rem);
+    }
+}
+
 @media screen and (max-width: 400px) {
     .intro-content .text-huge-title {
         font-size   : var(--text-display-1);
@@ -3519,8 +3657,18 @@ h1.hero-subtitle {
     }
 
     .intro-content .hero-subtitle {
-        font-size   : var(--text-xl);
+        font-size     : clamp(2.8rem, 5.5vw, 4.5rem);
         padding-right : 0;
+    }
+
+    .intro-content-btns {
+        flex-direction : column;
+        width          : 100%;
+        max-width      : 100%;
+    }
+
+    .intro-content-btns .btn {
+        width : 100%;
     }
 }
 
@@ -4300,34 +4448,80 @@ h1.hero-subtitle {
     color       : var(--color-text-light);
 }
 
-.contact-links a,
-.contact-social a {
-    color : var(--color-text-light);
+.contact-links a {
+    display             : inline-flex;
+    align-items         : center;
+    gap                 : 0.5rem;
+    color               : var(--color-text-light);
+    transition-property : color, background-color;
+    margin-bottom       : var(--vspace-0_5);
+}
+
+.contact-links a svg {
+    flex-shrink : 0;
+    height      : 20px;
+    width       : 20px;
+}
+
+.contact-links a svg path {
+    fill      : var(--color-text-light);
+    transition: all 0.3s ease-in-out;
 }
 
 .contact-links a:focus,
-.contact-links a:hover,
-.contact-social a:focus,
-.contact-social a:hover {
+.contact-links a:hover {
     color : var(--color-1);
+}
+
+.contact-links a:focus svg path,
+.contact-links a:hover svg path {
+    fill : var(--color-1);
+}
+
+.contact-social a {
+    display             : flex;
+    align-items         : center;
+    transition-property : color, background-color;
 }
 
 .contact-social {
     list-style  : none;
     margin-left : 0;
+    display     : flex;
+    align-items : center;
+    gap         : var(--vspace-1);
 }
 
 .contact-social li {
     display      : inline-block;
     padding-left : 0;
+    margin-right : 0;
+}
+
+.contact-social li:last-child {
+    margin-right : 0;
 }
 
 .contact-social li::after {
-    content : ",  ";
+    display : none;
 }
 
-.contact-social li:last-child::after {
-    display : none;
+.contact-social svg {
+    height : var(--vspace-0_875);
+    width  : var(--vspace-0_875);
+}
+
+.contact-social svg path,
+.contact-social svg circle {
+    fill      : var(--color-text-light);
+    transition: all 0.5s;
+}
+
+.contact-social a:focus svg path,
+.contact-social a:focus svg circle,
+.contact-social a:hover svg path,
+.contact-social a:hover svg circle {
+    fill : var(--color-1);
 }
 
 .contact-btn {
