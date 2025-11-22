@@ -351,6 +351,154 @@
     }; // end ssMoveTo
 
 
+   /* GitHub Contributions Calendar
+    * Vanilla JS implementation matching react-github-calendar
+    * ------------------------------------------------------ */
+    const ssGitHubCalendar = function() {
+        const calendarContainer = document.getElementById('github-calendar');
+        if (!calendarContainer) return;
+
+        // GitHub username
+        const username = 't-simwa';
+        
+        // GitHub contributions API endpoint
+        const apiUrl = `https://github-contributions-api.jogruber.de/v4/${username}?y=last`;
+        
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                if (data.contributions && Array.isArray(data.contributions)) {
+                    renderCalendar(data.contributions, calendarContainer);
+                } else {
+                    throw new Error('Invalid data format');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching GitHub contributions:', error);
+                calendarContainer.innerHTML = '<p style="color: var(--color-text); text-align: center; padding: 2rem;">Unable to load GitHub contributions. Please check your username.</p>';
+            });
+    };
+
+    const renderCalendar = function(contributions, container) {
+        if (!contributions || contributions.length === 0) {
+            container.innerHTML = '<p style="color: var(--color-text); text-align: center; padding: 2rem;">No contributions data available.</p>';
+            return;
+        }
+
+        // Get the first day's weekday (0 = Sunday, 1 = Monday, etc.)
+        const firstDate = new Date(contributions[0].date);
+        const firstDayOfWeek = firstDate.getDay(); // 0-6, where 0 is Sunday
+        
+        // Group contributions into weeks (starting from Sunday)
+        const weeks = [];
+        let currentWeek = [];
+        
+        // Add empty days for the first week if it doesn't start on Sunday
+        for (let i = 0; i < firstDayOfWeek; i++) {
+            currentWeek.push(null); // null represents an empty day
+        }
+        
+        // Add all contribution days
+        contributions.forEach(day => {
+            currentWeek.push(day);
+            
+            // If we've filled a week (7 days), start a new week
+            if (currentWeek.length === 7) {
+                weeks.push(currentWeek);
+                currentWeek = [];
+            }
+        });
+        
+        // Add remaining days to the last week and pad with nulls if needed
+        while (currentWeek.length < 7) {
+            currentWeek.push(null);
+        }
+        if (currentWeek.length > 0) {
+            weeks.push(currentWeek);
+        }
+        
+        // Calculate total contributions
+        const totalContributions = contributions.reduce((sum, day) => sum + day.count, 0);
+        
+        // Build calendar HTML - matching GitHub's exact structure
+        let calendarHTML = '<div class="calendar-scroll-wrapper">';
+        calendarHTML += '<div class="calendar-container">';
+        
+        // Calendar weeks grid - no weekday labels, just the grid
+        calendarHTML += '<div class="calendar-weeks">';
+        weeks.forEach(week => {
+            calendarHTML += '<div class="calendar-week">';
+            week.forEach((day, dayIndex) => {
+                if (day === null) {
+                    // Empty day (padding)
+                    calendarHTML += '<div class="calendar-day calendar-day-empty"></div>';
+                } else {
+                    // Calculate contribution level (0-4) based on count
+                    // Using GitHub's actual algorithm
+                    let level = 0;
+                    if (day.count > 0) {
+                        const maxCount = Math.max(...contributions.map(d => d.count));
+                        if (maxCount > 0) {
+                            const ratio = day.count / maxCount;
+                            
+                            if (day.count === 1) level = 1;
+                            else if (day.count <= 3) level = 2;
+                            else if (day.count <= 6) level = 3;
+                            else level = 4;
+                        }
+                    }
+                    
+                    const date = new Date(day.date);
+                    const dateStr = date.toLocaleDateString('en-US', { 
+                        weekday: 'long',
+                        month: 'long', 
+                        day: 'numeric', 
+                        year: 'numeric' 
+                    });
+                    const tooltip = `${day.count} contribution${day.count !== 1 ? 's' : ''} on ${dateStr}`;
+                    
+                    calendarHTML += `<div class="calendar-day" 
+                        data-level="${level}" 
+                        data-count="${day.count}"
+                        data-date="${day.date}"
+                        aria-label="${tooltip}">
+                        <div class="calendar-tooltip">${tooltip}</div>
+                    </div>`;
+                }
+            });
+            calendarHTML += '</div>';
+        });
+        calendarHTML += '</div>';
+        calendarHTML += '</div>';
+        calendarHTML += '</div>';
+        
+        // Add contribution count text below calendar
+        calendarHTML += `<div class="calendar-footer">
+            <span class="calendar-contributions-text">${totalContributions} contribution${totalContributions !== 1 ? 's' : ''} in the last year</span>
+        </div>`;
+        
+        container.innerHTML = calendarHTML;
+        
+        // Add hover tooltips
+        const days = container.querySelectorAll('.calendar-day:not(.calendar-day-empty)');
+        
+        days.forEach(day => {
+            const dayTooltip = day.querySelector('.calendar-tooltip');
+            if (!dayTooltip) return;
+            
+            day.addEventListener('mouseenter', function(e) {
+                dayTooltip.classList.add('show');
+            });
+            
+            day.addEventListener('mouseleave', function() {
+                dayTooltip.classList.remove('show');
+            });
+        });
+    };
+
    /* Initialize
     * ------------------------------------------------------ */
     (function ssInit() {
@@ -363,6 +511,7 @@
         ssLightbox();
         ssAlertBoxes();
         ssMoveTo();
+        ssGitHubCalendar();
 
     })();
 
