@@ -1257,6 +1257,19 @@ textarea {
     width : 100%;
 }
 
+.u-screen-reader-text {
+    clip             : rect(1px, 1px, 1px, 1px);
+    -webkit-clip-path: inset(50%);
+    clip-path        : inset(50%);
+    height           : 1px;
+    width            : 1px;
+    margin           : -1px;
+    overflow         : hidden;
+    padding          : 0;
+    position         : absolute;
+    word-wrap        : normal;
+}
+
 .u-pull-left {
     float : left;
 }
@@ -2740,6 +2753,48 @@ h1.hero-subtitle {
 }
 
 /* ------------------------------------------------------------------- 
+ * ## social list
+ * ------------------------------------------------------------------- */
+.social-list {
+    display     : flex;
+    align-items : center;
+    list-style  : none;
+    margin      : 0;
+}
+
+.social-list li {
+    padding-left : 0;
+    margin-right : 0.8rem;
+}
+
+.social-list li:last-child {
+    margin-right : 0;
+}
+
+.social-list a {
+    display     : flex;
+    align-items : center;
+}
+
+.social-list a:focus svg path,
+.social-list a:focus svg circle,
+.social-list a:hover svg path,
+.social-list a:hover svg circle {
+    fill : var(--color-white);
+}
+
+.social-list svg {
+    height : var(--vspace-0_875);
+    width  : var(--vspace-0_875);
+}
+
+.social-list svg path,
+.social-list svg circle {
+    fill      : rgba(255, 255, 255, 0.5);
+    transition: all 0.5s;
+}
+
+/* ------------------------------------------------------------------- 
  * ## MailtoUI style overrides
  * ------------------------------------------------------------------- */
 .mailtoui-modal {
@@ -3263,63 +3318,94 @@ h1.hero-subtitle {
  * ## intro social
  * -------------------------------------------------------------------- */
 .intro-social {
-    z-index          : 1;
-    list-style       : none;
-    display          : flex;
-    font-size        : 1rem;
-    font-weight      : 400;
-    text-transform   : uppercase;
-    letter-spacing   : .3em;
-    margin           : 0;
-    padding          : 0 0 0 9.6rem;
-    transform        : rotate(-90deg) translateX(-50%);
-    transform-origin : left bottom;
-    position         : absolute;
-    top              : 50%;
-    left             : calc(100% - 6rem);
+    z-index  : 2;
+    display  : block;
+    position : absolute;
+    bottom   : calc(var(--vspace-2) + var(--vspace-1_75) + 25rem);
+    right    : calc(var(--gutter) + var(--vspace-1_25));
 }
 
 .intro-social li {
-    padding : 0 1.2rem;
+    padding-right : 0;
+    margin-right  : 0;
+    margin-bottom : var(--vspace-0_625);
+}
+
+.intro-social svg {
+    height : var(--vspace-0_75);
+    width  : var(--vspace-0_75);
+}
+
+.intro-social svg path,
+.intro-social svg circle {
+    fill : rgb(255, 255, 255);
 }
 
 .intro-social a {
-    color : var(--color-text-light);
+    display     : flex;
+    align-items : center;
 }
 
-.intro-social a:focus,
-.intro-social a:hover {
-    color : white;
+.intro-social a:focus svg path,
+.intro-social a:focus svg circle,
+.intro-social a:hover svg path,
+.intro-social a:hover svg circle {
+    fill : var(--color-white);
 }
 
 /* --------------------------------------------------------------------
  * ## intro scrolldown
  * -------------------------------------------------------------------- */
 .intro-scrolldown {
+    --line-length: 8rem;
+    z-index      : 2;
+    position     : absolute;
+    bottom       : calc(var(--vspace-2) + 11rem);
+    right        : calc(var(--gutter) + var(--vspace-0_75));
+}
+
+.intro-scrolldown::before {
+    content         : "";
     display         : block;
-    height          : var(--vspace-1);
-    width           : var(--vspace-1);
-    display         : flex;
-    justify-content : center;
-    align-items     : center;
+    height          : var(--line-length);
+    width           : 1px;
+    background-color: rgba(255, 255, 255, 0.5);
     position        : absolute;
-    bottom          : 4.8rem;
-    right           : 5.8rem;
+    top             : calc(var(--line-length) * -1 - var(--vspace-1));
+    left            : 50%;
+}
+
+.intro-scrolldown a {
+    display    : inline-flex;
+    align-items: center;
+    color      : var(--color-text-dark);
+}
+
+.intro-scrolldown span {
+    display    : block;
+    font-family: var(--font-1);
+    font-size  : var(--text-size);
+    font-weight: 300;
+    line-height: var(--vspace-2);
+}
+
+.intro-scrolldown .scroll-icon {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    height         : var(--vspace-1_75);
+    width          : var(--vspace-1_75);
+    border-radius  : 50%;
+    border         : 2px solid white;
 }
 
 .intro-scrolldown svg {
-    height : var(--vspace-0_75);
-    width  : var(--vspace-0_75);
+    height: calc(0.3 * var(--space));
+    width : calc(0.3 * var(--space));
 }
 
 .intro-scrolldown svg path {
-    fill       : white;
-    transition : all .3s ease-in-out;
-}
-
-.intro-scrolldown:focus svg path,
-.intro-scrolldown:hover svg path {
-    fill : var(--color-1);
+    fill: white;
 }
 
 /* ------------------------------------------------------------------- 
@@ -3332,17 +3418,19 @@ h1.hero-subtitle {
     }
 }
 
-@media screen and (max-width: 1200px) {
-    .s-intro {
-        --text-huge-multiplier : .85;
-    }
-
+@media screen and (max-width: 1400px) {
     .intro-social {
-        left : calc(100% - 4rem);
+        right : calc(var(--gutter) + var(--vspace-0_5));
     }
 
     .intro-scrolldown {
-        right : 4rem;
+        right : var(--gutter);
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .s-intro {
+        --text-huge-multiplier : .85;
     }
 }
 
@@ -3366,6 +3454,27 @@ h1.hero-subtitle {
     }
 }
 
+@media screen and (max-width: 1080px) {
+    .intro-social {
+        right : calc(2.4rem + var(--vspace-0_375));
+    }
+
+    .intro-social svg {
+        height : var(--vspace-0_625);
+        width  : var(--vspace-0_625);
+    }
+
+    .intro-scrolldown {
+        bottom: var(--vspace-1);
+        right : 2.4rem;
+    }
+
+    .intro-scrolldown .scroll-icon {
+        height: var(--vspace-1_5);
+        width : var(--vspace-1_5);
+    }
+}
+
 @media screen and (max-width: 800px) {
     .s-intro {
         --gutter               : 4rem;
@@ -3382,20 +3491,6 @@ h1.hero-subtitle {
         padding-right : 0;
         margin-bottom : var(--vspace-1_5);
     }
-
-    .intro-social {
-        width         : 100%;
-        flex-wrap     : wrap;
-        padding-left  : 0;
-        padding-right : 8rem;
-        transform     : none;
-        position      : relative;
-        left          : var(--gutter);
-    }
-
-    .intro-social li {
-        padding : 0 .6rem;
-    }
 }
 
 @media screen and (max-width: 600px) {
@@ -3404,18 +3499,16 @@ h1.hero-subtitle {
         --text-huge-multiplier : .58;
     }
 
-    .intro-scrolldown {
-        right : 2.4rem;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .s-intro {
-        --text-huge-multiplier : .55;
-    }
-
     .intro-social {
-        left : 1.4rem;
+        display : none;
+    }
+
+    .intro-scrolldown {
+        bottom: var(--vspace-1_25);
+    }
+
+    .intro-scrolldown::before {
+        display: none;
     }
 }
 
@@ -3428,16 +3521,6 @@ h1.hero-subtitle {
     .intro-content .hero-subtitle {
         font-size   : var(--text-xl);
         padding-right : 0;
-    }
-
-    .intro-social {
-        left : 0;
-    }
-}
-
-@media screen and (max-width: 350px) {
-    .intro-social {
-        display : none;
     }
 }
 
