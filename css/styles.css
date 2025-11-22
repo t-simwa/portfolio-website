@@ -77,13 +77,13 @@
  * ------------------------------------------------------------------- */
 
 /* ------------------------------------------------------------------- 
- * Font Pairing: Space Mono + Plus Jakarta Sans
+ * Font Pairing: Prato + Work Sans
  * ------------------------------------------------------------------- 
- * Space Mono: Monospaced font for headings and display text - tech-forward aesthetic
- * Plus Jakarta Sans: Clean sans-serif for body text and UI elements
+ * Prato: Serif font for headings and display text
+ * Work Sans: Clean sans-serif for body text and UI elements
  * ------------------------------------------------------------------- */
 
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Prata&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 /* Mission Control font for hero name (Ted Simwa) */
 @font-face {
@@ -96,11 +96,11 @@
 
 :root {
 
-    /* Plus Jakarta Sans: Body text, UI labels, navigation, paragraphs */
-    --font-1 : "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    /* Work Sans: Body text, UI labels, navigation, paragraphs */
+    --font-1 : "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     
-    /* Space Mono: Headings, display text, hero titles - tech-forward aesthetic */
-    --font-2 : "Space Mono", "Courier New", Courier, monospace;
+    /* Prato: Headings, display text, hero titles */
+    --font-2 : "Prata", Georgia, serif;
 
     /* monospace
     */
@@ -1323,7 +1323,7 @@ a:active {
 h1, h2, h3, h4, h5, h6, 
 .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family            : var(--font-2);
-    font-weight            : 700;
+    font-weight            : normal;
     color                  : var(--color-text-dark);
     font-variant-ligatures : common-ligatures;
     text-rendering         : optimizeLegibility;
@@ -1346,7 +1346,7 @@ h5, .h5, h6, .h6 {
 
 h1, .h1 {
     font-size      : var(--text-display-1);
-    font-weight    : 700;
+    font-weight    : normal;
     line-height    : var(--vspace-2);
     letter-spacing : -0.02em;
 }
@@ -1359,14 +1359,14 @@ h1, .h1 {
 }
 h2, .h2 {
     font-size      : var(--text-xxl);
-    font-weight    : 700;
+    font-weight    : normal;
     line-height    : var(--vspace-1_5);
     letter-spacing : -0.02em;
 }
 
 h3, .h3 {
     font-size   : var(--text-xl);
-    font-weight : 700;
+    font-weight : normal;
     line-height : var(--vspace-1_25);
 }
 
@@ -2712,17 +2712,17 @@ img.u-pull-left {
 }
 
 .text-huge-title {
-    --text-huge : 10.8rem;
+    --text-huge : 6rem;
     font-size   : var(--text-huge);
-    line-height : 1.0740;
+    line-height : 1.2;
     margin-top  : 0;
     margin-bottom : var(--vspace-1);
 }
 
 .hero-subtitle {
     font-family : var(--font-2);
-    font-size   : var(--text-xxl);
-    font-weight : 700;
+    font-size   : var(--text-display-1);
+    font-weight : normal;
     line-height : var(--vspace-1_5);
     letter-spacing : -0.02em;
     margin-top  : var(--vspace-0_75);
@@ -2730,8 +2730,13 @@ img.u-pull-left {
     color : var(--color-text-dark);
 }
 
-.hero-subtitle:first-of-type {
+.hero-subtitle:first-child,
+h1.hero-subtitle {
     margin-top : 0;
+}
+
+.hero-name {
+    color : var(--color-1);
 }
 
 /* ------------------------------------------------------------------- 
