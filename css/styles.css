@@ -3721,7 +3721,7 @@ h1.hero-subtitle {
  * ## about expertise
  * -------------------------------------------------------------------- */
 .about-expertise {
-    padding-top : calc(6 * var(--space));
+    padding-top : var(--vspace-2);
 }
 
 /* Infinite Scroll Skills Animation */
@@ -3784,9 +3784,19 @@ h1.hero-subtitle {
     transition: all 0.3s ease;
     white-space: nowrap;
     align-items: center;
+    gap: 0.8rem;
     cursor: pointer;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.skill-icon {
+    width: 1.75em;
+    height: 1.75em;
+    flex-shrink: 0;
+    object-fit: contain;
+    display: block;
+    margin: 0;
 }
 
 .skills-scroll div span:hover {
@@ -3794,6 +3804,112 @@ h1.hero-subtitle {
     border-color: var(--color-btn-hover);
     color: var(--color-btn-hover-text);
     transform: translateY(-2px);
+}
+
+/* Skill Groups Container */
+.skills-groups {
+    margin-top: var(--vspace-2);
+}
+
+.skill-group {
+    margin-bottom: var(--vspace-1_5);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.skill-group:hover {
+    border-color: rgba(255, 255, 255, 0.05);
+    background-color: transparent;
+}
+
+.skill-group__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--vspace-1) var(--vspace-1_5) var(--vspace-1) var(--vspace-1_5);
+    margin-top: 0;
+    margin-left: 0.2rem;
+    margin-bottom: var(--vspace-1_5);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-1);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    position: relative;
+    transition-property: color, background-color;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.skill-group__header:focus,
+.skill-group__header:hover {
+    color: var(--color-1);
+    background-color: transparent;
+}
+
+.skill-group__header[aria-expanded="true"] {
+    background-color: var(--color-gray-9);
+}
+
+.skill-group__title {
+    flex: 1;
+    padding-left: 6rem;
+    transform: translateX(-6rem);
+    position: relative;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.skill-group__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: white;
+    opacity: 0.7;
+    margin-left: calc(1rem - 6rem);
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.skill-group__header[aria-expanded="true"] .skill-group__icon {
+    transform: rotate(90deg);
+    color: var(--color-1);
+    opacity: 1;
+}
+
+.skill-group__header:focus .skill-group__icon,
+.skill-group__header:hover .skill-group__icon {
+    color: var(--color-1);
+    opacity: 1;
+}
+
+.skill-group__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 var(--vspace-1_5);
+    background-color: transparent;
+}
+
+.skill-group__header[aria-expanded="true"] + .skill-group__content {
+    max-height: 500px;
+    padding: 0 var(--vspace-1_5) var(--vspace-1_5);
+    background-color: transparent;
+}
+
+.skill-group__content .skills-scroll {
+    margin-top: var(--vspace-1);
 }
 
 /* Responsive styles for skills scroll */
@@ -3817,6 +3933,27 @@ h1.hero-subtitle {
         margin: 0 0.5rem;
         letter-spacing: 0.25em;
     }
+
+    .skill-group__header {
+        padding: calc(var(--vspace-1) * 0.8) var(--vspace-1) calc(var(--vspace-1) * 0.8) var(--vspace-1);
+    }
+
+    .skill-group__title {
+        padding-left: 3rem;
+        transform: translateX(-3rem);
+    }
+
+    .skill-group__icon {
+        margin-left: calc(1rem - 3rem);
+    }
+
+    .skill-group__content {
+        padding: 0 var(--vspace-1);
+    }
+
+    .skill-group__header[aria-expanded="true"] + .skill-group__content {
+        padding: 0 var(--vspace-1) calc(var(--vspace-1) * 0.8);
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -3825,6 +3962,21 @@ h1.hero-subtitle {
         font-size: calc(var(--text-xs) * 0.8);
         margin: 0 0.4rem;
         letter-spacing: 0.2em;
+    }
+
+    .skill-group__header {
+        padding: calc(var(--vspace-1) * 0.7) calc(var(--vspace-1) * 0.8) calc(var(--vspace-1) * 0.7) calc(var(--vspace-1) * 0.8);
+    }
+
+    .skill-group__title {
+        padding-left: 3rem;
+        transform: none;
+    }
+
+    .skill-group__icon {
+        margin-left: calc(1rem - 3rem);
+        width: 18px;
+        height: 18px;
     }
 }
 

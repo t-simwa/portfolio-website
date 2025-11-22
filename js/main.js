@@ -499,6 +499,31 @@
         });
     };
 
+   /* Skill Groups Expand/Collapse
+    * ------------------------------------------------------ */
+    const ssSkillGroups = function() {
+
+        const skillGroupHeaders = document.querySelectorAll('.skill-group__header');
+
+        skillGroupHeaders.forEach(function(header) {
+            header.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                const content = this.nextElementSibling;
+                
+                // Toggle aria-expanded
+                this.setAttribute('aria-expanded', !isExpanded);
+                
+                // Close other groups if needed (optional - remove if you want multiple open)
+                // skillGroupHeaders.forEach(function(otherHeader) {
+                //     if (otherHeader !== header) {
+                //         otherHeader.setAttribute('aria-expanded', 'false');
+                //     }
+                // });
+            });
+        });
+
+    }; // end ssSkillGroups
+
    /* Initialize
     * ------------------------------------------------------ */
     (function ssInit() {
@@ -512,6 +537,7 @@
         ssAlertBoxes();
         ssMoveTo();
         ssGitHubCalendar();
+        ssSkillGroups();
 
     })();
 
