@@ -20,10 +20,8 @@
 
     <!-- favicons
     ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" type="image/png" href="images/title-icon.png">
+    <link rel="apple-touch-icon" href="images/title-icon.png">
 
 </head>
 
@@ -64,10 +62,11 @@
                 <nav class="column lg-12 main-nav">
                     <ul>
                         <li><a href="index.html" class="home-link">Ted Simwa.</a></li>
-                        <li class="current"><a href="#intro" class="smoothscroll">Intro</a></li>
+                        <li class="current"><a href="#works" class="smoothscroll">Projects</a></li>
+                        <li><a href="#expertise" class="smoothscroll">Expertise</a></li>
+                        <li><a href="#experience" class="smoothscroll">Experience</a></li>
                         <li><a href="#about" class="smoothscroll">About</a></li>
-                        <li><a href="#works" class="smoothscroll">Works</a></li>
-                        <li><a href="#contact" class="smoothscroll">Say Hello</a></li>
+                        <li><a href="#contact" class="smoothscroll">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -178,7 +177,7 @@
                 <div class="row about-expertise" data-animate-block>
                     <div class="column lg-12">
 
-                        <h2 class="text-pretitle with-line" data-animate-el>Expertise</h2>
+                        <h2 class="text-pretitle with-line" data-animate-el id="expertise">Expertise</h2>
 
                         <div class="skills-groups" data-animate-el>
                             
@@ -380,7 +379,7 @@
 
                     <div class="column lg-6 tab-12">
 
-                        <h2 class="text-pretitle with-line" data-animate-el>
+                        <h2 class="text-pretitle with-line" data-animate-el id="experience">
                             Experience
                         </h2>
 
@@ -787,32 +786,17 @@ CMD ["node", "server.js"]</code></pre>
                 <div class="row contact-top">
                     <div class="column lg-12">
                         <h2 class="text-pretitle with-line">
-                            Get In Touch
+                            Ready to Discuss Your Next Project?
                         </h2>
 
                         <p class="h1">
-                            I love to hear from you.
-                            Whether you have a question or just 
-                            want to chat about design, tech & art — shoot me a message.
+                            Let's connect on LinkedIn, schedule a brief call, or send me an email to discuss collaboration.
                         </p>
                     </div>
                 </div> <!-- end contact-top -->
 
                 <div class="row contact-bottom">
                     <div class="column lg-3 md-5 tab-6 stack-on-550 contact-block">
-                        <h3 class="text-pretitle">Reach me at</h3>
-                        <p class="contact-links">
-                            <a href="mailto:simwated@gmail.com" class="mailtoui">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                                simwated@gmail.com
-                            </a> <br>
-                            <a href="tel:+254723356800">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                                +254 723 356 800
-                            </a>
-                        </p>
-                    </div>
-                    <div class="column lg-4 md-5 tab-6 stack-on-550 contact-block">
                         <h3 class="text-pretitle">Social</h3>
                         <ul class="contact-social social-list">
                             <li>
@@ -833,10 +817,16 @@ CMD ["node", "server.js"]</code></pre>
                                     <span class="u-screen-reader-text">Email</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="tel:+254723356800">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                                    <span class="u-screen-reader-text">Phone</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="column lg-4 md-12 contact-block">
-                        <a href="mailto:simwated@gmail.com" class="mailtoui btn btn--medium u-fullwidth contact-btn">Say Hello.</a>
+                        <a href="mailto:simwated@gmail.com" class="mailtoui btn btn--medium u-fullwidth contact-btn">Get In Touch</a>
                     </div>
                 </div> <!-- end contact-bottom -->
 
@@ -851,7 +841,7 @@ CMD ["node", "server.js"]</code></pre>
 
                 <div class="row">
                 <div class="column ss-copyright">
-                    <span>© Copyright Ted Simwa 2025</span> 
+                    <span>© Designed & Built by Ted Simwa, 2025</span> 
                 </div>
 
                 <div class="ss-go-top">

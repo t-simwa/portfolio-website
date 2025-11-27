@@ -5546,7 +5546,7 @@ h1.hero-subtitle {
 
 .contact-social svg path,
 .contact-social svg circle {
-    fill      : var(--color-text-light);
+    fill      : rgb(255, 255, 255);
     transition: all 0.5s;
 }
 
