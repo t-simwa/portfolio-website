@@ -503,19 +503,42 @@
     * ------------------------------------------------------ */
     const ssSkillGroups = function() {
 
-        const skillGroupHeaders = document.querySelectorAll('.skill-group__header');
+        const skillGroups = document.querySelectorAll('.skill-group');
 
-        skillGroupHeaders.forEach(function(header) {
+        skillGroups.forEach(function(group) {
+            const header = group.querySelector('.skill-group__header');
+            const title = group.querySelector('.skill-group__title');
+            const content = group.querySelector('.skill-group__content');
+            
+            // Count unique skills in this group (only count from first div to avoid duplicates)
+            const skillsScroll = content.querySelector('.skills-scroll');
+            if (skillsScroll) {
+                const firstDiv = skillsScroll.querySelector('div:first-child');
+                if (firstDiv) {
+                    const skillSpans = firstDiv.querySelectorAll('span');
+                    const skillCount = skillSpans.length;
+                    
+                    // Add count to title if it doesn't already exist
+                    if (title && !title.querySelector('.skill-group__count')) {
+                        const countSpan = document.createElement('span');
+                        countSpan.className = 'skill-group__count';
+                        countSpan.textContent = ` (${skillCount})`;
+                        title.appendChild(countSpan);
+                    }
+                }
+            }
+            
+            // Add click handler
             header.addEventListener('click', function() {
                 const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                const content = this.nextElementSibling;
                 
                 // Toggle aria-expanded
                 this.setAttribute('aria-expanded', !isExpanded);
                 
                 // Close other groups if needed (optional - remove if you want multiple open)
-                // skillGroupHeaders.forEach(function(otherHeader) {
-                //     if (otherHeader !== header) {
+                // skillGroups.forEach(function(otherGroup) {
+                //     if (otherGroup !== group) {
+                //         const otherHeader = otherGroup.querySelector('.skill-group__header');
                 //         otherHeader.setAttribute('aria-expanded', 'false');
                 //     }
                 // });
