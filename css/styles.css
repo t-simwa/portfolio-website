@@ -4433,6 +4433,10 @@ h1.hero-subtitle {
     margin-left : var(--timeline-left-padding);
 }
 
+.about-timelines .text-pretitle:not(:first-of-type) {
+    margin-top: var(--vspace-3);
+}
+
 .timeline {
     margin-top    : var(--vspace-1_25);
     padding-right : 1vw;
