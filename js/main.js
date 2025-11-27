@@ -252,33 +252,48 @@
     * ------------------------------------------------------ */
     const ssLightbox = function() {
 
-        const folioLinks = document.querySelectorAll('.folio-list__item-link');
+        // Support both old structure (.folio-list__item-link) and new structure (.folio-card__actions .btn)
+        const folioLinks = document.querySelectorAll('.folio-list__item-link, .folio-card__actions .btn[href^="#modal"]');
         const modals = [];
 
         folioLinks.forEach(function(link) {
             let modalbox = link.getAttribute('href');
-            let instance = basicLightbox.create(
-                document.querySelector(modalbox),
-                {
-                    onShow: function(instance) {
-                        //detect Escape key press
-                        document.addEventListener("keydown", function(event) {
-                            event = event || window.event;
-                            if (event.keyCode === 27) {
-                                instance.close();
+            if (modalbox && modalbox.startsWith('#')) {
+                let instance = basicLightbox.create(
+                    document.querySelector(modalbox),
+                    {
+                        onShow: function(instance) {
+                            // Close button handler
+                            const closeBtn = instance.element().querySelector('.modal-popup__close');
+                            if (closeBtn) {
+                                closeBtn.addEventListener('click', function() {
+                                    instance.close();
+                                });
                             }
-                        });
+                            
+                            // Detect Escape key press
+                            const escapeHandler = function(event) {
+                                event = event || window.event;
+                                if (event.keyCode === 27) {
+                                    instance.close();
+                                    document.removeEventListener("keydown", escapeHandler);
+                                }
+                            };
+                            document.addEventListener("keydown", escapeHandler);
+                        }
                     }
-                }
-            )
-            modals.push(instance);
+                )
+                modals.push(instance);
+            }
         });
 
         folioLinks.forEach(function(link, index) {
-            link.addEventListener("click", function(event) {
-                event.preventDefault();
-                modals[index].show();
-            });
+            if (modals[index]) {
+                link.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    modals[index].show();
+                });
+            }
         });
 
     };  // end ssLightbox
