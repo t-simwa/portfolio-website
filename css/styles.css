@@ -3748,6 +3748,11 @@ h1.hero-subtitle {
     animation-delay: calc(var(--time, 25s) / -2);
 }
 
+/* Pause animation on hover for better accessibility */
+.skills-scroll:hover div {
+    animation-play-state: paused;
+}
+
 @keyframes scroll-skills {
     0% {
         transform: translateX(100%);
