@@ -4496,6 +4496,36 @@ h1.hero-subtitle {
     margin-top     : -.2rem;
 }
 
+.timeline__desc {
+    margin-top: var(--vspace-0_5);
+}
+
+.timeline__desc p {
+    margin-top    : 0;
+    margin-bottom : var(--vspace-0_75);
+    font-family   : var(--font-1);
+    font-size     : var(--text-base);
+    line-height   : 1.6;
+    color         : var(--color-text);
+}
+
+.timeline__desc p:last-child {
+    margin-bottom: 0;
+}
+
+.timeline__technologies {
+    margin-top    : var(--vspace-1) !important;
+    padding-top   : var(--vspace-0_75);
+    border-top    : 1px solid rgba(255, 255, 255, 0.1);
+    font-size     : var(--text-sm) !important;
+    color         : var(--color-text-light) !important;
+}
+
+.timeline__technologies strong {
+    color: var(--color-1);
+    font-weight: 500;
+}
+
 /* ------------------------------------------------------------------- 
  * responsive:
  * about
