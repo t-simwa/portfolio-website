@@ -4456,8 +4456,20 @@ h1.hero-subtitle {
 
 .timeline__block {
     padding-left   : var(--timeline-left-padding);
-    padding-bottom : var(--vspace-0_5);
+    padding-bottom : var(--vspace-2);
     position       : relative;
+    margin-bottom  : var(--vspace-1);
+}
+
+.timeline__block:not(:last-child)::after {
+    content          : "";
+    display          : block;
+    width            : calc(100% - var(--timeline-left-padding));
+    height           : 1px;
+    background-color : rgba(255, 255, 255, 0.1);
+    position         : absolute;
+    bottom           : var(--vspace-1);
+    left             : var(--timeline-left-padding);
 }
 
 .timeline__block:last-child {
@@ -4519,8 +4531,7 @@ h1.hero-subtitle {
 
 .timeline__technologies {
     margin-top    : var(--vspace-1) !important;
-    padding-top   : var(--vspace-0_75);
-    border-top    : 1px solid rgba(255, 255, 255, 0.1);
+    padding-top   : 0;
     font-size     : var(--text-sm) !important;
     color         : var(--color-text-light) !important;
 }
