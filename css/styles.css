@@ -210,13 +210,13 @@
 :root {
 
     /* spacing
-     * base font size: 16px (reduced from 19px)
-     * vertical space unit : 24px (reduced from 32px)
+     * base font size: ~17px (increased for better readability)
+     * vertical space unit : ~29px (increased for better spacing)
      */
     --base-size      : 62.5%;
-    --multiplier     : 0.75;
-    --base-font-size : calc(1.6rem * var(--multiplier));
-    --space          : calc(2.4rem * var(--multiplier));
+    --multiplier     : 1;
+    --base-font-size : calc(1.7rem * var(--multiplier));
+    --space          : calc(2.9rem * var(--multiplier));
 
     /* vertical spacing 
      */
@@ -281,7 +281,7 @@
  */
 @media screen and (max-width: 600px) {
     :root {
-        --multiplier : .875;
+        --multiplier : 1;
     }
 }
 
@@ -771,15 +771,15 @@ textarea {
 
 .folio-list.row.block-lg-one-half .folio-list__item.column {
     flex: none;
-    width: 50%;
+    width: calc(50% - var(--vspace-1));
 }
 
 @media screen and (min-width: 1001px) {
     .folio-list.row.block-lg-one-half .folio-list__item.column,
     .folio-list.row.block-lg-one-half.block-stack-on-1000 > .folio-list__item.column {
         flex: none;
-        width: 50% !important;
-        max-width: 50%;
+        width: calc(50% - var(--vspace-1)) !important;
+        max-width: calc(50% - var(--vspace-1));
     }
 }
 
@@ -1002,8 +1002,8 @@ textarea {
 @media screen and (max-width: 600px) {
     .row {
         width         : 100%;
-        padding-left  : 6vw;
-        padding-right : 6vw;
+        padding-left  : max(2.4rem, 6vw);
+        padding-right : max(2.4rem, 6vw);
     }
 
     .row .row {
@@ -1383,7 +1383,7 @@ h5, .h5, h6, .h6 {
 }
 
 h1, .h1 {
-    font-size      : var(--text-display-1);
+    font-size      : var(--text-xxl);
     font-weight    : 400;
     line-height    : 1.25;
     letter-spacing : -0.015em;
@@ -1392,7 +1392,7 @@ h1, .h1 {
 
 @media screen and (max-width: 500px) {
     h1, .h1 {
-        font-size   : var(--text-xxxl);
+        font-size   : var(--text-xl);
         line-height : calc(1.625 * var(--space));
     }
 }
@@ -1400,8 +1400,10 @@ h1, .h1 {
 @media screen and (max-width: 600px) {
     .s-works .h1,
     .s-contact .h1,
-    .s-about .h1 {
-        font-size      : clamp(2.8rem, 5.5vw, 4.5rem);
+    .s-about .h1,
+    .s-services .h1,
+    .s-process .h1 {
+        font-size      : var(--text-xl);
         line-height    : 1.3;
         font-family    : var(--font-2);
         font-weight    : 400;
@@ -1410,7 +1412,7 @@ h1, .h1 {
     }
     
     .intro-content .hero-subtitle {
-        font-size      : clamp(2.8rem, 5.5vw, 4.5rem);
+        font-size      : var(--text-xl);
         line-height    : 1.3;
         font-family    : var(--font-2);
         font-weight    : 400;
@@ -1424,8 +1426,10 @@ h1, .h1 {
 @media screen and (max-width: 800px) {
     .s-works .h1,
     .s-contact .h1,
-    .s-about .h1 {
-        font-size      : clamp(2.8rem, 5.5vw, 4.5rem);
+    .s-about .h1,
+    .s-services .h1,
+    .s-process .h1 {
+        font-size      : var(--text-xl);
         line-height    : 1.3;
         font-weight    : 400;
         letter-spacing : -0.015em;
@@ -1433,7 +1437,7 @@ h1, .h1 {
     }
     
     .intro-content .hero-subtitle {
-        font-size      : clamp(2.8rem, 5.5vw, 4.5rem);
+        font-size      : var(--text-xl);
         line-height    : 1.3;
         font-weight    : 400;
         letter-spacing : -0.015em;
@@ -1665,8 +1669,8 @@ hr.fancy::before {
     font-family    : var(--font-1);
     font-weight    : 400;
     font-size      : var(--text-size);
-    line-height    : 1.65;
-    color          : rgba(255, 255, 255, 0.85);
+    line-height    : 1.7;
+    color          : rgba(255, 255, 255, 0.9);
     letter-spacing : 0.01em;
     text-rendering : optimizeLegibility;
 }
@@ -2129,18 +2133,18 @@ button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
-    --btn-height            : var(--vspace-btn);
+    --btn-height            : calc(var(--vspace-btn) * 1.2);
     display                 : inline-flex;
     align-items            : center;
     justify-content        : center;
     font-family             : var(--font-1);
     font-weight             : 600;
-    font-size               : calc(var(--text-xs) * 0.92);
+    font-size               : var(--text-sm);
     text-transform          : uppercase;
-    letter-spacing          : .25em;
+    letter-spacing          : .15em;
     height                  : var(--btn-height);
     line-height             : 1;
-    padding                 : 0 2.8rem;
+    padding                 : 0 3.2rem;
     margin                  : 0 0.4rem var(--vspace-0_5) 0;
     color                   : var(--color-btn-text);
     text-decoration         : none;
@@ -2150,7 +2154,7 @@ input[type="button"] {
     transition              : all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background-color        : var(--color-btn);
     border                  : 1px solid var(--color-btn);
-    border-radius           : 2px;
+    border-radius           : 8px;
     -webkit-font-smoothing  : antialiased;
     -moz-osx-font-smoothing : grayscale;
     position                : relative;
@@ -2794,14 +2798,14 @@ img.u-pull-left {
  * ------------------------------------------------------------------- */
 .text-pretitle {
     font-family    : var(--font-1);
-    font-size      : var(--text-xs);
+    font-size      : var(--text-sm);
     font-weight    : 600;
     color          : rgba(255, 255, 255, 0.9);
     text-transform : uppercase;
-    letter-spacing : .25em;
+    letter-spacing : .2em;
     margin-top     : 0;
     margin-left    : .2rem;
-    margin-bottom  : var(--vspace-1);
+    margin-bottom  : var(--vspace-1_25);
     position       : relative;
 }
 
@@ -2832,12 +2836,12 @@ img.u-pull-left {
 
 .hero-subtitle {
     font-family    : var(--font-2);
-    font-size      : var(--text-xxxl);
+    font-size      : clamp(2.6rem, 4vw, 4.4rem);
     font-weight    : 400;
-    line-height    : 1.25;
+    line-height    : 1.3;
     letter-spacing : -0.015em;
-    margin-top     : var(--vspace-0_75);
-    margin-bottom  : 0;
+    margin-top     : var(--vspace-1);
+    margin-bottom  : var(--vspace-0_5);
     color          : rgba(255, 255, 255, 0.95);
     text-rendering : optimizeLegibility;
     -webkit-font-smoothing : antialiased;
@@ -3046,7 +3050,7 @@ h1.hero-subtitle {
 
 .s-pagewrap {
     --circle-width  : 70vw;
-    --header-height : 4.8rem;
+    --header-height : 6.4rem;
     display         : flex;
     flex-direction  : column;
     min-height      : 100%;
@@ -3144,17 +3148,48 @@ h1.hero-subtitle {
     border-bottom    : 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.mobile-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.mobile-call-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-1);
+    color: var(--color-body);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.mobile-call-btn:hover,
+.mobile-call-btn:focus {
+    background-color: var(--color-1-dark);
+    transform: scale(1.05);
+    color: var(--color-body);
+}
+
+.mobile-call-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
 /* --------------------------------------------------------------------
  * ## main navigation
  * -------------------------------------------------------------------- */
 .mobile-home-link a,
 .main-nav a {
     display             : block;
-    font-size           : 9px;
+    font-size           : 1.4rem;
     font-weight         : 500;
     line-height         : var(--header-height);
     text-transform      : uppercase;
-    letter-spacing      : 0.3em;
+    letter-spacing      : 0.2em;
     color               : rgba(255, 255, 255, 0.75);
     transition-property : color, background-color, opacity;
     transition-duration : 0.3s, 0.3s, 0.3s;
@@ -3229,9 +3264,7 @@ h1.hero-subtitle {
     display  : block;
     width    : var(--header-height);
     height   : var(--header-height);
-    position : absolute;
-    top      : 0;
-    right    : .8rem;
+    position : relative;
 }
 
 .mobile-menu-toggle span {
@@ -3244,10 +3277,11 @@ h1.hero-subtitle {
     text-shadow      : none;
     color            : transparent;
     position         : absolute;
-    right            : 20px;
+    right            : 50%;
     top              : 50%;
     bottom           : auto;
     left             : auto;
+    transform        : translateX(50%);
     transition       : background-color 0.2s ease-in-out;
 }
 
@@ -3311,7 +3345,10 @@ h1.hero-subtitle {
     }
 
     .header-mobile {
-        display : block;
+        display         : flex;
+        align-items     : center;
+        justify-content : space-between;
+        padding         : 0 1.2rem;
     }
 
     .main-nav-wrap {
@@ -3449,8 +3486,8 @@ h1.hero-subtitle {
 
 .intro-content .hero-subtitle {
     padding-right : 5vw;
-    line-height   : 1.25;
-    font-size     : calc(var(--text-xxxl) * 1.15);
+    line-height   : 1.3;
+    font-size     : clamp(2.4rem, 4vw, 4rem);
     max-width     : 90%;
 }
 
@@ -3520,8 +3557,8 @@ h1.hero-subtitle {
  * ## intro scrolldown
  * -------------------------------------------------------------------- */
 .intro-scrolldown {
-    --line-length: 8rem;
-    --social-gap : var(--vspace-4);
+    --line-length: 10rem;
+    --social-gap : var(--vspace-2);
     z-index      : 2;
     position     : absolute;
     bottom       : calc(var(--vspace-2) + 12rem - var(--social-gap));
@@ -3547,14 +3584,7 @@ h1.hero-subtitle {
 }
 
 .intro-scrolldown::before {
-    content         : "";
-    display         : block;
-    height          : var(--line-length);
-    width           : 1px;
-    background-color: rgba(255, 255, 255, 0.4);
-    position        : absolute;
-    top             : calc(var(--line-length) * -1 - var(--vspace-1));
-    left            : 50%;
+    display: none;
 }
 
 .intro-scrolldown a {
@@ -3688,10 +3718,10 @@ h1.hero-subtitle {
     }
 
     .intro-content .hero-subtitle {
-        font-size     : clamp(3rem, 6vw, 5.5rem);
-        color         : var(--color-text-dark);
+        font-size     : var(--text-xxl);
+        color         : rgba(255, 255, 255, 0.95);
         padding-right : 0;
-        text-align    : center;
+        text-align    : left;
     }
 
     .intro-content .hero-subtitle br {
@@ -3763,7 +3793,7 @@ h1.hero-subtitle {
 
     .intro-content .hero-subtitle {
         padding-right  : 0;
-        font-size      : clamp(2.8rem, 5.5vw, 4.5rem);
+        font-size      : var(--text-xl);
         line-height    : 1.3;
         font-family    : var(--font-2);
         font-weight    : 400;
@@ -3805,7 +3835,7 @@ h1.hero-subtitle {
     }
 
     .intro-content .hero-subtitle {
-        font-size      : clamp(2.8rem, 5.5vw, 4.5rem);
+        font-size      : var(--text-xl);
         line-height    : 1.3;
         font-family    : var(--font-2);
         font-weight    : 400;
@@ -3823,7 +3853,7 @@ h1.hero-subtitle {
     }
 
     .intro-content .hero-subtitle {
-        font-size      : clamp(2.8rem, 5.5vw, 4.5rem);
+        font-size      : var(--text-lg);
         line-height    : 1.3;
         font-family    : var(--font-2);
         font-weight    : 400;
@@ -3854,7 +3884,7 @@ h1.hero-subtitle {
  * ------------------------------------------------------------------- */
 
 .s-about {
-    padding-bottom : var(--vspace-5);
+    padding-bottom : 0;
 }
 
 /* --------------------------------------------------------------------
@@ -3865,7 +3895,8 @@ h1.hero-subtitle {
     width         : 100%;
     align-items   : center;
     padding-top   : var(--vspace-5);
-    padding-bottom: var(--vspace-5);
+    padding-bottom: var(--vspace-3);
+    border-bottom : 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .about-info__pic-block {
@@ -4336,10 +4367,8 @@ h1.hero-subtitle {
  * ## about github
  * -------------------------------------------------------------------- */
 .about-github {
-    padding-top    : var(--vspace-5);
-    padding-bottom : var(--vspace-5);
-    border-top     : 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom  : 1px solid rgba(255, 255, 255, 0.08);
+    padding-top    : 0;
+    padding-bottom : 0;
 }
 
 .about-github .h1 {
@@ -4683,8 +4712,7 @@ h1.hero-subtitle {
 .about-timelines {
     --timeline-left-padding : var(--vspace-1_75);
     --timeline-top-adjust   : var(--vspace-0_5);
-    padding-top             : var(--vspace-5);
-    border-top              : 1px solid rgba(255, 255, 255, 0.08);
+    padding-top             : 0;
 }
 
 .about-timelines .text-pretitle {
@@ -4868,7 +4896,7 @@ h1.hero-subtitle {
  * ------------------------------------------------------------------- */
 
 .s-works {
-    padding-bottom : var(--vspace-5);
+    padding-bottom : var(--vspace-3);
 }
 
 .s-works .h1 {
@@ -4876,8 +4904,9 @@ h1.hero-subtitle {
 }
 
 .works-portfolio {
-    padding-top : var(--vspace-5);
-    border-top  : 1px solid rgba(255, 255, 255, 0.08);
+    padding-top    : var(--vspace-3);
+    padding-bottom : var(--vspace-3);
+    border-bottom  : 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* --------------------------------------------------------------------
@@ -4900,7 +4929,7 @@ h1.hero-subtitle {
 }
 
 .folio-list.row.block-lg-one-half {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 @media screen and (max-width: 1000px) {
@@ -4922,14 +4951,14 @@ h1.hero-subtitle {
 /* Ensure block-lg-one-half works for folio-list items on desktop */
 .folio-list.row.block-lg-one-half > .folio-list__item.column {
     flex: none;
-    width: 50% !important;
-    max-width: 50%;
+    width: calc(50% - var(--vspace-1)) !important;
+    max-width: calc(50% - var(--vspace-1));
 }
 
 @media screen and (max-width: 1000px) {
-    /* Force all cards to stack on mobile */
-    .folio-list.row.block-lg-one-half > .folio-list__item.column,
-    .folio-list.row.block-lg-whole > .folio-list__item.column {
+    /* Force cards to stack on mobile ONLY if block-stack-on-1000 is present */
+    .folio-list.row.block-lg-one-half.block-stack-on-1000 > .folio-list__item.column,
+    .folio-list.row.block-lg-whole.block-stack-on-1000 > .folio-list__item.column {
         width: 100% !important;
         max-width: 100%;
         flex: none;
@@ -5100,7 +5129,7 @@ h1.hero-subtitle {
     height          : 100%;
     overflow        : hidden;
     position        : relative;
-    border-radius   : 2px;
+    border-radius   : 12px;
 }
 
 .folio-card::before {
@@ -5118,8 +5147,99 @@ h1.hero-subtitle {
 
 .folio-card:hover {
     border-color     : rgba(234, 190, 124, 0.4);
-    transform        : translateY(-6px);
-    box-shadow       : 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(234, 190, 124, 0.1);
+    transform        : translateY(-4px);
+    box-shadow       : 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(234, 190, 124, 0.1);
+}
+
+.folio-card--link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Centered folio list for single card row */
+.folio-list--centered {
+    justify-content: center;
+    margin-bottom: var(--vspace-1);
+}
+
+.folio-list--centered + .folio-list {
+    margin-top: var(--vspace-1);
+}
+
+.folio-list__item--single {
+    flex: none;
+    width: 50%;
+    max-width: 50%;
+}
+
+@media screen and (max-width: 800px) {
+    .folio-list__item--single {
+        width: 70%;
+        max-width: 70%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .folio-list__item--single {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Stack row 2 cards on small phones */
+    .folio-list--centered + .folio-list > .folio-list__item.column {
+        width: 100% !important;
+        max-width: 100%;
+    }
+}
+
+/* Card action buttons */
+.folio-card__actions {
+    display     : flex;
+    gap         : var(--vspace-0_5);
+    margin-top  : var(--vspace-0_75);
+    flex-wrap   : wrap;
+}
+
+.folio-card__btn {
+    display         : inline-flex;
+    align-items     : center;
+    justify-content : center;
+    gap             : 0.5rem;
+    padding         : 0.6rem 1.2rem;
+    font-family     : var(--font-1);
+    font-size       : 1.2rem;
+    font-weight     : 600;
+    text-transform  : uppercase;
+    letter-spacing  : 0.08em;
+    border-radius   : 6px;
+    text-decoration : none;
+    transition      : all 0.3s ease;
+    cursor          : pointer;
+}
+
+.folio-card__btn svg {
+    flex-shrink: 0;
+}
+
+.folio-card__btn:first-child {
+    background-color : var(--color-1);
+    color            : var(--color-black);
+}
+
+.folio-card__btn:first-child:hover {
+    background-color : var(--color-1-dark);
+}
+
+.folio-card__btn--outline {
+    background-color : transparent;
+    border           : 1px solid rgba(255, 255, 255, 0.3);
+    color            : rgba(255, 255, 255, 0.85);
+}
+
+.folio-card__btn--outline:hover {
+    background-color : rgba(255, 255, 255, 0.1);
+    border-color     : rgba(255, 255, 255, 0.5);
+    color            : white;
 }
 
 .folio-card:hover::before {
@@ -5129,7 +5249,7 @@ h1.hero-subtitle {
 .folio-card__image {
     width       : 100%;
     height      : 0;
-    padding-top : 56.25%; /* 16:9 aspect ratio - more balanced and modern */
+    padding-top : 45%; /* Shorter image height like Simca cards */
     position    : relative;
     overflow    : hidden;
     flex-shrink : 0;
@@ -5172,10 +5292,10 @@ h1.hero-subtitle {
 }
 
 .folio-card__content {
-    padding       : var(--vspace-1_5);
+    padding       : var(--vspace-1);
     display       : flex;
     flex-direction: column;
-    gap           : var(--vspace-0_75);
+    gap           : var(--vspace-0_5);
     flex-grow     : 1;
     position      : relative;
     z-index       : 2;
@@ -5185,7 +5305,7 @@ h1.hero-subtitle {
     font-family            : var(--font-2);
     font-weight            : 400;
     font-size              : var(--text-lg);
-    line-height            : 1.35;
+    line-height            : 1.3;
     margin                 : 0;
     color                  : rgba(255, 255, 255, 0.95);
     font-variant-ligatures : common-ligatures;
@@ -5202,15 +5322,15 @@ h1.hero-subtitle {
 .folio-card__status-badge {
     display         : inline-flex;
     align-items     : center;
-    gap             : 0.5rem;
-    padding         : 0.25rem 0.75rem;
-    font-size       : var(--text-xs);
+    gap             : 0.4rem;
+    padding         : 0.2rem 0.6rem;
+    font-size       : 1.1rem;
     font-weight     : 600;
     border-radius   : 1000px;
     text-transform  : uppercase;
     letter-spacing  : 0.05em;
     white-space     : nowrap;
-    margin-top      : var(--vspace-0_25);
+    margin-top      : 0;
     margin-bottom   : 0;
     width           : fit-content;
     max-width       : 100%;
@@ -5253,12 +5373,21 @@ h1.hero-subtitle {
     color            : var(--color-gray-7);
 }
 
+.folio-card__subtitle {
+    font-size      : var(--text-xs);
+    font-weight    : 600;
+    text-transform : uppercase;
+    letter-spacing : 0.1em;
+    color          : var(--color-1);
+    margin         : 0 0 var(--vspace-0_5) 0;
+}
+
 .folio-card__summary {
     font-size      : var(--text-size);
-    line-height    : 1.65;
-    color          : rgba(255, 255, 255, 0.75);
+    line-height    : 1.7;
+    color          : rgba(255, 255, 255, 0.9);
     margin         : 0;
-    flex-grow      : 1;
+    flex-grow      : 0;
     letter-spacing : 0.01em;
 }
 
@@ -5313,6 +5442,11 @@ h1.hero-subtitle {
 /* ------------------------------------------------------------------- 
  * ## modal popup
  * ------------------------------------------------------------------- */
+/* Hide the basicLightbox external close button */
+.basicLightbox::after {
+    display: none !important;
+}
+
 .modal-popup {
     max-width        : 900px;
     background-color : var(--color-body);
@@ -5323,6 +5457,28 @@ h1.hero-subtitle {
     position         : relative;
     max-height       : 90vh;
     border           : 1px solid var(--color-border);
+    
+    /* Dark minimal scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+/* Webkit scrollbar styling for modal */
+.modal-popup::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-popup::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-popup::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.modal-popup::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.35);
 }
 
 .modal-popup__close {
@@ -5359,9 +5515,9 @@ h1.hero-subtitle {
 
 .modal-popup__title {
     font-family            : var(--font-2);
-    font-size              : var(--text-display-1);
+    font-size              : var(--text-xxl);
     font-weight            : normal;
-    line-height            : var(--vspace-2);
+    line-height            : 1.3;
     letter-spacing         : -0.02em;
     font-variant-ligatures : common-ligatures;
     text-rendering         : optimizeLegibility;
@@ -5674,7 +5830,7 @@ h1.hero-subtitle {
 @media screen and (max-width: 1000px) {
     .folio-card__title {
         font-size   : var(--text-lg);
-        line-height : var(--vspace-1);
+        line-height : 1.3;
     }
 }
 
@@ -5685,14 +5841,14 @@ h1.hero-subtitle {
     }
     
     .folio-card__content {
-        padding : var(--vspace-1_25);
+        padding : var(--vspace-1);
     }
 }
 
 @media screen and (max-width: 600px) {
     .folio-card__title {
         font-size   : var(--text-md);
-        line-height : var(--vspace-0_875);
+        line-height : 1.3;
     }
     
     .folio-card__image {
@@ -5700,13 +5856,8 @@ h1.hero-subtitle {
     }
     
     .folio-card__content {
-        padding : var(--vspace-1_25);
-        gap     : var(--vspace-0_75);
-    }
-    
-    .folio-card__tech-icon {
-        width  : 28px;
-        height : 28px;
+        padding : var(--vspace-1);
+        gap     : var(--vspace-0_5);
     }
     
     .folio-card__actions {
@@ -5749,22 +5900,11 @@ h1.hero-subtitle {
     }
     
     .folio-card__image {
-        padding-top : 56.25%; /* 16:9 on mobile */
+        padding-top : 50%;
     }
     
     .folio-card__content {
-        padding : var(--vspace-1_25);
-    }
-    
-    /* Ensure all card types match exactly */
-    .folio-list.row.block-lg-whole .folio-card__image,
-    .folio-list.row.block-lg-one-half .folio-card__image {
-        padding-top : 56.25%;
-    }
-    
-    .folio-list.row.block-lg-whole .folio-card__content,
-    .folio-list.row.block-lg-one-half .folio-card__content {
-        padding : var(--vspace-1_25);
+        padding : var(--vspace-1);
     }
 }
 
@@ -5793,7 +5933,7 @@ h1.hero-subtitle {
     }
     
     .folio-card__summary {
-        font-size : var(--text-sm);
+        font-size : var(--text-size);
     }
     
     /* Ensure all card types match exactly at smallest screens */
@@ -5802,10 +5942,10 @@ h1.hero-subtitle {
         padding : var(--vspace-1);
         gap     : var(--vspace-0_625);
     }
-    
+
     .folio-list.row.block-lg-whole .folio-card__summary,
     .folio-list.row.block-lg-one-half .folio-card__summary {
-        font-size : var(--text-sm);
+        font-size : var(--text-size);
     }
     
     .modal-popup {
@@ -5817,8 +5957,8 @@ h1.hero-subtitle {
     }
     
     .modal-popup__title {
-        font-size   : var(--text-xxxl);
-        line-height : calc(1.625 * var(--space));
+        font-size   : var(--text-xl);
+        line-height : 1.3;
     }
     
     .modal-popup__content {
@@ -6111,5 +6251,330 @@ h1.hero-subtitle {
 @media screen and (max-width: 400px) {
     .ss-go-top {
         right : 6vw;
+    }
+}
+
+
+/* ===================================================================
+ * # STICKY MOBILE CTA
+ *
+ * ------------------------------------------------------------------- */
+.mobile-cta {
+    display          : none;
+    position         : fixed;
+    bottom           : 0;
+    left             : 0;
+    right            : 0;
+    z-index          : 900;
+    background-color : rgba(20, 20, 20, 0.95);
+    backdrop-filter  : blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top       : 1px solid var(--color-border);
+    padding          : 1.2rem 1.6rem;
+    padding-bottom   : calc(1.2rem + env(safe-area-inset-bottom));
+    gap              : 1.2rem;
+    justify-content  : center;
+    align-items      : center;
+}
+
+.mobile-cta__btn {
+    display         : inline-flex;
+    align-items     : center;
+    justify-content : center;
+    gap             : 0.6rem;
+    flex            : 1;
+    max-width       : 160px;
+    padding         : 1.2rem 2rem;
+    font-family     : var(--font-1);
+    font-size       : 1.2rem;
+    font-weight     : 600;
+    text-transform  : uppercase;
+    letter-spacing  : 0.15em;
+    text-decoration : none;
+    border-radius   : 6px;
+    transition      : all 0.3s ease;
+}
+
+.mobile-cta__btn svg {
+    flex-shrink: 0;
+}
+
+.mobile-cta__btn--primary {
+    background-color : var(--color-1);
+    color            : var(--color-black);
+}
+
+.mobile-cta__btn--primary:hover {
+    background-color : var(--color-1-dark);
+}
+
+.mobile-cta__btn--outline {
+    background-color : transparent;
+    border           : 1px solid var(--color-1);
+    color            : var(--color-1);
+}
+
+.mobile-cta__btn--outline:hover {
+    background-color : rgba(var(--color-1-rgb), 0.1);
+}
+
+/* Show only on mobile/tablet */
+@media screen and (max-width: 900px) {
+    .mobile-cta {
+        display: flex;
+    }
+    
+    /* Add bottom padding to footer so CTA doesn't cover content */
+    .s-footer {
+        padding-bottom: calc(var(--vspace-5) + 70px);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .mobile-cta {
+        padding: 1rem 1.2rem;
+        padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+        gap: 1rem;
+    }
+    
+    .mobile-cta__btn {
+        padding: 1rem 1.5rem;
+        font-size: 1.1rem;
+    }
+}
+
+
+/* ===================================================================
+ * # SERVICES SECTION (How I Help)
+ *
+ * ------------------------------------------------------------------- */
+.s-services {
+    padding-top    : var(--vspace-3);
+    padding-bottom : var(--vspace-3);
+    background-color: var(--color-body);
+    border-bottom  : 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.services-content {
+    max-width: var(--width-wider);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--vspace-2);
+    margin-top: var(--vspace-2);
+}
+
+.service-card {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.service-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-1);
+    margin-bottom: var(--vspace-0_5);
+}
+
+.service-card__icon svg {
+    width: 28px;
+    height: 28px;
+    stroke-width: 1.5;
+}
+
+.service-card__title {
+    font-family: var(--font-2);
+    font-size: var(--text-md);
+    font-weight: 500;
+    color: var(--color-1);
+    margin-bottom: var(--vspace-0_5);
+}
+
+.service-card__desc {
+    font-size: var(--text-size);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 800px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: var(--vspace-1_5);
+    }
+    
+    .s-services {
+        padding-top: var(--vspace-2);
+        padding-bottom: var(--vspace-2);
+    }
+}
+
+
+/* ===================================================================
+ * # PROCESS SECTION (My Process)
+ *
+ * ------------------------------------------------------------------- */
+.s-process {
+    padding-top    : var(--vspace-3);
+    padding-bottom : var(--vspace-3);
+    background-color: var(--color-body);
+}
+
+.process-content {
+    max-width: var(--width-wider);
+}
+
+.process-steps {
+    display: flex;
+    gap: var(--vspace-2);
+    margin-top: var(--vspace-2);
+}
+
+.process-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+}
+
+.process-step__number {
+    font-family: var(--font-2);
+    font-size: var(--text-xxl);
+    font-weight: 500;
+    color: var(--color-1);
+    line-height: 1;
+    margin-bottom: var(--vspace-0_5);
+}
+
+.process-step__content {
+    flex: 1;
+}
+
+.process-step__title {
+    font-family: var(--font-2);
+    font-size: var(--text-md);
+    font-weight: 500;
+    color: var(--color-1);
+    margin-bottom: var(--vspace-0_5);
+}
+
+.process-step__desc {
+    font-size: var(--text-size);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 900px) {
+    .process-steps {
+        flex-direction: column;
+        gap: var(--vspace-1_5);
+    }
+    
+    .process-step {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--vspace-1);
+    }
+    
+    .process-step__number {
+        font-size: var(--text-xl);
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .s-process {
+        padding-top: var(--vspace-2);
+        padding-bottom: var(--vspace-2);
+    }
+    
+    .process-step__number {
+        font-size: var(--text-lg);
+    }
+}
+
+
+/* ===================================================================
+ * # EXPERIENCE SECTION
+ *
+ * ------------------------------------------------------------------- */
+.s-experience {
+    padding-top    : var(--vspace-3);
+    padding-bottom : var(--vspace-3);
+    background-color: var(--color-body);
+    border-top     : 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media screen and (max-width: 800px) {
+    .s-experience {
+        padding-top: var(--vspace-2);
+        padding-bottom: var(--vspace-2);
+    }
+}
+
+
+/* ===================================================================
+ * # GITHUB SECTION
+ *
+ * ------------------------------------------------------------------- */
+.s-github {
+    padding-top    : var(--vspace-3);
+    padding-bottom : var(--vspace-3);
+    background-color: var(--color-body);
+    border-top     : 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media screen and (max-width: 800px) {
+    .s-github {
+        padding-top: var(--vspace-2);
+        padding-bottom: var(--vspace-2);
+    }
+}
+
+
+/* ===================================================================
+ * # CONTACT SECTION ENHANCEMENTS
+ *
+ * ------------------------------------------------------------------- */
+.contact-availability {
+    font-size      : var(--text-md);
+    color          : var(--color-1);
+    font-weight    : 500;
+    margin-top     : var(--vspace-1);
+    margin-bottom  : var(--vspace-2);
+}
+
+.contact-cta-buttons {
+    display   : flex;
+    flex-wrap : wrap;
+    gap       : var(--vspace-1);
+    margin-top: var(--vspace-1);
+}
+
+.contact-cta-buttons .btn {
+    display     : inline-flex;
+    align-items : center;
+    gap         : 0.75rem;
+}
+
+.contact-cta-buttons .btn svg {
+    flex-shrink: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .contact-cta-buttons {
+        flex-direction: column;
+    }
+    
+    .contact-cta-buttons .btn {
+        width: 100%;
+        justify-content: center;
     }
 }

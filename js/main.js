@@ -253,7 +253,7 @@
     const ssLightbox = function() {
 
         // Support both old structure (.folio-list__item-link) and new structure (.folio-card__actions .btn)
-        const folioLinks = document.querySelectorAll('.folio-list__item-link, .folio-card__actions .btn[href^="#modal"]');
+        const folioLinks = document.querySelectorAll('.folio-list__item-link, .folio-card__actions a[href^="#modal"]');
         const modals = [];
 
         folioLinks.forEach(function(link) {
