@@ -1153,6 +1153,10 @@ body.light .btn--secondary:hover {
     display: none !important;
   }
 
+  .capability-card__icon {
+    display: none !important;
+  }
+
   .capability-card,
   .capability-card__number,
   .capability-card__line {
@@ -1476,6 +1480,10 @@ body.light .about__resume-link:hover {
 /* # CAPABILITIES SECTION — Services Bento Grid
  * =================================================================== */
 
+.capabilities {
+  padding-top: clamp(40px, 6vh, 80px);
+}
+
 /* -- Section header (aerocycling style) -- */
 .capabilities__header {
   display: flex;
@@ -1562,6 +1570,33 @@ body.light .about__resume-link:hover {
 
 body.light .capability-card__accent {
   background: #b8942e;
+}
+
+/* -- Icon (top-right, forms on hover) -- */
+.capability-card__icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 26px;
+  height: 26px;
+  color: var(--color-gold);
+  opacity: 0;
+  transform: scale(0.5) rotate(-12deg);
+  filter: blur(6px);
+  transition: opacity 0.6s var(--ease-out-expo),
+              transform 0.6s var(--ease-out-expo),
+              filter 0.6s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.capability-card:hover .capability-card__icon {
+  opacity: 0.2;
+  transform: scale(1) rotate(0deg);
+  filter: blur(0);
+}
+
+body.light .capability-card__icon {
+  color: #b8942e;
 }
 
 /* -- Number (bottom-right, outlined) -- */
