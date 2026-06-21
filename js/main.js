@@ -378,7 +378,7 @@
     observer.observe(aboutPhoto);
   }
 
-  // Animated stat counters
+  // Animated stat counters + accent bars
   var aboutStats = document.querySelector('.about__stats');
   if (aboutStats && 'IntersectionObserver' in window) {
     var animated = false;
@@ -386,6 +386,14 @@
       entries.forEach(function (entry) {
         if (entry.isIntersecting && !animated) {
           animated = true;
+          // Accent bars
+          var stats = aboutStats.querySelectorAll('.about__stat');
+          stats.forEach(function (stat, i) {
+            setTimeout(function () {
+              stat.classList.add('is-visible');
+            }, i * 120);
+          });
+          // Counters
           var numbers = aboutStats.querySelectorAll('[data-count]');
           numbers.forEach(function (el) {
             var target = parseInt(el.getAttribute('data-count'), 10);

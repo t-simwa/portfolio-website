@@ -1140,8 +1140,13 @@ body.light .btn--secondary:hover {
     transform: none !important;
   }
 
+  .about__stat-accent,
   .about__stat-number {
     transition: none !important;
+  }
+
+  .about__stat-accent {
+    height: 100% !important;
   }
 }
 
@@ -1228,48 +1233,117 @@ body.light .btn--secondary:hover {
   margin-bottom: 24px;
 }
 
-/* -- Stats row -- */
+/* -- Stats row — editorial cards -- */
 .about__stats {
-  display: flex;
-  gap: 32px;
-  margin: 32px 0 28px;
-  padding: 24px 0;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin: 40px 0 32px;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
 }
 
 .about__stat {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 32px 24px 28px;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+/* Gold left accent bar — animates in on scroll */
+.about__stat-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--color-gold);
+  transition: height 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.about__stat.is-visible .about__stat-accent {
+  height: 100%;
+}
+
+body.light .about__stat-accent {
+  background: #b8942e;
+}
+
+/* Value container (number + suffix) */
+.about__stat-value {
+  display: flex;
   align-items: baseline;
   gap: 2px;
+  margin-bottom: 10px;
 }
 
 .about__stat-number {
   font-family: var(--font-display);
-  font-size: 2.5rem;
+  font-size: clamp(2.8rem, 5vw, 4rem);
   line-height: 1;
   color: var(--color-gold);
   font-variant-numeric: tabular-nums;
+  letter-spacing: -2px;
 }
 
 .about__stat-suffix {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   line-height: 1;
   color: var(--color-gold);
-  margin-right: 4px;
+}
+
+body.light .about__stat-number,
+body.light .about__stat-suffix {
+  color: #b8942e;
+}
+
+/* Decorative gold line under value */
+.about__stat::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--color-gold-dim);
+  margin-bottom: 10px;
+  transition: width 0.4s ease, background 0.4s ease;
+}
+
+body.light .about__stat::after {
+  background: rgba(184, 148, 46, 0.4);
+}
+
+.about__stat:hover::after {
+  width: 48px;
+  background: var(--color-gold);
+}
+
+body.light .about__stat:hover::after {
+  background: #b8942e;
 }
 
 .about__stat-label {
-  display: block;
-  width: 100%;
-  font-family: var(--font-body);
+  font-family: var(--font-heading);
   font-size: 0.7rem;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--color-text-dim);
-  margin-top: 6px;
+}
+
+/* Hover lift effect */
+.about__stat {
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.about__stat:hover {
+  background: var(--color-bg-alt);
+  transform: translateY(-1px);
+}
+
+body.light .about__stat:hover {
+  background: rgba(184, 148, 46, 0.04);
 }
 
 /* -- Resume link -- */
@@ -2180,15 +2254,11 @@ body.light .marquee__card:hover .marquee__card-name {
   }
 
   .about__stats {
-    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  .about__stat-number {
-    font-size: 2rem;
-  }
-
-  .about__stat-suffix {
-    font-size: 1.25rem;
+  .about__stat {
+    padding: 28px 20px 24px;
   }
 
   .about__manifesto {
@@ -2302,21 +2372,21 @@ body.light .marquee__card:hover .marquee__card-name {
   }
 
   .about__stats {
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px 0;
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .about__stat {
-    flex-direction: row;
-    align-items: baseline;
-    gap: 4px;
+    padding: 28px 24px;
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .about__stat-label {
-    width: auto;
-    margin-top: 0;
-    margin-left: 8px;
+  .about__stat:last-child {
+    border-bottom: none;
+  }
+
+  .about__stat-value {
+    margin-bottom: 8px;
   }
 
   .about__manifesto {
