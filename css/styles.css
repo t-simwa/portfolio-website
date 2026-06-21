@@ -907,26 +907,29 @@ body.light .nav__link {
 .hero__role-line {
   display: block;
   font-family: var(--font-heading);
-  font-size: clamp(0.9rem, 1.4vw, 1.1rem);
-  font-weight: 700;
-  letter-spacing: 5px;
+  font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+  font-weight: 600;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--color-gold);
   line-height: 1.5;
 }
 
 .hero__role-line--sub {
+  font-weight: 600;
   letter-spacing: 4px;
-  font-weight: 400;
-  opacity: 0.85;
 }
 
 .hero__role-amp {
-  font-family: var(--font-display);
-  font-size: 1.15em;
-  color: var(--color-gold);
-  opacity: 0.5;
-  margin-right: 2px;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  margin-right: 4px;
+}
+
+body.light .hero__role-line,
+body.light .hero__role-line--sub,
+body.light .hero__role-amp {
+  color: #b8942e;
 }
 
 .hero__info-tagline {
