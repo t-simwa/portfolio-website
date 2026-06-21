@@ -270,31 +270,65 @@
   <!-- # ABOUT -->
   <section class="section about" id="about">
     <div class="container">
-      <div class="section-badge">
-        <span class="section-badge__number">01</span>
-        <span class="section-badge__label">// About</span>
+      <div class="about__header">
+        <span class="about__header-num">01</span>
+        <span class="about__header-label">About</span>
       </div>
 
       <div class="about__grid">
         <div class="about__text">
-          <h2 class="about__heading">Architect of Systems. Builder of Solutions.</h2>
-          <p class="about__body">
-            I specialize in bridging the gap between complex technical problems and production-ready systems. From Next.js and TypeScript to cloud-integrated AI, I build platforms that scale, delivering measurable outcomes like 25% faster user workflows and 15% higher model accuracy in data-intensive environments.
+          <h2 class="about__heading" data-entrance>
+            Full Stack AI Developer<br>
+            <span class="about__heading-accent">&amp; Systems Architect</span>
+          </h2>
+          <p class="about__body" data-entrance>
+            I design and build production-ready AI systems that turn complexity into competitive advantage. From architecting retrieval-augmented generation pipelines to deploying full stack platforms on cloud infrastructure, I own the entire lifecycle from concept to deployment.
           </p>
-          <blockquote class="about__pull-quote">
-            Every line of code serves your bottom line.
-          </blockquote>
-          <p class="about__body">
-            Based in Nairobi, I work remotely with global clients, taking full ownership of the development lifecycle, from architecture and development to deployment and maintenance.
+
+          <div class="about__stats" data-entrance>
+            <div class="about__stat">
+              <span class="about__stat-number" data-count="8">0</span>
+              <span class="about__stat-suffix">+</span>
+              <span class="about__stat-label">Years Experience</span>
+            </div>
+            <div class="about__stat">
+              <span class="about__stat-number" data-count="30">0</span>
+              <span class="about__stat-suffix">+</span>
+              <span class="about__stat-label">Projects Delivered</span>
+            </div>
+            <div class="about__stat">
+              <span class="about__stat-number" data-count="10">0</span>
+              <span class="about__stat-suffix">+</span>
+              <span class="about__stat-label">Clients Served</span>
+            </div>
+          </div>
+
+          <p class="about__body" data-entrance>
+            Based in Nairobi, I work remotely with global clients, delivering systems that scale. My work consistently drives measurable outcomes: faster workflows, higher model accuracy, and infrastructure that grows with your business.
           </p>
-          <a href="#" class="about__resume-link">Download Resume →</a>
+
+          <a href="#" class="about__resume-link" data-entrance>Download Resume &rarr;</a>
         </div>
 
-        <div class="about__photo">
-          <div class="about__photo-frame">
-            <img src="images/about-photo.jpg" alt="Ted Simwa | Full-Stack Engineer based in Nairobi" loading="lazy">
+        <div class="about__visual">
+          <div class="about__photo-frame" id="aboutPhoto">
+            <img src="images/about-photo.jpg" alt="Ted Simwa | Full Stack AI Developer & Systems Architect based in Nairobi" loading="lazy">
+          </div>
+          <div class="about__location" data-entrance>
+            <svg class="about__location-flag" viewBox="0 0 24 24" fill="none">
+              <rect x="1" y="4" width="22" height="4" fill="#000"/>
+              <rect x="1" y="8" width="22" height="1.5" fill="#fff"/>
+              <rect x="1" y="9.5" width="22" height="5" fill="#c8102e"/>
+              <rect x="1" y="14.5" width="22" height="1.5" fill="#fff"/>
+              <rect x="1" y="16" width="22" height="4" fill="#006600"/>
+            </svg>
+            <span>Nairobi, Kenya</span>
           </div>
         </div>
+      </div>
+
+      <div class="about__manifesto" data-entrance>
+        <p class="about__manifesto-text">Every line of code serves your bottom line.</p>
       </div>
     </div>
   </section>

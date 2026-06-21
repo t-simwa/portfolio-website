@@ -361,20 +361,64 @@
     }
   });
 
-  /* # ABOUT PHOTO CURTAIN REVEAL
+  /* # ABOUT SECTION OBSERVERS
    * =================================================================== */
-  const aboutPhoto = document.querySelector('.about__photo-frame');
+
+  // Photo diagonal clip-path reveal
+  const aboutPhoto = document.getElementById('aboutPhoto');
   if (aboutPhoto && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(function (entries) {
+    var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          aboutPhoto.style.setProperty('--reveal', '1');
           aboutPhoto.classList.add('is-revealed');
           observer.unobserve(aboutPhoto);
         }
       });
     }, { threshold: 0.3 });
     observer.observe(aboutPhoto);
+  }
+
+  // Animated stat counters
+  var aboutStats = document.querySelector('.about__stats');
+  if (aboutStats && 'IntersectionObserver' in window) {
+    var animated = false;
+    var statsObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !animated) {
+          animated = true;
+          var numbers = aboutStats.querySelectorAll('[data-count]');
+          numbers.forEach(function (el) {
+            var target = parseInt(el.getAttribute('data-count'), 10);
+            var duration = 1200;
+            var start = performance.now();
+            function update(now) {
+              var elapsed = now - start;
+              var progress = Math.min(elapsed / duration, 1);
+              var eased = 1 - Math.pow(1 - progress, 3);
+              el.textContent = Math.floor(eased * target);
+              if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+          });
+          statsObserver.unobserve(aboutStats);
+        }
+      });
+    }, { threshold: 0.5 });
+    statsObserver.observe(aboutStats);
+  }
+
+  // Manifesto strip reveal
+  var aboutManifesto = document.querySelector('.about__manifesto');
+  if (aboutManifesto && 'IntersectionObserver' in window) {
+    var manifestoObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          aboutManifesto.classList.add('is-revealed');
+          manifestoObserver.unobserve(aboutManifesto);
+        }
+      });
+    }, { threshold: 0.4 });
+    manifestoObserver.observe(aboutManifesto);
   }
 
   /* # PROJECT CARDS — SCROLL REVEAL (staggered fade-in)
