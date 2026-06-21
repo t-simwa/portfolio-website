@@ -1486,6 +1486,7 @@ body.light .about__resume-link:hover {
 
 .section.capabilities {
   padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 /* -- Section header (aerocycling style) -- */
@@ -1755,12 +1756,6 @@ body.light .capability-card:hover {
   transform: translateY(0);
 }
 
-.project-frame__link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
 /* -- Visual container (image + overlay + frame) -- */
 .project-frame__visual {
   position: relative;
@@ -1806,9 +1801,9 @@ body.light .project-frame:hover .project-frame__visual {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(10, 10, 10, 0) 40%,
-    rgba(10, 10, 10, 0.4) 70%,
-    rgba(10, 10, 10, 0.75) 100%
+    rgba(10, 10, 10, 0.55) 0%,
+    rgba(10, 10, 10, 0.55) 70%,
+    rgba(10, 10, 10, 0.85) 100%
   );
   pointer-events: none;
   z-index: 1;
@@ -1818,9 +1813,9 @@ body.light .project-frame:hover .project-frame__visual {
 body.light .project-frame__shade {
   background: linear-gradient(
     180deg,
-    rgba(245, 243, 239, 0) 40%,
-    rgba(245, 243, 239, 0.3) 70%,
-    rgba(245, 243, 239, 0.7) 100%
+    rgba(245, 243, 239, 0.5) 0%,
+    rgba(245, 243, 239, 0.5) 70%,
+    rgba(245, 243, 239, 0.85) 100%
   );
 }
 
@@ -1965,7 +1960,6 @@ body.light .project-frame__desc {
   color: rgba(0, 0, 0, 0.65);
 }
 
-/* -- Tech tags -- */
 /* -- CTA -- */
 .project-frame__cta {
   display: inline-flex;
@@ -1978,16 +1972,18 @@ body.light .project-frame__desc {
   color: var(--color-gold);
   padding-bottom: 3px;
   border-bottom: 1px solid var(--color-border-gold);
+  text-decoration: none;
+  cursor: pointer;
   transition: gap 0.4s var(--ease-out-expo),
               color 0.4s var(--ease-out-expo);
 }
 
-.project-frame:hover .project-frame__cta {
+.project-frame__cta:hover {
   gap: 12px;
   color: #fff;
 }
 
-body.light .project-frame:hover .project-frame__cta {
+body.light .project-frame__cta:hover {
   color: #0a0a0a;
 }
 
