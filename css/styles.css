@@ -1174,31 +1174,44 @@ body.light .btn--secondary:hover {
 /* # ABOUT SECTION — Editorial Spread
  * =================================================================== */
 
-/* -- Section header (minimal, inline) -- */
+/* -- Section header (aerocycling style) -- */
 .about__header {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  margin-bottom: 40px;
+  align-items: flex-end;
+  gap: 20px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 16px;
+  margin-bottom: 48px;
 }
 
 .about__header-num {
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 0.8;
   color: transparent;
-  -webkit-text-stroke: 1px var(--color-gold);
+  -webkit-text-stroke: 1px var(--color-text-dim);
+  transition: color 0.4s ease;
+}
+
+.about:hover .about__header-num {
+  color: var(--color-gold);
+  -webkit-text-stroke: 0;
 }
 
 .about__header-label {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  color: var(--color-text-dim);
-  letter-spacing: 2px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding-bottom: 3px;
+}
+
+.about__header-line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
 }
 
 /* -- Grid -- */
@@ -1211,17 +1224,32 @@ body.light .btn--secondary:hover {
 
 /* -- Text column -- */
 .about__heading {
-  font-family: var(--font-heading);
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  line-height: 1.15;
   margin-bottom: 24px;
+}
+
+.about__heading-main {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.15;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: var(--color-text);
+  margin-bottom: 8px;
 }
 
 .about__heading-accent {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: var(--color-gold);
-  font-weight: 400;
-  font-style: italic;
+  padding: 4px 0;
+}
+
+body.light .about__heading-accent {
+  color: #b8942e;
 }
 
 .about__body {
@@ -1346,27 +1374,6 @@ body.light .about__resume-link:hover {
 .about__photo-frame:hover img {
   filter: saturate(1);
   transform: scale(1.03);
-}
-
-/* -- Location pill -- */
-.about__location {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  align-self: flex-start;
-  padding: 6px 14px;
-  background: var(--color-gold-dim);
-  border: 1px solid var(--color-border-gold);
-  border-radius: 100px;
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-}
-
-.about__location-flag {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
 }
 
 /* -- Manifesto strip (full width below grid) -- */
