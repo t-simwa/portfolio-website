@@ -127,6 +127,8 @@
    * =================================================================== */
   const nav = document.getElementById('nav');
   const scrollIndicator = document.getElementById('scrollIndicator');
+  const heroContent = document.querySelector('.hero__content');
+  const hero = document.getElementById('hero');
   let scrollTicking = false;
   const navLinks = document.querySelectorAll('.nav__link');
 
@@ -145,6 +147,16 @@
       } else {
         scrollIndicator.classList.remove('is-hidden');
       }
+    }
+
+    // Hero parallax
+    if (heroContent && hero) {
+      const heroHeight = hero.offsetHeight;
+      const heroTop = hero.offsetTop;
+      const scrollInHero = Math.max(0, Math.min(scrollY - heroTop, heroHeight));
+      const progressInHero = scrollInHero / heroHeight;
+      const parallaxOffset = progressInHero * 40;
+      heroContent.style.transform = 'translateY(' + parallaxOffset + 'px)';
     }
 
     // Scroll progress bar

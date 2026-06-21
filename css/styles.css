@@ -831,41 +831,32 @@ body.light .nav__link {
   border-right: 1px solid;
 }
 
-.hero__crosshair {
+.hero__glow {
   position: absolute;
   top: 50%;
-  right: 15%;
-  width: 40px;
-  height: 40px;
-  transform: translate(50%, -50%);
-  opacity: 0.3;
-}
-
-.hero__crosshair::before,
-.hero__crosshair::after {
-  content: '';
-  position: absolute;
-  background: var(--color-gold);
-}
-
-.hero__crosshair::before {
-  width: 1px;
-  height: 100%;
   left: 50%;
-  top: 0;
-}
-
-.hero__crosshair::after {
-  width: 100%;
-  height: 1px;
-  top: 50%;
-  left: 0;
+  width: 60vw;
+  height: 60vh;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, var(--color-gold-glow) 0%, transparent 70%);
+  opacity: 0.5;
 }
 
 .hero__content {
   position: relative;
   z-index: 1;
   width: 100%;
+}
+
+.hero__mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  opacity: 0.6;
+  margin-bottom: 16px;
 }
 
 .hero__name {
@@ -894,16 +885,20 @@ body.light .nav__link {
   margin-top: 16px;
 }
 
+.hero__divider {
+  width: 60px;
+  height: 1px;
+  background: var(--color-gold-dim);
+  margin: 24px 0;
+}
+
 .hero__tagline {
-  max-width: 400px;
+  max-width: 480px;
   font-family: var(--font-body);
   font-size: 1.05rem;
   line-height: 1.7;
   color: var(--color-text-muted);
-  border-left: 2px solid var(--color-gold-dim);
-  padding-left: 20px;
   margin-top: 24px;
-  margin-left: auto;
 }
 
 .hero__cta {
@@ -973,6 +968,81 @@ body.light .nav__link {
 @keyframes scroll-bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* # HERO ANIMATIONS
+ * =================================================================== */
+
+/* Fade in background layers */
+.hero__grid,
+.hero__glow {
+  animation: hero-fade-in 0.8s var(--ease-out-expo) forwards;
+}
+
+.hero__glow {
+  animation-delay: 0.15s;
+}
+
+.hero__corner {
+  animation: hero-fade-in 0.6s var(--ease-out-expo) forwards;
+  animation-delay: 0.3s;
+}
+
+/* Grid subtle pulse */
+.hero__grid::before {
+  animation: grid-pulse 8s ease-in-out infinite;
+}
+
+@keyframes grid-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Staggered entrance for hero content */
+.hero [data-entrance-stagger] {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: hero-fade-up 0.6s var(--ease-out-expo) forwards;
+}
+
+.hero [data-entrance-stagger="1"] { animation-delay: 0.5s; }
+.hero [data-entrance-stagger="2"] { animation-delay: 0.7s; }
+.hero [data-entrance-stagger="3"] { animation-delay: 0.9s; }
+.hero [data-entrance-stagger="4"] { animation-delay: 1.05s; }
+.hero [data-entrance-stagger="5"] { animation-delay: 1.2s; }
+.hero [data-entrance-stagger="6"] { animation-delay: 1.4s; }
+.hero [data-entrance-stagger="7"] { animation-delay: 1.6s; }
+
+@keyframes hero-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-fade-in {
+  to { opacity: 1; }
+}
+.hero__grid,
+.hero__glow,
+.hero__corner {
+  opacity: 0;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero [data-entrance-stagger],
+  .hero__grid,
+  .hero__glow,
+  .hero__corner {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero__grid::before {
+    animation: none;
+  }
 }
 
 /* Section badge */
@@ -1783,7 +1853,6 @@ body.recruiter-mode .nav__overlay {
  * =================================================================== */
 @media (max-width: 1023px) {
   .hero__tagline {
-    margin-left: 0;
     max-width: 100%;
   }
 
@@ -1868,6 +1937,10 @@ body.recruiter-mode .nav__overlay {
     letter-spacing: -2px;
   }
 
+  .hero__tagline {
+    max-width: 100%;
+  }
+
   .hero__cta {
     flex-direction: column;
   }
@@ -1908,9 +1981,17 @@ body.recruiter-mode .nav__overlay {
 }
 
 @media (max-width: 479px) {
+  .hero__mono {
+    display: none;
+  }
+
   .hero__name,
   .hero__name--outlined {
     font-size: clamp(2.5rem, 10vw, 3.5rem);
+  }
+
+  .hero__divider {
+    margin: 16px 0;
   }
 
   .project-card__content {
