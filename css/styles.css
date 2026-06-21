@@ -1531,19 +1531,16 @@ body.light .about__resume-link:hover {
   border-top: 1px solid var(--color-border);
 }
 
-/* -- Number (outlined) -- */
-.service-row__num {
-  font-family: var(--font-heading);
-  font-size: clamp(1rem, 1.6vw, 1.4rem);
-  font-weight: 800;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--color-text-dim);
-  min-width: clamp(36px, 5vw, 52px);
+/* -- Icon -- */
+.service-row__icon {
+  width: clamp(28px, 3vw, 36px);
+  height: clamp(28px, 3vw, 36px);
   flex-shrink: 0;
+  color: var(--color-text-dim);
   transition: color 0.4s var(--ease-out-expo),
-              -webkit-text-stroke-color 0.4s var(--ease-out-expo);
+              transform 0.4s var(--ease-out-expo);
   user-select: none;
+  display: block;
 }
 
 /* -- Content area -- */
@@ -1597,9 +1594,9 @@ body.light .about__resume-link:hover {
   border-color: var(--color-border-gold);
 }
 
-.service-row:hover .service-row__num {
+.service-row:hover .service-row__icon {
   color: var(--color-gold);
-  -webkit-text-stroke-color: var(--color-gold);
+  transform: scale(1.08);
 }
 
 .service-row:hover .service-row__title {
@@ -1630,7 +1627,7 @@ body.light .services__list:has(.service-row:hover) .service-row:not(:hover) {
 /* ---- Reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
   .service-row,
-  .service-row__num,
+  .service-row__icon,
   .service-row__title,
   .service-row__desc,
   .service-row__arrow {
@@ -1667,8 +1664,9 @@ body.light .services__list:has(.service-row:hover) .service-row:not(:hover) {
     border-color: var(--color-border);
   }
 
-  .service-row__num {
-    min-width: auto;
+  .service-row__icon {
+    width: 22px;
+    height: 22px;
   }
 
   .service-row__title {
@@ -1694,9 +1692,9 @@ body.light .services__list:has(.service-row:hover) .service-row:not(:hover) {
     color: var(--color-text);
   }
 
-  .service-row:hover .service-row__num {
-    color: transparent;
-    -webkit-text-stroke-color: var(--color-text-dim);
+  .service-row:hover .service-row__icon {
+    color: var(--color-text-dim);
+    transform: none;
   }
 
   .services__intro {
