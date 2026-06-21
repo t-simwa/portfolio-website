@@ -1,0 +1,33 @@
+# Planning & implementation (not part of the live site)
+practical-implementation/
+
+# Separate project — aero-cycling website
+aero-cycling-website/
+
+# Old project files
+simca-cleaning-website-v1/
+my-portfolio-website
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
