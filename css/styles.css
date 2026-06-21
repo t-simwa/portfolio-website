@@ -1002,6 +1002,8 @@ body.light .btn--secondary:hover {
   color: #f5f3ef;
 }
 
+
+
 /* Scroll indicator */
 .hero__scroll {
   position: absolute;
@@ -1110,6 +1112,18 @@ body.light .btn--secondary:hover {
 
   .nav__availability-dot {
     animation: none;
+  }
+
+  .marquee__track {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .marquee__card {
+    transition: none !important;
+  }
   }
 }
 
@@ -1707,6 +1721,9 @@ body.recruiter-mode .preloader {
 
 body.recruiter-mode .marquee__track {
   animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }
 
 body.recruiter-mode .hero__scroll {
@@ -1804,37 +1821,129 @@ body.recruiter-mode .nav__overlay {
 .marquee {
   width: 100%;
   overflow: hidden;
-  padding: 18px 0;
+  padding: 16px 0;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
   background: var(--color-bg-alt);
+  position: relative;
 }
 
+/* -- Edge fade masks -- */
+.marquee::before,
+.marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(40px, 6vw, 100px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-bg-alt) 0%, transparent 100%);
+}
+
+.marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-bg-alt) 0%, transparent 100%);
+}
+
+/* -- Track -- */
 .marquee__track {
   display: flex;
+  align-items: center;
   gap: 0;
   width: max-content;
-  animation: marquee-scroll 30s linear infinite;
-}
-
-.marquee:hover .marquee__track {
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-out-expo);
+  animation: marquee-scroll 40s linear infinite;
   animation-play-state: paused;
 }
 
-.marquee__item {
-  font-family: var(--font-heading);
-  font-size: 0.85rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  white-space: nowrap;
-  padding: 0 16px;
+.marquee.is-visible .marquee__track {
+  opacity: 1;
+  animation-play-state: running;
 }
 
-.marquee__item--separator {
+.marquee:hover .marquee__track {
+  animation-play-state: paused !important;
+}
+
+/* -- Card -- */
+.marquee__card {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  margin: 0 4px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  white-space: nowrap;
+  cursor: default;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, transform 0.3s var(--ease-out-expo);
+  user-select: none;
+}
+
+.marquee__card:hover {
+  border-color: var(--color-border-gold);
+  background: var(--color-gold-dim);
+  box-shadow: 0 0 24px var(--color-gold-glow);
+  transform: scale(1.05);
+}
+
+/* -- Card icon -- */
+.marquee__card-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  opacity: 0.5;
+  color: var(--color-text-muted);
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.marquee__card:hover .marquee__card-icon {
+  opacity: 1;
   color: var(--color-gold);
 }
 
+/* -- Card name -- */
+.marquee__card-name {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: color 0.3s ease;
+}
+
+.marquee__card:hover .marquee__card-name {
+  color: var(--color-text);
+}
+
+/* -- Separator -- */
+.marquee__sep {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6px;
+  color: var(--color-gold);
+  opacity: 0.2;
+  margin: 0 6px;
+  user-select: none;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.marquee:hover .marquee__sep {
+  opacity: 0.4;
+}
+
+/* -- Keyframes -- */
 @keyframes marquee-scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -1996,6 +2105,26 @@ body.recruiter-mode .nav__overlay {
   .footer__social {
     justify-content: center;
   }
+
+  .marquee__card {
+    padding: 8px 14px;
+    gap: 8px;
+  }
+
+  .marquee__card-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .marquee__card-name {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+  }
+
+  .marquee__sep {
+    font-size: 5px;
+    margin: 0 4px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -2061,6 +2190,27 @@ body.recruiter-mode .nav__overlay {
   .process-step:last-child {
     border-bottom: none;
   }
+
+  .marquee__card {
+    padding: 6px 12px;
+    gap: 6px;
+    margin: 0 2px;
+  }
+
+  .marquee__card-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .marquee__card-name {
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+  }
+
+  .marquee__sep {
+    font-size: 4px;
+    margin: 0 3px;
+  }
 }
 
 @media (max-width: 479px) {
@@ -2091,4 +2241,27 @@ body.recruiter-mode .nav__overlay {
   .project-card__pills {
     gap: 4px;
   }
+
+  .marquee__card {
+    padding: 4px 10px;
+    gap: 5px;
+    margin: 0 1px;
+    border-radius: 6px;
+  }
+
+  .marquee__card-icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .marquee__card-name {
+    font-size: 0.6rem;
+    letter-spacing: 0.5px;
+  }
+
+  .marquee__sep {
+    font-size: 3px;
+    margin: 0 2px;
+  }
+
 }
