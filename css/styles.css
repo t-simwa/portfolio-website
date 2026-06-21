@@ -1704,28 +1704,24 @@ body.light .capability-card:hover {
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
-  line-height: 1;
+  line-height: 0.8;
   color: transparent;
-  -webkit-text-stroke: 1px var(--color-border);
-  user-select: none;
-  transition: -webkit-text-stroke-color 0.3s var(--ease-out-expo);
-}
-
-body.light .projects__header-num {
-  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.15);
+  -webkit-text-stroke: 1px var(--color-text-dim);
+  transition: color 0.4s ease;
 }
 
 .projects:hover .projects__header-num {
-  -webkit-text-stroke-color: var(--color-gold-dim);
+  color: var(--color-gold);
+  -webkit-text-stroke: 0;
 }
 
 .projects__header-label {
   font-family: var(--font-heading);
-  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  font-size: 0.85rem;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--color-text-muted);
-  padding-bottom: 2px;
+  padding-bottom: 3px;
 }
 
 /* -- Gallery grid -- */
@@ -1795,9 +1791,10 @@ body.light .project-frame:hover .project-frame__visual {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(10, 10, 10, 0) 40%,
-    rgba(10, 10, 10, 0.4) 70%,
-    rgba(10, 10, 10, 0.75) 100%
+    rgba(10, 10, 10, 0) 25%,
+    rgba(10, 10, 10, 0.35) 50%,
+    rgba(10, 10, 10, 0.75) 75%,
+    rgba(10, 10, 10, 0.92) 100%
   );
   pointer-events: none;
   z-index: 1;
@@ -1807,9 +1804,10 @@ body.light .project-frame:hover .project-frame__visual {
 body.light .project-frame__shade {
   background: linear-gradient(
     180deg,
-    rgba(245, 243, 239, 0) 40%,
-    rgba(245, 243, 239, 0.3) 70%,
-    rgba(245, 243, 239, 0.7) 100%
+    rgba(245, 243, 239, 0) 25%,
+    rgba(245, 243, 239, 0.3) 50%,
+    rgba(245, 243, 239, 0.65) 75%,
+    rgba(245, 243, 239, 0.9) 100%
   );
 }
 
