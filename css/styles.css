@@ -901,13 +901,32 @@ body.light .nav__link {
 }
 
 .hero__info-role {
+  margin-bottom: 16px;
+}
+
+.hero__role-line {
+  display: block;
   font-family: var(--font-heading);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 4px;
+  font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+  font-weight: 700;
+  letter-spacing: 5px;
   text-transform: uppercase;
   color: var(--color-gold);
-  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.hero__role-line--sub {
+  letter-spacing: 4px;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.hero__role-amp {
+  font-family: var(--font-display);
+  font-size: 1.15em;
+  color: var(--color-gold);
+  opacity: 0.5;
+  margin-right: 2px;
 }
 
 .hero__info-tagline {
@@ -925,40 +944,6 @@ body.light .nav__link {
   color: var(--color-gold);
 }
 
-.hero__info-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-.hero__meta-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px 6px 10px;
-  border-radius: 100px;
-  border: 1px solid var(--color-border);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--color-text-muted);
-  letter-spacing: 0.3px;
-  transition: border-color var(--duration-fast) var(--ease-out-expo),
-              background var(--duration-fast) var(--ease-out-expo);
-}
-
-.hero__meta-pill:hover {
-  border-color: var(--color-border-gold);
-  background: var(--color-gold-dim);
-}
-
-.hero__meta-icon {
-  width: 12px;
-  height: 12px;
-  flex-shrink: 0;
-  opacity: 0.6;
-}
 
 .hero__cta {
   display: flex;
@@ -2003,13 +1988,22 @@ body.recruiter-mode .nav__overlay {
 @media (max-width: 767px) {
   .hero__name,
   .hero__name--outlined {
-    font-size: clamp(4.5rem, 16vw, 7rem);
-    letter-spacing: -2px;
+    font-size: clamp(4rem, 24vw, 9rem);
+    letter-spacing: -3px;
   }
 
   .hero__info-tagline {
     max-width: 100%;
     font-size: 1.05rem;
+  }
+
+  .hero__role-line {
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    letter-spacing: 3px;
+  }
+
+  .hero__role-line--sub {
+    letter-spacing: 2px;
   }
 
   .hero__cta {
@@ -2059,8 +2053,8 @@ body.recruiter-mode .nav__overlay {
 @media (max-width: 479px) {
   .hero__name,
   .hero__name--outlined {
-    font-size: clamp(3.5rem, 14vw, 4.5rem);
-    letter-spacing: -1px;
+    font-size: clamp(3.5rem, 24vw, 6.5rem);
+    letter-spacing: -2px;
   }
 
   .hero__divider {
@@ -2069,20 +2063,6 @@ body.recruiter-mode .nav__overlay {
 
   .hero__info-tagline {
     font-size: 1rem;
-  }
-
-  .hero__info-meta {
-    gap: 6px;
-  }
-
-  .hero__meta-pill {
-    font-size: 0.65rem;
-    padding: 4px 10px 4px 8px;
-  }
-
-  .hero__meta-icon {
-    width: 10px;
-    height: 10px;
   }
 
   .project-card__content {
