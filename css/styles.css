@@ -889,31 +889,77 @@ body.light .nav__link {
 
 .hero__info-tagline {
   font-family: var(--font-body);
-  font-size: 1.2rem;
-  line-height: 1.65;
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.6;
   color: var(--color-text);
   max-width: 540px;
+  letter-spacing: 0.2px;
+}
+
+.hero__info-tagline em {
+  font-style: italic;
+  color: var(--color-gold);
 }
 
 .hero__info-meta {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 18px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
-  letter-spacing: 0.3px;
+  gap: 8px;
+  margin-top: 20px;
   flex-wrap: wrap;
 }
 
-.hero__info-dot {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--color-gold);
-  opacity: 0.4;
+.hero__meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px 6px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.3px;
+  transition: border-color var(--duration-fast) var(--ease-out-expo),
+              background var(--duration-fast) var(--ease-out-expo);
+}
+
+.hero__meta-pill:hover {
+  border-color: var(--color-border-gold);
+  background: var(--color-gold-dim);
+}
+
+.hero__meta-icon {
+  width: 12px;
+  height: 12px;
   flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.hero__meta-pill--active {
+  border-color: rgba(52, 211, 153, 0.25);
+  color: #34d399;
+  padding-left: 12px;
+}
+
+.hero__meta-pill--active:hover {
+  border-color: rgba(52, 211, 153, 0.5);
+  background: rgba(52, 211, 153, 0.06);
+}
+
+.hero__meta-status {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34d399;
+  flex-shrink: 0;
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(52, 211, 153, 0); }
 }
 
 .hero__cta {
@@ -1063,6 +1109,10 @@ body.light .nav__link {
   }
 
   .hero__grid::before {
+    animation: none;
+  }
+
+  .hero__meta-status {
     animation: none;
   }
 }
@@ -1955,7 +2005,7 @@ body.recruiter-mode .nav__overlay {
 @media (max-width: 767px) {
   .hero__name,
   .hero__name--outlined {
-    font-size: clamp(3.5rem, 12vw, 6rem);
+    font-size: clamp(4.5rem, 16vw, 7rem);
     letter-spacing: -2px;
   }
 
@@ -2011,7 +2061,8 @@ body.recruiter-mode .nav__overlay {
 @media (max-width: 479px) {
   .hero__name,
   .hero__name--outlined {
-    font-size: clamp(2.5rem, 10vw, 3.5rem);
+    font-size: clamp(3.5rem, 14vw, 4.5rem);
+    letter-spacing: -1px;
   }
 
   .hero__divider {
@@ -2023,8 +2074,17 @@ body.recruiter-mode .nav__overlay {
   }
 
   .hero__info-meta {
-    font-size: 0.7rem;
-    gap: 8px;
+    gap: 6px;
+  }
+
+  .hero__meta-pill {
+    font-size: 0.65rem;
+    padding: 4px 10px 4px 8px;
+  }
+
+  .hero__meta-icon {
+    width: 10px;
+    height: 10px;
   }
 
   .project-card__content {
