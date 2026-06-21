@@ -1125,10 +1125,14 @@ body.light .btn--secondary:hover {
     transition: none !important;
   }
 
-  .about__photo-frame,
+  .about__photo-frame::after,
   .about__manifesto-text {
     clip-path: none !important;
     transition: none !important;
+  }
+
+  .about__photo-frame::after {
+    display: none !important;
   }
 
   .about__photo-frame img {
@@ -1307,18 +1311,27 @@ body.light .about__resume-link:hover {
   gap: 16px;
 }
 
-/* -- Photo frame with diagonal clip-path reveal -- */
+/* -- Photo frame with diagonal sweep reveal -- */
 .about__photo-frame {
   position: relative;
   overflow: hidden;
   aspect-ratio: 1 / 1;
   border: 1px solid var(--color-border-gold);
-  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-  transition: clip-path 1.4s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-.about__photo-frame.is-revealed {
+.about__photo-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-bg);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transition: clip-path 1.4s cubic-bezier(0.77, 0, 0.175, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.about__photo-frame.is-revealed::after {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 
 .about__photo-frame img {
@@ -1332,7 +1345,6 @@ body.light .about__resume-link:hover {
 
 .about__photo-frame.is-revealed img {
   filter: saturate(1);
-  transform: scale(1);
 }
 
 .about__photo-frame:hover img {
