@@ -1149,33 +1149,6 @@ body.light .btn--secondary:hover {
     height: 100% !important;
   }
 
-  .capability-card__accent {
-    display: none !important;
-  }
-
-  .capability-card__icon {
-    display: none !important;
-  }
-
-  .capability-card,
-  .capability-card__number,
-  .capability-card__line {
-    transition: none !important;
-  }
-
-  .capability-card:hover {
-    transform: none !important;
-    box-shadow: none !important;
-  }
-
-  .capability-card:hover .capability-card__number {
-    color: transparent !important;
-    -webkit-text-stroke-color: rgba(234, 190, 124, 0.12) !important;
-  }
-
-  .capability-card:hover .capability-card__line {
-    width: 28px !important;
-  }
 }
 
 /* Section badge */
@@ -1477,20 +1450,20 @@ body.light .about__resume-link:hover {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
-/* # CAPABILITIES SECTION — Services Bento Grid
+/* # SERVICES SECTION — Focus Depth List
  * =================================================================== */
 
 .section.about {
   padding-bottom: 4px;
 }
 
-.section.capabilities {
+.section.services {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
 /* -- Section header (aerocycling style) -- */
-.capabilities__header {
+.services__header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -1499,7 +1472,7 @@ body.light .about__resume-link:hover {
   margin-bottom: 32px;
 }
 
-.capabilities__header-num {
+.services__header-num {
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
@@ -1509,12 +1482,12 @@ body.light .about__resume-link:hover {
   transition: color 0.4s ease;
 }
 
-.capabilities:hover .capabilities__header-num {
+.services:hover .services__header-num {
   color: var(--color-gold);
   -webkit-text-stroke: 0;
 }
 
-.capabilities__header-label {
+.services__header-label {
   font-family: var(--font-heading);
   font-size: 0.85rem;
   letter-spacing: 3px;
@@ -1524,7 +1497,7 @@ body.light .about__resume-link:hover {
 }
 
 /* -- Intro paragraph -- */
-.capabilities__intro {
+.services__intro {
   font-family: var(--font-body);
   font-size: 1.05rem;
   line-height: 1.7;
@@ -1533,159 +1506,202 @@ body.light .about__resume-link:hover {
   margin-bottom: 48px;
 }
 
-/* -- Grid -- */
-.capabilities__grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 16px;
+/* -- Vertical list -- */
+.services__list {
+  display: flex;
+  flex-direction: column;
 }
 
-/* -- Card base -- */
-.capability-card {
+/* -- Service row -- */
+.service-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 32px);
+  padding: clamp(20px, 2.8vh, 32px) clamp(16px, 2vw, 28px);
+  border-bottom: 1px solid var(--color-border);
+  cursor: default;
   position: relative;
-  padding: 36px 28px 32px;
-  background: var(--color-bg-alt);
-  border: 1px solid var(--color-border);
-  overflow: hidden;
-  transition: border-color 0.4s var(--ease-out-expo),
-              background 0.4s var(--ease-out-expo),
-              transform 0.4s var(--ease-out-expo),
-              box-shadow 0.4s var(--ease-out-expo);
-}
-
-.capability-card--wide {
-  grid-column: span 2;
-}
-
-/* -- Gold top accent bar -- */
-.capability-card__accent {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--color-gold);
-  transform: translateX(-50%);
-  transition: width 0.5s var(--ease-out-expo);
-}
-
-.capability-card:hover .capability-card__accent {
-  width: 100%;
-}
-
-body.light .capability-card__accent {
-  background: #b8942e;
-}
-
-/* -- Icon (top-right, forms on hover) -- */
-.capability-card__icon {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 34px;
-  height: 34px;
-  color: var(--color-gold);
-  opacity: 0.1;
-  transform: scale(0.85) rotate(-6deg);
-  filter: blur(1px);
-  transition: opacity 0.5s var(--ease-out-expo),
-              transform 0.5s var(--ease-out-expo),
+  transition: padding-left 0.4s var(--ease-out-expo),
+              border-color 0.4s var(--ease-out-expo),
+              opacity 0.5s var(--ease-out-expo),
               filter 0.5s var(--ease-out-expo);
-  pointer-events: none;
 }
 
-.capability-card:hover .capability-card__icon {
-  opacity: 0.5;
-  transform: scale(1) rotate(0deg);
-  filter: blur(0);
+.service-row:first-child {
+  border-top: 1px solid var(--color-border);
 }
 
-body.light .capability-card__icon {
-  color: #b8942e;
-}
-
-/* -- Number (bottom-right, outlined) -- */
-.capability-card__number {
-  position: absolute;
-  bottom: 12px;
-  right: 16px;
+/* -- Number (outlined) -- */
+.service-row__num {
   font-family: var(--font-heading);
-  font-size: clamp(3rem, 4vw, 4rem);
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
   font-weight: 800;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(234, 190, 124, 0.12);
-  pointer-events: none;
-  user-select: none;
+  -webkit-text-stroke: 1px var(--color-text-dim);
+  min-width: clamp(36px, 5vw, 52px);
+  flex-shrink: 0;
   transition: color 0.4s var(--ease-out-expo),
               -webkit-text-stroke-color 0.4s var(--ease-out-expo);
+  user-select: none;
 }
 
-.capability-card:hover .capability-card__number {
+/* -- Content area -- */
+.service-row__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.service-row__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.7rem);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-text);
+  transition: color 0.4s var(--ease-out-expo);
+  line-height: 1.3;
+}
+
+.service-row__desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.8rem, 1vw, 0.88rem);
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s var(--ease-out-expo),
+              opacity 0.4s var(--ease-out-expo);
+  opacity: 0.6;
+}
+
+.service-row__desc > * {
+  overflow: hidden;
+}
+
+/* -- Arrow indicator -- */
+.service-row__arrow {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  color: var(--color-gold);
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 0.4s var(--ease-out-expo),
+              transform 0.4s var(--ease-out-expo);
+  flex-shrink: 0;
+}
+
+/* === HOVER: Focus Depth effect === */
+
+.service-row:hover {
+  padding-left: clamp(28px, 3vw, 40px);
+  border-color: var(--color-border-gold);
+}
+
+.service-row:hover .service-row__num {
   color: var(--color-gold);
   -webkit-text-stroke-color: var(--color-gold);
 }
 
-body.light .capability-card:hover .capability-card__number {
-  color: #b8942e;
-  -webkit-text-stroke-color: #b8942e;
+.service-row:hover .service-row__title {
+  color: var(--color-gold);
 }
 
-/* -- Title -- */
-.capability-card__title {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--color-text);
-  margin-bottom: 12px;
-  position: relative;
-  z-index: 1;
+.service-row:hover .service-row__desc {
+  grid-template-rows: 1fr;
+  opacity: 1;
 }
 
-/* -- Gold accent line under title -- */
-.capability-card__line {
-  width: 28px;
-  height: 1px;
-  background: var(--color-gold-dim);
-  margin-bottom: 14px;
-  transition: width 0.4s var(--ease-out-expo),
-              background 0.4s var(--ease-out-expo);
+.service-row:hover .service-row__arrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-.capability-card:hover .capability-card__line {
-  width: 44px;
-  background: var(--color-gold);
+/* Focus depth: non-hovered siblings fade and blur */
+.services__list:has(.service-row:hover) .service-row:not(:hover) {
+  opacity: 0.2;
+  filter: blur(1.5px);
 }
 
-body.light .capability-card__line {
-  background: rgba(184, 148, 46, 0.4);
+body.light .services__list:has(.service-row:hover) .service-row:not(:hover) {
+  opacity: 0.25;
+  filter: blur(1px);
 }
 
-body.light .capability-card:hover .capability-card__line {
-  background: #b8942e;
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .service-row,
+  .service-row__num,
+  .service-row__title,
+  .service-row__desc,
+  .service-row__arrow {
+    transition: none;
+  }
+
+  .service-row:hover .service-row__desc {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .services__list:has(.service-row:hover) .service-row:not(:hover) {
+    opacity: 1;
+    filter: none;
+  }
 }
 
-/* -- Body -- */
-.capability-card__body {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  line-height: 1.65;
-  color: var(--color-text-muted);
-  position: relative;
-  z-index: 1;
-}
+/* ---- Responsive (max 767px) ---- */
+@media (max-width: 767px) {
+  .service-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 20px 0;
+    cursor: default;
+  }
 
-/* -- Hover lift & glow -- */
-.capability-card:hover {
-  border-color: var(--color-border-gold);
-  background: var(--color-bg-elevated);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(234, 190, 124, 0.08);
-}
+  .service-row:first-child {
+    border-top: none;
+  }
 
-body.light .capability-card:hover {
-  box-shadow: 0 8px 32px rgba(184, 148, 46, 0.1);
+  .service-row:hover {
+    padding-left: 0;
+    border-color: var(--color-border);
+  }
+
+  .service-row__num {
+    min-width: auto;
+  }
+
+  .service-row__title {
+    font-size: 1.1rem;
+  }
+
+  .service-row__desc {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    font-size: 0.82rem;
+  }
+
+  .service-row__arrow {
+    display: none;
+  }
+
+  .services__list:has(.service-row:hover) .service-row:not(:hover) {
+    opacity: 1;
+    filter: none;
+  }
+
+  .service-row:hover .service-row__title {
+    color: var(--color-text);
+  }
+
+  .service-row:hover .service-row__num {
+    color: transparent;
+    -webkit-text-stroke-color: var(--color-text-dim);
+  }
+
+  .services__intro {
+    margin-bottom: 32px;
+  }
 }
 
 /* # FEATURED WORK — Editorial Gallery Wall
@@ -2464,19 +2480,7 @@ body.light .marquee__card:hover .marquee__card-name {
     font-size: clamp(1.5rem, 3.5vw, 2.5rem);
   }
 
-  .capabilities__grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .capability-card--wide {
-    grid-column: span 2;
-  }
-
-  .capability-card {
-    padding: 28px 24px 24px;
-  }
-
-  .capabilities__intro {
+  .services__intro {
     max-width: 100%;
   }
 
@@ -2577,24 +2581,6 @@ body.light .marquee__card:hover .marquee__card-name {
 
   .hero__scroll {
     bottom: 20px;
-  }
-
-  .capabilities__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .capability-card--wide {
-    grid-column: span 1;
-  }
-
-  .capability-card {
-    padding: 24px 20px 36px;
-  }
-
-  .capability-card__number {
-    font-size: 2rem;
-    bottom: 8px;
-    right: 12px;
   }
 
   .about__manifesto {
