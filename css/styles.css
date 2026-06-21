@@ -940,7 +940,8 @@ body.light .nav__link {
 .hero__meta-pill--active {
   border-color: rgba(52, 211, 153, 0.25);
   color: #34d399;
-  padding-left: 12px;
+  padding: 6px;
+  line-height: 0;
 }
 
 .hero__meta-pill--active:hover {
