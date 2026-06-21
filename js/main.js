@@ -72,7 +72,7 @@
       });
     });
 
-    document.querySelectorAll('.project-target').forEach(function (el) {
+    document.querySelectorAll('.project-frame__cta-btn').forEach(function (el) {
       el.addEventListener('mouseenter', function () {
         cursorRing.classList.add('is-project');
       });

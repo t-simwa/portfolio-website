@@ -283,8 +283,8 @@ body.loaded .preloader {
   }
 
   .cursor__ring.is-project {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background: rgba(10, 10, 10, 0.85);
     border-color: var(--color-gold);
     box-shadow: 0 0 30px rgba(234, 190, 124, 0.1), inset 0 0 30px rgba(234, 190, 124, 0.03);
@@ -1960,31 +1960,65 @@ body.light .project-frame__desc {
   color: rgba(0, 0, 0, 0.65);
 }
 
-/* -- CTA -- */
-.project-frame__cta {
+/* -- Dual CTA row -- */
+.project-frame__cta-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.project-frame__cta-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 4px;
   font-family: var(--font-heading);
-  font-size: 0.7rem;
-  letter-spacing: 2px;
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--color-gold);
-  padding-bottom: 3px;
-  border-bottom: 1px solid var(--color-border-gold);
-  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: 0;
   cursor: pointer;
-  transition: gap 0.4s var(--ease-out-expo),
-              color 0.4s var(--ease-out-expo);
+  text-decoration: none;
+  transition: all 0.4s var(--ease-out-expo);
+  pointer-events: auto;
+  line-height: 1;
 }
 
-.project-frame__cta:hover {
-  gap: 12px;
-  color: #fff;
-}
-
-body.light .project-frame__cta:hover {
+.project-frame__cta-btn--primary {
+  background: var(--color-gold);
   color: #0a0a0a;
+  border: 1px solid var(--color-gold);
+}
+
+.project-frame__cta-btn--primary:hover {
+  background: transparent;
+  color: var(--color-gold);
+}
+
+.project-frame__cta-btn--secondary {
+  background: transparent;
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold);
+}
+
+.project-frame__cta-btn--secondary:hover {
+  background: var(--color-gold);
+  color: #0a0a0a;
+}
+
+body.light .project-frame__cta-btn--primary:hover {
+  color: var(--color-gold);
+}
+
+body.light .project-frame__cta-btn--secondary {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+body.light .project-frame__cta-btn--secondary:hover {
+  color: var(--color-bg);
 }
 
 /* # PROCESS SECTION
