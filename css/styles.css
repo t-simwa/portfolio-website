@@ -866,44 +866,54 @@ body.light .nav__link {
   line-height: 0.85;
 }
 
-.hero__meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.hero__badge {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 1px;
-  color: var(--color-text-muted);
-}
-
-.hero__badge-dot {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--color-gold);
-  opacity: 0.5;
-  flex-shrink: 0;
-}
-
 .hero__divider {
   width: 60px;
   height: 1px;
   background: var(--color-gold-dim);
-  margin: 24px 0;
+  margin-bottom: 20px;
 }
 
-.hero__tagline {
-  max-width: 520px;
+.hero__info {
+  margin-top: 20px;
+}
+
+.hero__info-role {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 12px;
+}
+
+.hero__info-tagline {
   font-family: var(--font-body);
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: var(--color-text);
+  max-width: 540px;
+}
+
+.hero__info-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   color: var(--color-text-muted);
-  margin-top: 24px;
+  letter-spacing: 0.3px;
+  flex-wrap: wrap;
+}
+
+.hero__info-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  opacity: 0.4;
+  flex-shrink: 0;
 }
 
 .hero__cta {
@@ -1024,7 +1034,6 @@ body.light .nav__link {
 .hero [data-entrance-stagger="2"] { animation-delay: 0.6s; }
 .hero [data-entrance-stagger="3"] { animation-delay: 0.8s; }
 .hero [data-entrance-stagger="4"] { animation-delay: 1.0s; }
-.hero [data-entrance-stagger="5"] { animation-delay: 1.2s; }
 
 @keyframes hero-fade-up {
   to {
@@ -1865,7 +1874,7 @@ body.recruiter-mode .nav__overlay {
 /* # RESPONSIVE
  * =================================================================== */
 @media (max-width: 1023px) {
-  .hero__tagline {
+  .hero__info-tagline {
     max-width: 100%;
   }
 
@@ -1950,8 +1959,9 @@ body.recruiter-mode .nav__overlay {
     letter-spacing: -2px;
   }
 
-  .hero__tagline {
+  .hero__info-tagline {
     max-width: 100%;
+    font-size: 1.05rem;
   }
 
   .hero__cta {
@@ -2005,15 +2015,16 @@ body.recruiter-mode .nav__overlay {
   }
 
   .hero__divider {
-    margin: 16px 0;
+    margin-bottom: 16px;
   }
 
-  .hero__meta {
-    gap: 8px;
+  .hero__info-tagline {
+    font-size: 1rem;
   }
 
-  .hero__badge {
+  .hero__info-meta {
     font-size: 0.7rem;
+    gap: 8px;
   }
 
   .project-card__content {
