@@ -1724,6 +1724,16 @@ body.light .capability-card:hover {
   padding-bottom: 3px;
 }
 
+/* -- Intro paragraph -- */
+.projects__intro {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  max-width: 650px;
+  margin-bottom: 48px;
+}
+
 /* -- Gallery grid -- */
 .projects__grid {
   display: grid;
@@ -1956,31 +1966,6 @@ body.light .project-frame__desc {
 }
 
 /* -- Tech tags -- */
-.project-frame__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 0;
-  margin-bottom: 14px;
-}
-
-.project-frame__tags span {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.3px;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-body.light .project-frame__tags span {
-  color: rgba(0, 0, 0, 0.45);
-}
-
-.project-frame__tags span + span::before {
-  content: '\00B7';
-  margin: 0 8px;
-  color: var(--color-gold);
-  opacity: 0.5;
-}
-
 /* -- CTA -- */
 .project-frame__cta {
   display: inline-flex;
