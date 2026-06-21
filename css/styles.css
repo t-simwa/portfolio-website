@@ -992,6 +992,16 @@ body.light .hero__role-amp {
   color: #0a0a0a;
 }
 
+body.light .btn--secondary {
+  border-color: #b8942e;
+  color: #b8942e;
+}
+
+body.light .btn--secondary:hover {
+  background: #b8942e;
+  color: #f5f3ef;
+}
+
 /* Scroll indicator */
 .hero__scroll {
   position: absolute;
