@@ -1178,7 +1178,7 @@ body.light .btn--secondary:hover {
 .about__header {
   display: flex;
   align-items: flex-end;
-  gap: 20px;
+  justify-content: space-between;
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 16px;
   margin-bottom: 48px;
@@ -1186,7 +1186,7 @@ body.light .btn--secondary:hover {
 
 .about__header-num {
   font-family: var(--font-heading);
-  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
   line-height: 0.8;
   color: transparent;
@@ -1208,48 +1208,12 @@ body.light .btn--secondary:hover {
   padding-bottom: 3px;
 }
 
-.about__header-line {
-  flex: 1;
-  height: 1px;
-  background: var(--color-border);
-}
-
 /* -- Grid -- */
 .about__grid {
   display: grid;
   grid-template-columns: 55fr 45fr;
   gap: 64px;
   align-items: center;
-}
-
-/* -- Text column -- */
-.about__heading {
-  margin-bottom: 24px;
-}
-
-.about__heading-main {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  line-height: 1.15;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--color-text);
-  margin-bottom: 8px;
-}
-
-.about__heading-accent {
-  display: inline-block;
-  font-family: var(--font-heading);
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  padding: 4px 0;
-}
-
-body.light .about__heading-accent {
-  color: #b8942e;
 }
 
 .about__body {
