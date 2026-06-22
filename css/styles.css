@@ -2470,10 +2470,26 @@ body.light .marquee__card:hover .marquee__card-name {
   content: '';
   position: absolute;
   left: 19px;
-  top: 0;
+  top: 11px;
   bottom: 0;
   width: 1px;
   background: var(--color-border-gold);
+}
+
+/* -- Label entry: reduced padding so horizontal line connects from the dot -- */
+.timeline__entry--label {
+  padding-left: 28px;
+  padding-bottom: 32px;
+}
+
+.timeline__entry--label .timeline__dot {
+  top: 5px;
+}
+
+.timeline__entry--label .timeline__date,
+.timeline__entry--label .timeline__location,
+.timeline__entry--label .timeline__desc {
+  display: none;
 }
 
 /* -- Entry -- */
@@ -2747,6 +2763,11 @@ body.light .contact__heading-accent {
     padding-bottom: 36px;
   }
 
+  .timeline__entry--label {
+    padding-left: 22px;
+    padding-bottom: 28px;
+  }
+
   .timeline::before {
     left: 15px;
   }
@@ -2792,6 +2813,15 @@ body.light .contact__heading-accent {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .timeline__entry--label .timeline__dot {
+    background: var(--color-gold);
+    box-shadow: none;
+  }
+
+  body.light .timeline__entry--label .timeline__dot {
+    background: #b8942e;
   }
 
   .timeline__dot {
