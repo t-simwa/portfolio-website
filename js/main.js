@@ -462,6 +462,25 @@
     observer.observe(marquee);
   }
 
+  /* # GENERIC DATA-ENTRANCE OBSERVER (fade + slide up)
+   * =================================================================== */
+  var entranceElements = document.querySelectorAll('[data-entrance]');
+  if (entranceElements.length && 'IntersectionObserver' in window) {
+    var entranceObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          entranceObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    entranceElements.forEach(function (el, i) {
+      el.style.transitionDelay = (i * 0.12) + 's';
+      entranceObserver.observe(el);
+    });
+  }
+
   console.log('Ted Simwa — Gilded Editorial Portfolio');
   console.log('Designed & Built from scratch with vanilla JS');
 })();
