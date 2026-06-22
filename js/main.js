@@ -481,6 +481,135 @@
     });
   }
 
+  /* # TIMELINE — GSAP SCROLLTRIGGER + LENIS
+   * =================================================================== */
+  var timelineTrack = document.getElementById('timelineTrack');
+  var timelineFill = document.getElementById('timelineFill');
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (timelineTrack && !reducedMotion && typeof gsap !== 'undefined') {
+    /* -- Lenis smooth scroll init + GSAP sync -- */
+    var lenis = new Lenis({
+      duration: 1.2,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      orientation: 'vertical',
+      smoothWheel: true
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add(function (time) {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+
+    /* -- timeline entries -- */
+    var tlEntries = gsap.utils.toArray('.timeline__entry');
+    var tlLabels = gsap.utils.toArray('.timeline__section-label');
+
+    /* -- ScrollTrigger: fill line grows as user scrolls -- */
+    ScrollTrigger.create({
+      trigger: timelineTrack,
+      start: 'top 80%',
+      end: 'bottom 20%',
+      scrub: 1,
+      onUpdate: function (self) {
+        gsap.set(timelineFill, { scaleY: self.progress });
+      }
+    });
+
+    /* -- ScrollTrigger: pin first label -- */
+    ScrollTrigger.create({
+      trigger: '.timeline__section-label:first-child',
+      start: 'top 20%',
+      onEnter: function () {
+        gsap.set(timelineFill, { transformOrigin: 'top center' });
+      }
+    });
+
+    /* -- reveal each entry with staggered scroll animation -- */
+    tlEntries.forEach(function (entry, i) {
+      var node = entry.querySelector('.timeline__node');
+      var content = entry.querySelector('.timeline__entry-content');
+      var meta = entry.querySelector('.timeline__entry-meta');
+      var title = entry.querySelector('.timeline__entry-title');
+      var rule = entry.querySelector('.timeline__entry-rule');
+
+      /* set initial state */
+      gsap.set(entry, { opacity: 0, y: 40 });
+      gsap.set(node, { scale: 0, borderWidth: 3 });
+      gsap.set(rule, { width: 0 });
+
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: entry,
+          start: 'top 85%',
+          end: 'top 40%',
+          scrub: 0.8
+        }
+      });
+
+      tl.to(entry, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+        .to(node, { scale: 1, borderWidth: 2, duration: 0.4, ease: 'back.out(1.7)' }, '-=0.3')
+        .to(rule, { width: 32, duration: 0.5, ease: 'power2.out' }, '-=0.2');
+    });
+
+    /* -- reveal section labels -- */
+    tlLabels.forEach(function (label) {
+      ScrollTrigger.create({
+        trigger: label,
+        start: 'top 85%',
+        onEnter: function () {
+          gsap.fromTo(label, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out' });
+        },
+        once: true
+      });
+    });
+
+    /* -- refresh on resize -- */
+    window.addEventListener('resize', function () {
+      ScrollTrigger.refresh();
+    });
+
+    /* -- cleanup on reduced-motion change -- */
+    window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', function (e) {
+      if (e.matches) {
+        ScrollTrigger.getAll().forEach(function (st) { st.kill(); });
+      }
+    });
+  } else {
+    /* -- no GSAP / reduced-motion fallback -- */
+    var revealElements = document.querySelectorAll('.timeline__entry, .timeline__section-label');
+    if (revealElements.length && 'IntersectionObserver' in window) {
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      revealElements.forEach(function (el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        revealObserver.observe(el);
+      });
+    }
+
+    if (timelineFill) {
+      timelineFill.style.transform = 'scaleY(1)';
+    }
+  }
+
   console.log('Ted Simwa — Gilded Editorial Portfolio');
   console.log('Designed & Built from scratch with vanilla JS');
 })();

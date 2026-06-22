@@ -584,95 +584,143 @@
   </section> -->
 
   <!-- # EXPERIENCE & EDUCATION -->
-  <section class="section experience" id="experience">
+  <section class="section timeline" id="experience">
     <div class="container">
-      <div class="experience__header">
-        <span class="experience__header-num">04</span>
-        <span class="experience__header-label">// Experience &amp; Education</span>
+      <div class="timeline__header">
+        <span class="timeline__header-num">04</span>
+        <span class="timeline__header-label">Career &amp; Education</span>
       </div>
 
-      <div class="timeline__columns">
-        <div class="timeline">
-          <div class="timeline__entry timeline__entry--label" data-entrance>
-            <div class="timeline__dot"></div>
-            <div class="timeline__content">
-              <div class="timeline__label">
-                <span class="timeline__label-text">Experience</span>
-              </div>
-            </div>
-          </div>
+      <div class="timeline__track" id="timelineTrack">
 
-          <div class="timeline__entry" data-entrance>
-            <div class="timeline__dot"></div>
-            <div class="timeline__content">
-              <div class="timeline__meta">
-                <h3 class="timeline__role">Technical Consultant</h3>
-                <span class="timeline__date">Jan 2020 - Present</span>
-              </div>
-              <span class="timeline__location">Nairobi (Remote)</span>
-              <p class="timeline__desc">Delivered 5+ global client projects improving page load speeds by 30% and maintaining 3 production systems with 10K+ daily users.</p>
-            </div>
-          </div>
+        <!-- timeline lines (static bg + animated fill) -->
+        <div class="timeline__line-rail">
+          <div class="timeline__line"></div>
+          <div class="timeline__line-fill" id="timelineFill"></div>
+        </div>
 
-          <div class="timeline__entry" data-entrance>
-            <div class="timeline__dot"></div>
-            <div class="timeline__content">
-              <div class="timeline__meta">
-                <h3 class="timeline__role">AI Trainer</h3>
-                <span class="timeline__date">Jun 2024 - Aug 2025</span>
-              </div>
-              <span class="timeline__location">Prolific (Remote)</span>
-              <p class="timeline__desc">Improved model accuracy by 15% through 500+ structured evaluation sessions while reducing data processing time by 20%.</p>
-            </div>
-          </div>
+        <!-- EXPERIENCE LABEL -->
+        <div class="timeline__section-label" data-reveal>
+          <span class="timeline__section-label-line"></span>
+          <span class="timeline__section-label-text">Experience</span>
+        </div>
 
-          <div class="timeline__entry" data-entrance>
-            <div class="timeline__dot"></div>
-            <div class="timeline__content">
-              <div class="timeline__meta">
-                <h3 class="timeline__role">Software Developer</h3>
-                <span class="timeline__date">Feb 2024 - May 2024</span>
-              </div>
-              <span class="timeline__location">Peak and Dale Solutions Ltd</span>
-              <p class="timeline__desc">Built a reusable React component library cutting redundant code by 30% and shipped 6 modules ahead of schedule.</p>
-            </div>
+        <!-- Entry 1: Technical Consultant -->
+        <div class="timeline__entry" data-reveal>
+          <div class="timeline__entry-marker">
+            <span class="timeline__node"></span>
+            <span class="timeline__connector"></span>
+          </div>
+          <div class="timeline__entry-meta">
+            <span class="timeline__entry-num">01</span>
+            <span class="timeline__entry-date">2020 &ndash; Present</span>
+          </div>
+          <div class="timeline__entry-content">
+            <h3 class="timeline__entry-title">Technical Consultant</h3>
+            <div class="timeline__entry-subtitle">AI &amp; Full Stack Architect</div>
+            <div class="timeline__entry-org">Self-Employed, Nairobi</div>
+            <div class="timeline__entry-rule"></div>
+            <p class="timeline__entry-desc">
+              Lead architect for 5+ global client projects spanning SaaS and E-commerce, delivering end-to-end solutions from system architecture to production deployment. Architected and deployed 3 production systems handling 10K+ daily users with 99.9% uptime, integrating AI-augmented workflows and performance engineering.
+            </p>
           </div>
         </div>
 
-        <div class="timeline">
-          <div class="timeline__entry timeline__entry--label" data-entrance>
-            <div class="timeline__dot"></div>
-            <div class="timeline__content">
-              <div class="timeline__label">
-                <span class="timeline__label-text">Education</span>
-              </div>
-            </div>
+        <!-- Entry 2: AI Trainer -->
+        <div class="timeline__entry" data-reveal>
+          <div class="timeline__entry-marker">
+            <span class="timeline__node"></span>
+            <span class="timeline__connector"></span>
           </div>
-
-          <div class="timeline__entry" data-entrance>
-            <div class="timeline__dot"></div>
-            <div class="timeline__content">
-              <div class="timeline__meta">
-                <h3 class="timeline__role">B.S. Computer Science</h3>
-                <span class="timeline__date">Expected 2025</span>
-              </div>
-              <span class="timeline__location">Africa Nazarene University</span>
-              <p class="timeline__desc">Dean's Honors List. Building a strong foundation in algorithms, data structures, and software engineering principles.</p>
-            </div>
+          <div class="timeline__entry-meta">
+            <span class="timeline__entry-num">02</span>
+            <span class="timeline__entry-date">2024 &ndash; 2025</span>
           </div>
-
-          <div class="timeline__entry" data-entrance>
-            <div class="timeline__dot"></div>
-            <div class="timeline__content">
-              <div class="timeline__meta">
-                <h3 class="timeline__role">Full Stack Developer Certificate</h3>
-                <span class="timeline__date timeline__date--teal">In Progress</span>
-              </div>
-              <span class="timeline__location">IBM</span>
-              <p class="timeline__desc">Comprehensive training in modern full-stack development covering frontend, backend, cloud, and DevOps practices.</p>
-            </div>
+          <div class="timeline__entry-content">
+            <h3 class="timeline__entry-title">AI Trainer</h3>
+            <div class="timeline__entry-subtitle">NLP &amp; Model Evaluation Specialist</div>
+            <div class="timeline__entry-org">Prolific, Remote</div>
+            <div class="timeline__entry-rule"></div>
+            <p class="timeline__entry-desc">
+              Refined AI model outputs through structured feedback loops and adversarial testing, improving model accuracy by 15% across 500+ evaluation sessions. Optimized NLP workflows to reduce data processing time by 20% for production LLM systems.
+            </p>
           </div>
         </div>
+
+        <!-- Entry 3: Software Developer -->
+        <div class="timeline__entry" data-reveal>
+          <div class="timeline__entry-marker">
+            <span class="timeline__node"></span>
+            <span class="timeline__connector"></span>
+          </div>
+          <div class="timeline__entry-meta">
+            <span class="timeline__entry-num">03</span>
+            <span class="timeline__entry-date">Feb &ndash; May 2024</span>
+          </div>
+          <div class="timeline__entry-content">
+            <h3 class="timeline__entry-title">Software Developer</h3>
+            <div class="timeline__entry-subtitle">Full Stack Engineer</div>
+            <div class="timeline__entry-org">Peak and Dale Solutions Ltd</div>
+            <div class="timeline__entry-rule"></div>
+            <p class="timeline__entry-desc">
+              Architected a reusable React component library that reduced redundant code by 30% across 4 simultaneous projects. Delivered enterprise modules that enabled 25% faster user workflows, shipping 6 production modules ahead of schedule with zero critical bugs post-launch.
+            </p>
+          </div>
+        </div>
+
+        <!-- EDUCATION LABEL -->
+        <div class="timeline__section-label" data-reveal>
+          <span class="timeline__section-label-line"></span>
+          <span class="timeline__section-label-text">Education</span>
+        </div>
+
+        <!-- Entry 4: B.S. Computer Science -->
+        <div class="timeline__entry" data-reveal>
+          <div class="timeline__entry-marker">
+            <span class="timeline__node timeline__node--cap"></span>
+            <span class="timeline__connector"></span>
+          </div>
+          <div class="timeline__entry-meta">
+            <span class="timeline__entry-num">04</span>
+            <span class="timeline__entry-date">Expected 2025</span>
+          </div>
+          <div class="timeline__entry-content">
+            <h3 class="timeline__entry-title">B.S. Computer Science</h3>
+            <div class="timeline__entry-org">Africa Nazarene University</div>
+            <div class="timeline__entry-rule"></div>
+            <p class="timeline__entry-desc">
+              Building a strong foundation in algorithms, data structures, and software engineering principles. Specializing in applied machine learning and distributed systems design.
+            </p>
+          </div>
+        </div>
+
+        <!-- CERTIFICATIONS LABEL -->
+        <div class="timeline__section-label" data-reveal>
+          <span class="timeline__section-label-line"></span>
+          <span class="timeline__section-label-text">Certifications</span>
+        </div>
+
+        <!-- Entry 5: IBM Certificate -->
+        <div class="timeline__entry" data-reveal>
+          <div class="timeline__entry-marker">
+            <span class="timeline__node timeline__node--cap"></span>
+            <span class="timeline__connector"></span>
+          </div>
+          <div class="timeline__entry-meta">
+            <span class="timeline__entry-num">05</span>
+            <span class="timeline__entry-date">In Progress</span>
+          </div>
+          <div class="timeline__entry-content">
+            <h3 class="timeline__entry-title">Full Stack Developer Certificate</h3>
+            <div class="timeline__entry-subtitle">Cloud &amp; DevOps Focus</div>
+            <div class="timeline__entry-org">IBM</div>
+            <div class="timeline__entry-rule"></div>
+            <p class="timeline__entry-desc">
+              Comprehensive training spanning frontend, backend, cloud infrastructure, and DevOps practices including Docker, Kubernetes, and microservices architecture.
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -718,6 +766,10 @@
   </footer>
 
   <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
