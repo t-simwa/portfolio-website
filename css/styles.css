@@ -2786,6 +2786,13 @@ body.light .kind-words:hover .kind-words__header-num {
   filter: blur(1px);
 }
 
+/* Vertical divider between grid columns */
+@media (min-width: 768px) {
+  .kw-card:not(:first-child) {
+    border-left: 1px solid var(--color-border);
+  }
+}
+
 .kw-card__mark {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 28px;
