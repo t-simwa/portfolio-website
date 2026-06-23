@@ -2622,6 +2622,7 @@ body.light .timeline__node {
   height: clamp(32px, 3.5vw, 44px);
   color: var(--color-gold);
   flex-shrink: 0;
+  margin-top: calc(7px - clamp(16px, 1.75vw, 22px));
 }
 
 body.light .timeline__entry-icon {
@@ -3180,6 +3181,7 @@ body.light .faq__chevron {
   .timeline__entry-icon {
     width: 32px;
     height: 32px;
+    margin-top: 0;
   }
 
   .timeline__entry-date {
