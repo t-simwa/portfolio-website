@@ -2666,6 +2666,97 @@ body.light .timeline__entry-rule {
   opacity: 0;
 }
 
+/* # TESTIMONIALS -- Social Proof Carousel
+ * =================================================================== */
+
+.testimonials {
+  padding: 60px 0;
+}
+
+.testimonials__carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial__card {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 32px 28px;
+  background: var(--color-bg-alt);
+  border-left: 1px solid var(--color-gold);
+  border-radius: 0;
+}
+
+.testimonial__card.is-active {
+  display: flex;
+}
+
+.testimonial__quote-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-gold);
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+body.light .testimonial__quote-icon {
+  color: #b8942e;
+}
+
+.testimonial__text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+  max-width: 55ch;
+}
+
+.testimonial__attr {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--color-text-dim);
+  letter-spacing: 0.5px;
+}
+
+/* -- Dots -- */
+.testimonials__dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.testimonials__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-text-dim);
+  opacity: 0.3;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.3s ease, background 0.3s ease;
+}
+
+.testimonials__dot.is-active {
+  opacity: 1;
+  background: var(--color-gold);
+}
+
+body.light .testimonials__dot.is-active {
+  background: #b8942e;
+}
+
+.testimonials__dot:hover {
+  opacity: 0.6;
+}
+
 /* # CONTACT CTA
  * =================================================================== */
 
@@ -2762,6 +2853,93 @@ body.light .contact__heading-accent {
   font-size: 0.82rem;
   color: var(--color-text-muted);
   letter-spacing: 0.3px;
+}
+
+/* -- Pricing note -- */
+.contact__pricing {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: 0.5px;
+}
+
+/* -- FAQ accordion -- */
+.faq {
+  max-width: 600px;
+  margin: 0 auto 32px;
+  text-align: left;
+}
+
+.faq__item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq__item:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  gap: 12px;
+  line-height: 1.4;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.faq__question:hover {
+  color: var(--color-gold);
+}
+
+.faq__chevron {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--color-gold);
+  transition: transform 0.3s ease;
+}
+
+.faq__question[aria-expanded="true"] .faq__chevron {
+  transform: rotate(180deg);
+}
+
+.faq__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+}
+
+.faq__answer.is-open {
+  max-height: 200px;
+}
+
+.faq__answer p {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  padding-bottom: 18px;
+  margin: 0;
+}
+
+body.light .faq__question:hover {
+  color: #b8942e;
+}
+
+body.light .faq__chevron {
+  color: #b8942e;
 }
 
 /* -- Buttons row -- */
@@ -2873,6 +3051,22 @@ body.light .contact__heading-accent {
   }
 }
 
+/* # TESTIMONIALS RESPONSIVE
+ * =================================================================== */
+@media (max-width: 767px) {
+  .testimonial__card {
+    padding: 24px 20px;
+  }
+
+  .testimonial__text {
+    font-size: 0.88rem;
+  }
+
+  .testimonials {
+    padding: 40px 0;
+  }
+}
+
 /* # CONTACT RESPONSIVE
  * =================================================================== */
 @media (max-width: 767px) {
@@ -2884,6 +3078,26 @@ body.light .contact__heading-accent {
   .contact__btn {
     width: 100%;
     max-width: 280px;
+  }
+
+  .faq {
+    max-width: none;
+    margin-bottom: 24px;
+  }
+
+  .faq__question {
+    font-size: 0.85rem;
+    padding: 16px 0;
+    min-height: 44px;
+  }
+
+  .faq__answer p {
+    font-size: 0.82rem;
+  }
+
+  .contact__pricing {
+    font-size: 0.75rem;
+    margin-bottom: 24px;
   }
 }
 
@@ -2907,6 +3121,14 @@ body.light .contact__heading-accent {
 
   .contact__status-dot {
     animation: none;
+  }
+
+  .testimonial__card.is-active {
+    display: flex;
+  }
+
+  .testimonials__carousel {
+    overflow: visible;
   }
 }
 

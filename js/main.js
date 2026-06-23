@@ -610,6 +610,75 @@
     }
   }
 
+  /* # TESTIMONIALS CAROUSEL
+   * =================================================================== */
+  (function () {
+    var carousel = document.getElementById('testimonialsCarousel');
+    var dots = document.querySelectorAll('.testimonials__dot');
+    if (!carousel || !dots.length) return;
+
+    var slides = carousel.querySelectorAll('.testimonial__card');
+    var current = 0;
+    var interval;
+
+    function showSlide(index) {
+      slides.forEach(function (s) { s.classList.remove('is-active'); });
+      dots.forEach(function (d) { d.classList.remove('is-active'); });
+      slides[index].classList.add('is-active');
+      dots[index].classList.add('is-active');
+      current = index;
+    }
+
+    function nextSlide() {
+      showSlide((current + 1) % slides.length);
+    }
+
+    function startAutoAdvance() {
+      stopAutoAdvance();
+      interval = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoAdvance() {
+      clearInterval(interval);
+    }
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () {
+        showSlide(i);
+        startAutoAdvance();
+      });
+    });
+
+    carousel.addEventListener('mouseenter', stopAutoAdvance);
+    carousel.addEventListener('mouseleave', startAutoAdvance);
+
+    showSlide(0);
+    startAutoAdvance();
+  })();
+
+  /* # FAQ ACCORDION
+   * =================================================================== */
+  (function () {
+    var faqQuestions = document.querySelectorAll('.faq__question');
+    faqQuestions.forEach(function (question) {
+      question.addEventListener('click', function () {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        var answer = this.nextElementSibling;
+
+        /* close all */
+        faqQuestions.forEach(function (q) {
+          q.setAttribute('aria-expanded', 'false');
+          q.nextElementSibling.classList.remove('is-open');
+        });
+
+        if (!expanded) {
+          this.setAttribute('aria-expanded', 'true');
+          answer.classList.add('is-open');
+        }
+      });
+    });
+  })();
+
   console.log('Ted Simwa — Gilded Editorial Portfolio');
   console.log('Designed & Built from scratch with vanilla JS');
 })();
