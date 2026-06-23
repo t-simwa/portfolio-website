@@ -1281,7 +1281,7 @@ body.light .btn--secondary:hover {
 
 .about__body {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.7;
   color: var(--color-text-muted);
   margin-bottom: 24px;
@@ -1552,7 +1552,7 @@ body.light .about__resume-link:hover {
 /* -- Intro paragraph -- */
 .services__intro {
   font-family: var(--font-body);
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   line-height: 1.7;
   color: var(--color-text-muted);
   max-width: 650px;
@@ -1795,7 +1795,7 @@ body.light .services__list:has(.service-row:hover) .service-row:not(:hover) {
 /* -- Intro paragraph -- */
 .projects__intro {
   font-family: var(--font-body);
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   line-height: 1.7;
   color: var(--color-text-muted);
   max-width: 650px;
@@ -2360,18 +2360,11 @@ body.recruiter-mode .hero {
   height: 18px;
   flex-shrink: 0;
   opacity: 0.7;
-  filter: brightness(0) invert(1);
-  transition: opacity 0.3s ease, filter 0.4s ease;
-  object-fit: contain;
-}
-
-body.light .marquee__card-icon {
-  filter: brightness(0);
+  transition: opacity 0.3s ease;
 }
 
 .marquee__card:hover .marquee__card-icon {
   opacity: 1;
-  filter: none;
 }
 
 /* -- Card name -- */
@@ -3037,6 +3030,15 @@ body.light .timeline__entry-chevron {
   color: var(--color-text-muted);
   text-transform: uppercase;
   transition: border-color 0.3s ease, color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.case-hero__pill svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
 }
 
 .case-hero__pill:hover {
@@ -3793,8 +3795,17 @@ body.light .cs-features-list:has(.cs-feature-row:hover) .cs-feature-row:not(:hov
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--color-text);
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   margin-bottom: 4px;
+}
+
+.case-tabs__tech-name svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  fill: currentColor;
 }
 
 .case-tabs__tech-desc {
@@ -3802,6 +3813,7 @@ body.light .cs-features-list:has(.cs-feature-row:hover) .cs-feature-row:not(:hov
   font-size: 0.7rem;
   line-height: 1.5;
   color: var(--color-text-muted);
+  display: block;
 }
 
 /* ============================================
@@ -4197,6 +4209,11 @@ body.light .case-results__card:hover::after {
     padding: 4px 10px;
   }
 
+  .case-hero__pill svg {
+    width: 12px;
+    height: 12px;
+  }
+
   .case-hero__links {
     flex-direction: column;
     margin-top: 28px;
@@ -4533,7 +4550,7 @@ body.light .contact__heading {
 
 .contact__body {
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   line-height: 1.7;
   color: var(--color-text-muted);
   margin: 0 0 28px;
