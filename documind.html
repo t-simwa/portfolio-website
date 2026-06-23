@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DocuMind AI — Case Study | Ted Simwa</title>
+  <meta name="description" content="DocuMind AI case study — a RAG-powered document intelligence system built with FastAPI, MongoDB, ChromaDB, and multiple LLM providers.">
+  <meta name="author" content="Ted Simwa">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="DocuMind AI — Case Study | Ted Simwa">
+  <meta property="og:description" content="A RAG-powered document intelligence system that reduced manual search time by 80%.">
+  <meta property="og:image" content="images/projects/documind.png">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ted-simwa.vercel.app/documind.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Resource Hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="fonts/mission-control.otf" as="font" type="font/otf" crossorigin="anonymous">
+  <link rel="dns-prefetch" href="https://plausible.io">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="favicon.ico">
+
+  <!-- PWA -->
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Plausible Analytics -->
+  <script defer data-domain="ted-simwa.vercel.app" src="https://plausible.io/js/script.js"></script>
+
+  <!-- basicLightbox for case study image lightbox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css">
+</head>
+<body>
+
+  <!-- # PRELOADER -->
+  <div class="preloader" id="preloader">
+    <span class="preloader__text">TED SIMWA.</span>
+  </div>
+
+  <!-- # CUSTOM CURSOR -->
+  <div class="cursor" id="cursor">
+    <div class="cursor__dot" id="cursorDot"></div>
+    <div class="cursor__ring" id="cursorRing">
+      <span class="cursor__ring-text">VIEW</span>
+    </div>
+    <div class="cursor__trail" id="cursorTrail">
+      <div class="cursor__trail-dot"></div>
+      <div class="cursor__trail-dot"></div>
+      <div class="cursor__trail-dot"></div>
+    </div>
+  </div>
+
+  <!-- # SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- # NAVIGATION -->
+  <nav class="nav" id="nav" data-at-top="true">
+    <div class="nav__pill">
+      <a href="index.html" class="nav__brand">TED SIMWA.</a>
+
+      <div class="nav__divider"></div>
+
+      <ul class="nav__links">
+        <li><a href="index.html#work" class="nav__link">Work</a></li>
+        <li><a href="index.html#about" class="nav__link">About</a></li>
+        <li><a href="index.html#contact" class="nav__link">Contact</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <span class="nav__clock" id="navClock">
+          <svg class="nav__clock-flag" viewBox="0 0 24 24" fill="none">
+            <rect x="1" y="4" width="22" height="4" fill="#000"/>
+            <rect x="1" y="8" width="22" height="1.5" fill="#fff"/>
+            <rect x="1" y="9.5" width="22" height="5" fill="#c8102e"/>
+            <rect x="1" y="14.5" width="22" height="1.5" fill="#fff"/>
+            <rect x="1" y="16" width="22" height="4" fill="#006600"/>
+          </svg>
+          <span id="navClockTime">--:--:--</span>
+        </span>
+        <span class="nav__availability" title="Open to freelance &amp; full-time roles">
+          <span class="nav__availability-dot"></span>
+        </span>
+        <button class="nav__toggle" id="recruiterToggle" aria-label="Toggle Recruiter Mode" title="Recruiter Mode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </button>
+        <button class="nav__toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+          <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+
+      <button class="nav__hamburger" id="hamburger" aria-label="Menu" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- # MOBILE NAV OVERLAY -->
+  <div class="nav__overlay" id="navOverlay">
+    <button class="nav__overlay-close" id="navOverlayClose" aria-label="Close menu" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="index.html#work" class="nav__overlay-link">
+      <span class="nav__overlay-index">01</span>
+      <span class="nav__overlay-text">WORK</span>
+    </a>
+    <a href="index.html#about" class="nav__overlay-link">
+      <span class="nav__overlay-index">02</span>
+      <span class="nav__overlay-text">ABOUT</span>
+    </a>
+    <a href="index.html#contact" class="nav__overlay-link">
+      <span class="nav__overlay-index">03</span>
+      <span class="nav__overlay-text">CONTACT</span>
+    </a>
+  </div>
+
+  <!-- # CASE STUDY HERO -->
+  <section class="case-hero" id="caseHero">
+    <div class="hero__grid"></div>
+    <span class="hero__corner hero__corner--tl"></span>
+    <span class="hero__corner hero__corner--tr"></span>
+    <span class="hero__corner hero__corner--bl"></span>
+    <span class="hero__corner hero__corner--br"></span>
+
+    <div class="container case-hero__content">
+      <div class="case-hero__label" data-entrance>Case Study</div>
+
+      <h1 class="case-hero__title" data-entrance>
+        <span class="case-hero__title-filled">DocuMind</span>
+        <span class="case-hero__title-outlined">AI</span>
+      </h1>
+
+      <p class="case-hero__tagline" data-entrance>Secure Enterprise Document Analysis Platform</p>
+
+      <div class="case-hero__tech" data-entrance>
+        <span class="case-hero__pill">FastAPI</span>
+        <span class="case-hero__pill">MongoDB</span>
+        <span class="case-hero__pill">ChromaDB</span>
+        <span class="case-hero__pill">OpenAI / Gemini</span>
+        <span class="case-hero__pill">React + TypeScript</span>
+        <span class="case-hero__pill">Docker</span>
+      </div>
+
+      <div class="case-hero__links" data-entrance>
+        <a href="https://github.com/t-simwa/documind-document-analyzer" target="_blank" rel="noopener noreferrer" class="case-hero__btn case-hero__btn--primary">GitHub &nearr;</a>
+        <a href="index.html#work" class="case-hero__btn case-hero__btn--secondary">All Projects</a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="case-hero__scroll" id="caseScroll">
+      <span>SCROLL &darr;</span>
+    </div>
+  </section>
+
+  <!-- # SECTION 01 — THE PROBLEM -->
+  <section class="section" id="problem">
+    <div class="container">
+      <div class="case__header">
+        <span class="case__num">01</span>
+        <h2 class="case__heading">The Challenge</h2>
+      </div>
+
+      <div class="case__body">
+        <p class="case__text">Enterprises struggle with information retrieval from large document repositories. Traditional keyword search falls short when users need to ask complex, natural-language questions about their documents. Teams waste hours manually searching through PDFs, Word files, and text documents for specific information&thinsp;&mdash;&thinsp;slowing down decision-making and reducing productivity.</p>
+
+        <div class="case__pain-points">
+          <div class="case__point">
+            <span class="case__point-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </span>
+            <div>
+              <strong>Fragmented knowledge</strong>
+              <p>Critical information locked across thousands of documents with no unified search interface.</p>
+            </div>
+          </div>
+          <div class="case__point">
+            <span class="case__point-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </span>
+            <div>
+              <strong>Keyword-only search</strong>
+              <p>Traditional search can't understand intent or answer complex questions across documents.</p>
+            </div>
+          </div>
+          <div class="case__point">
+            <span class="case__point-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </span>
+            <div>
+              <strong>No source transparency</strong>
+              <p>AI-generated answers without citations erode trust&thinsp;&mdash;&thinsp;users need to verify where information comes from.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- # SECTION 02 — THE APPROACH -->
+  <section class="section case__alt-bg" id="approach">
+    <div class="container">
+      <div class="case__header">
+        <span class="case__num">02</span>
+        <h2 class="case__heading">The Solution</h2>
+      </div>
+
+      <div class="case__body">
+        <p class="case__text">Built a Retrieval-Augmented Generation (RAG) platform that lets users <em>chat</em> with their documents. The system ingests documents in multiple formats, creates vector embeddings for semantic search, and routes natural-language queries through an LLM that returns answers with source citations. The architecture supports multiple LLM providers and vector stores, making it adaptable to any enterprise environment.</p>
+
+        <!-- Architecture diagram placeholder -->
+        <div class="case__arch" id="caseArchImg">
+          <div class="case__arch-grid">
+            <div class="case__arch-node">
+              <span class="case__arch-label">User Query</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div class="case__arch-arrow">&rarr;</div>
+            <div class="case__arch-node">
+              <span class="case__arch-label">Embedding</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/></svg>
+            </div>
+            <div class="case__arch-arrow">&rarr;</div>
+            <div class="case__arch-node">
+              <span class="case__arch-label">Vector Search</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <div class="case__arch-arrow">&rarr;</div>
+            <div class="case__arch-node">
+              <span class="case__arch-label">LLM + Context</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><path d="M12 2a10 10 0 0 1 10 10c0 5-4 8-10 8-6 0-10-3-10-8 0-5 4-10 10-10z"/><path d="M8 14s2 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <div class="case__arch-arrow">&rarr;</div>
+            <div class="case__arch-node case__arch-node--output">
+              <span class="case__arch-label">Cited Answer</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><path d="M22 4H2v16h20V4zM2 8h20"/><path d="M6 12h4"/><path d="M14 12h4"/><path d="M6 16h8"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- # SECTION 03 — KEY FEATURES -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="case__header">
+        <span class="case__num">03</span>
+        <h2 class="case__heading">Key Features</h2>
+      </div>
+
+      <div class="case__features-grid">
+        <div class="case__feature-card" data-reveal>
+          <div class="case__feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3 class="case__feature-title">Multi-Format Upload</h3>
+          <p class="case__feature-desc">Ingest PDF, DOCX, TXT, Markdown, CSV, Excel, PowerPoint, and scanned images with OCR. 20MB file limit with drag-and-drop, validation, and real-time processing status.</p>
+        </div>
+
+        <div class="case__feature-card" data-reveal>
+          <div class="case__feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3 class="case__feature-title">Semantic Vector Search</h3>
+          <p class="case__feature-desc">Hybrid search combining embedding similarity and BM25 keyword retrieval. Configurable weighting (default 0.7/0.3) with RRF fusion and cross-encoder re-ranking for maximum relevance.</p>
+        </div>
+
+        <div class="case__feature-card" data-reveal>
+          <div class="case__feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 10 10c0 5-4 8-10 8-6 0-10-3-10-8 0-5 4-10 10-10z"/><path d="M8 14s2 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <h3 class="case__feature-title">Source-Cited Answers</h3>
+          <p class="case__feature-desc">Every answer includes source citations with confidence scoring, document references, page numbers, and highlighted passages. Verifiable AI you can trust.</p>
+        </div>
+
+        <div class="case__feature-card" data-reveal>
+          <div class="case__feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3 class="case__feature-title">Dashboard &amp; Management</h3>
+          <p class="case__feature-desc">Split-screen analysis interface with PDF viewer and AI chat side-by-side. Document list with filters, tags, bulk actions, project hierarchy, and cross-document comparison.</p>
+        </div>
+
+        <div class="case__feature-card" data-reveal>
+          <div class="case__feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+          </div>
+          <h3 class="case__feature-title">Cloud Connectors</h3>
+          <p class="case__feature-desc">Connect Google Drive, OneDrive, Box, and SharePoint. Ingest documents directly from cloud storage without manual downloads. Automatic sync and updates.</p>
+        </div>
+
+        <div class="case__feature-card" data-reveal>
+          <div class="case__feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3 class="case__feature-title">Cross-Document Analysis</h3>
+          <p class="case__feature-desc">Compare insights across multiple documents, detect patterns and contradictions, run the same query against your entire document repository with unified results.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- # SECTION 04 — TECHNICAL DEEP-DIVE -->
+  <section class="section case__alt-bg" id="deepdive">
+    <div class="container">
+      <div class="case__header">
+        <span class="case__num">04</span>
+        <h2 class="case__heading">Technical Deep-Dive</h2>
+      </div>
+
+      <div class="case__body">
+        <p class="case__text">DocuMind AI is built on a modular, async-first architecture designed for enterprise scale and multi-tenancy. The system processes documents through a configurable RAG pipeline with pluggable providers at every layer.</p>
+
+        <div class="case__tech-grid">
+          <div class="case__tech-category">
+            <h3 class="case__tech-cat-title">Backend &amp; API</h3>
+            <ul class="case__tech-list">
+              <li><strong>FastAPI</strong> — Async Python framework with automatic OpenAPI docs</li>
+              <li><strong>Uvicorn</strong> — High-performance ASGI server</li>
+              <li><strong>MongoDB + Beanie ODM</strong> — Async document database with schema validation</li>
+              <li><strong>ChromaDB</strong> — Default vector store for embeddings (also supports Pinecone, Qdrant)</li>
+              <li><strong>Celery + Redis</strong> — Background task queue for async processing</li>
+            </ul>
+          </div>
+
+          <div class="case__tech-category">
+            <h3 class="case__tech-cat-title">AI &amp; RAG Pipeline</h3>
+            <ul class="case__tech-list">
+              <li><strong>OpenAI GPT-4 / GPT-3.5</strong> — Primary LLM provider</li>
+              <li><strong>Google Gemini 2.5 Flash / Pro</strong> — Secondary LLM provider</li>
+              <li><strong>Anthropic Claude</strong> — Optional LLM provider</li>
+              <li><strong>Ollama + HuggingFace</strong> — Self-hosted LLM options for air-gapped environments</li>
+              <li><strong>Multiple embedding providers</strong> — OpenAI, Gemini, Cohere, Sentence Transformers</li>
+            </ul>
+          </div>
+
+          <div class="case__tech-category">
+            <h3 class="case__tech-cat-title">Document Processing</h3>
+            <ul class="case__tech-list">
+              <li><strong>Adaptive Chunking</strong> — Document-type-aware strategies (300&ndash;1200 chars per chunk)</li>
+              <li><strong>EasyOCR + Tesseract</strong> — OCR pipeline for scanned documents and images</li>
+              <li><strong>PyPDF2, python-docx, openpyxl</strong> — Format-specific parsers</li>
+              <li><strong>Language detection</strong> — Automatic detection via langdetect</li>
+              <li><strong>Pre-processing</strong> — Page number removal, header/footer stripping, table extraction</li>
+            </ul>
+          </div>
+
+          <div class="case__tech-category">
+            <h3 class="case__tech-cat-title">Security &amp; Infrastructure</h3>
+            <ul class="case__tech-list">
+              <li><strong>JWT + bcrypt</strong> — Token-based authentication with password hashing</li>
+              <li><strong>OAuth2 SSO</strong> — Google, Microsoft, Okta single sign-on</li>
+              <li><strong>2FA TOTP</strong> — Two-factor authentication via authenticator apps</li>
+              <li><strong>Cloudflare R2 / MinIO / S3</strong> — S3-compatible object storage</li>
+              <li><strong>Rate limiting</strong> — 60 requests/minute per IP via slowapi</li>
+              <li><strong>Docker + GitHub Actions</strong> — Multi-arch builds, CI/CD, Trivy + Snyk scanning</li>
+            </ul>
+          </div>
+
+          <div class="case__tech-category">
+            <h3 class="case__tech-cat-title">Frontend</h3>
+            <ul class="case__tech-list">
+              <li><strong>React 18 + TypeScript</strong> — Component-based UI with strict typing</li>
+              <li><strong>Vite 5</strong> — Fast dev server and optimized production builds</li>
+              <li><strong>Zustand + TanStack React Query</strong> — Client state + server cache management</li>
+              <li><strong>shadcn/ui + Tailwind CSS 3</strong> — Accessible component library with utility styling</li>
+              <li><strong>@react-pdf-viewer</strong> — In-browser PDF rendering with page navigation and citation highlighting</li>
+              <li><strong>Recharts</strong> — Dashboard analytics and usage charts</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- # SECTION 05 — RESULTS -->
+  <section class="section" id="results">
+    <div class="container">
+      <div class="case__header">
+        <span class="case__num">05</span>
+        <h2 class="case__heading">The Outcome</h2>
+      </div>
+
+      <div class="case__results-grid">
+        <div class="case__result-card">
+          <span class="case__result-number">80%</span>
+          <p class="case__result-label">Reduction in manual document search time</p>
+        </div>
+        <div class="case__result-card">
+          <span class="case__result-number">10,000+</span>
+          <p class="case__result-label">Documents processed through the RAG pipeline</p>
+        </div>
+        <div class="case__result-card">
+          <span class="case__result-number">6</span>
+          <p class="case__result-label">LLM providers supported with pluggable architecture</p>
+        </div>
+        <div class="case__result-card">
+          <span class="case__result-number">100%</span>
+          <p class="case__result-label">RAG pipeline completion across all components</p>
+        </div>
+      </div>
+
+      <div class="case__text" style="margin-top: 48px;">
+        <p>The platform enables instant information retrieval across thousands of documents. Users ask natural-language questions and receive answers with source citations, page references, and confidence scores. The modular provider architecture means organizations can choose their preferred LLM, embedding model, and vector store without code changes.</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="case__cta">
+        <p class="case__cta-text">Have a similar project? Let's build something intelligent.</p>
+        <a href="mailto:simwated@gmail.com?subject=Project%20Inquiry" class="case-hero__btn case-hero__btn--primary">Let's Talk</a>
+        <a href="index.html" class="case-hero__btn case-hero__btn--secondary" data-back-link>&larr; Back to Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- # FOOTER -->
+  <footer class="footer">
+    <!-- Zone A - Statement Strip -->
+    <div class="footer__statement">
+      <div class="container">
+        <p class="footer__statement-text" data-footer-statement>Let&rsquo;s build something iconic.</p>
+      </div>
+    </div>
+
+    <!-- Zone B - Split Content -->
+    <div class="container">
+      <div class="footer__split">
+
+        <div class="footer__social-group" data-footer-social>
+          <a href="https://www.linkedin.com/in/ted-simwa" target="_blank" rel="noopener noreferrer" class="footer__pill">
+            <svg class="footer__pill-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/t-simwa" target="_blank" rel="noopener noreferrer" class="footer__pill">
+            <svg class="footer__pill-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="mailto:simwated@gmail.com" class="footer__pill footer__pill--primary">
+            <svg class="footer__pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+            <span>Email</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Zone C - Bottom Bar -->
+    <div class="footer__bar">
+      <div class="container">
+        <div class="footer__bar-inner">
+          <span class="footer__copyright">Crafted with intention by Ted Simwa</span>
+          <button class="footer__back-top" aria-label="Back to top" data-back-top>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- CASE-SPECIFIC JS -->
+  <script>
+    (function () {
+      var archEl = document.getElementById('caseArchImg');
+      if (archEl && typeof basicLightbox !== 'undefined') {
+        archEl.style.cursor = 'pointer';
+        archEl.addEventListener('click', function () {
+          var instance = basicLightbox.create('<div class="case__arch case__arch--full"><div class="case__arch-grid">' + archEl.innerHTML + '</div></div>', {
+            onShow: function () { document.body.style.overflow = 'hidden'; },
+            onClose: function () { document.body.style.overflow = ''; }
+          });
+          instance.show();
+        });
+      }
+
+      /* Reveal animations for feature cards */
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        var revealEls = document.querySelectorAll('[data-reveal]');
+        revealEls.forEach(function (el, i) {
+          gsap.set(el, { opacity: 0, y: 30 });
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top 85%',
+            onEnter: function () {
+              gsap.to(el, {
+                opacity: 1, y: 0, duration: 0.6, ease: 'power2.out',
+                delay: i * 0.08
+              });
+            },
+            once: true
+          });
+        });
+
+        /* Entrance animation for case hero elements */
+        var heroEntrances = document.querySelectorAll('.case-hero__content [data-entrance]');
+        heroEntrances.forEach(function (el, i) {
+          gsap.set(el, { opacity: 0, y: 30 });
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top 80%',
+            onEnter: function () {
+              gsap.to(el, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: i * 0.12 });
+            },
+            once: true
+          });
+        });
+      } else {
+        document.querySelectorAll('[data-reveal], .case-hero__content [data-entrance]').forEach(function (el) {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+      }
+
+      /* Scroll indicator fade out */
+      var caseScroll = document.getElementById('caseScroll');
+      if (caseScroll) {
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 120) {
+            caseScroll.style.opacity = '0';
+            caseScroll.style.pointerEvents = 'none';
+          } else {
+            caseScroll.style.opacity = '1';
+            caseScroll.style.pointerEvents = '';
+          }
+        }, { passive: true });
+      }
+    })();
+  </script>
+</body>
+</html>
