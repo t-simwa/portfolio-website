@@ -610,51 +610,104 @@
     }
   }
 
-  /* # TESTIMONIALS CAROUSEL
+  /* # KIND WORDS — GSAP SCROLL REVEAL
    * =================================================================== */
-  (function () {
-    var carousel = document.getElementById('testimonialsCarousel');
-    var dots = document.querySelectorAll('.testimonials__dot');
-    if (!carousel || !dots.length) return;
+  var kwTrack = document.getElementById('kindWordsTrack');
+  var kwReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var slides = carousel.querySelectorAll('.testimonial__card');
-    var current = 0;
-    var interval;
+  if (kwTrack && !kwReducedMotion && typeof gsap !== 'undefined') {
+    var kwHero = document.querySelector('.kw-hero');
+    var kwCards = gsap.utils.toArray('.kw-card');
+    var kwReveals = [kwHero].concat(kwCards).filter(Boolean);
 
-    function showSlide(index) {
-      slides.forEach(function (s) { s.classList.remove('is-active'); });
-      dots.forEach(function (d) { d.classList.remove('is-active'); });
-      slides[index].classList.add('is-active');
-      dots[index].classList.add('is-active');
-      current = index;
-    }
-
-    function nextSlide() {
-      showSlide((current + 1) % slides.length);
-    }
-
-    function startAutoAdvance() {
-      stopAutoAdvance();
-      interval = setInterval(nextSlide, 5000);
-    }
-
-    function stopAutoAdvance() {
-      clearInterval(interval);
-    }
-
-    dots.forEach(function (dot, i) {
-      dot.addEventListener('click', function () {
-        showSlide(i);
-        startAutoAdvance();
+    kwReveals.forEach(function (el) {
+      var clipReveal = gsap.timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          end: 'top 45%',
+          scrub: 0.6
+        }
       });
+
+      clipReveal
+        .fromTo(el,
+          { clipPath: 'inset(0 100% 0 0)', y: 30, opacity: 0 },
+          { clipPath: 'inset(0 0% 0 0)', y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }
+        );
+
+      /* animate the quote mark */
+      var mark = el.querySelector('.kw-hero__mark, .kw-card__mark');
+      if (mark) {
+        gsap.fromTo(mark,
+          { scale: 0.6, opacity: 0 },
+          { scale: 1, opacity: 0.15, duration: 0.6, ease: 'back.out(1.7)',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              end: 'top 50%',
+              scrub: 0.5
+            }
+          }
+        );
+      }
+
+      /* animate metric line width */
+      var metricLine = el.querySelector('.kw-metric-line');
+      if (metricLine) {
+        gsap.fromTo(metricLine,
+          { width: 0 },
+          { width: 24, duration: 0.5, ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 75%',
+              end: 'top 45%',
+              scrub: 0.5
+            }
+          }
+        );
+      }
     });
 
-    carousel.addEventListener('mouseenter', stopAutoAdvance);
-    carousel.addEventListener('mouseleave', startAutoAdvance);
+    /* stagger cards after hero */
+    if (kwCards.length) {
+      ScrollTrigger.create({
+        trigger: '.kw-grid',
+        start: 'top 85%',
+        onEnter: function () {
+          gsap.to(kwCards, {
+            opacity: 1,
+            y: 0,
+            stagger: 0.15,
+            duration: 0.5,
+            ease: 'power2.out',
+            overwrite: true
+          });
+        },
+        once: true
+      });
+    }
+  } else {
+    /* fallback: reveal all on scroll */
+    var kwFallback = document.querySelectorAll('.kw-hero, .kw-card');
+    if (kwFallback.length && 'IntersectionObserver' in window) {
+      var kwObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.clipPath = 'none';
+            kwObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
 
-    showSlide(0);
-    startAutoAdvance();
-  })();
+      kwFallback.forEach(function (el) {
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.6s ease';
+        kwObserver.observe(el);
+      });
+    }
+  }
 
   /* # FAQ ACCORDION
    * =================================================================== */
