@@ -45,6 +45,7 @@
   <div class="preloader" id="preloader">
     <span class="preloader__text">TED SIMWA.</span>
   </div>
+  <script>(function(){var p=document.getElementById('preloader');if(p){p.style.display='none';document.body.classList.add('loaded');}})();</script>
 
   <!-- # CUSTOM CURSOR -->
   <div class="cursor" id="cursor">
@@ -157,8 +158,18 @@
           </div>
 
           <div class="case-hero__links" data-split="entrance">
-            <a href="https://github.com/t-simwa/documind-document-analyzer" target="_blank" rel="noopener noreferrer" class="case-hero__btn case-hero__btn--primary">GitHub &nearr;</a>
-            <a href="index.html#work" class="case-hero__btn case-hero__btn--secondary">All Projects</a>
+            <a href="https://documind-ai.vercel.app" target="_blank" rel="noopener noreferrer" class="case-hero__btn case-hero__btn--primary">
+              <svg class="case-hero__btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/t-simwa/documind-document-analyzer" target="_blank" rel="noopener noreferrer" class="case-hero__btn case-hero__btn--primary">
+              <svg class="case-hero__btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              Source
+            </a>
+            <a href="index.html#work" class="case-hero__btn case-hero__btn--secondary">
+              <svg class="case-hero__btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              All Projects
+            </a>
           </div>
         </div>
 
@@ -177,30 +188,36 @@
   </section>
 
   <!-- ================================================================
-       SECTION 01 — The Problem (Sidecar Layout)
+       SECTION 01 — The Problem
        ================================================================ -->
-  <section class="case-section" id="problem">
+  <section class="case-section cs-section" id="problem">
     <div class="container">
+      <div class="cs-header">
+        <span class="cs-header-num">01</span>
+        <span class="cs-header-label">// The Challenge</span>
+      </div>
+
       <div class="case__sidecar">
         <div class="case__sidecar-sticky">
-          <span class="case__sidecar-num">01</span>
-          <p class="case__sidecar-eyebrow" data-split="entrance">The Challenge</p>
           <h2 class="case__sidecar-heading" data-split="entrance">Information trapped in documents</h2>
           <p class="case__sidecar-desc" data-split="entrance">Enterprises lose hours searching through thousands of documents with tools that cannot understand context or intent.</p>
         </div>
 
-        <div class="case__scroll-content" data-split="pull-quotes">
-          <div class="case__pull-quote">
-            <strong>Fragmented knowledge</strong>
-            <p>Critical information locked across thousands of documents with no unified interface to search, compare, or ask questions about the content.</p>
+        <div class="case-challenge-stats" data-split="challenge-stats">
+          <div class="case-challenge-stat">
+            <div class="case-challenge-stat__accent"></div>
+            <strong class="case-challenge-stat__title">Fragmented knowledge</strong>
+            <p class="case-challenge-stat__desc">Critical information locked across thousands of documents with no unified interface to search, compare, or ask questions about the content.</p>
           </div>
-          <div class="case__pull-quote">
-            <strong>Keyword-only search</strong>
-            <p>Traditional search returns exact matches but cannot interpret natural language questions, understand synonyms, or rank results by semantic relevance.</p>
+          <div class="case-challenge-stat">
+            <div class="case-challenge-stat__accent"></div>
+            <strong class="case-challenge-stat__title">Keyword-only search</strong>
+            <p class="case-challenge-stat__desc">Traditional search returns exact matches but cannot interpret natural language questions, understand synonyms, or rank results by semantic relevance.</p>
           </div>
-          <div class="case__pull-quote">
-            <strong>No source transparency</strong>
-            <p>AI-generated answers without citations erode trust. Users need to verify where each piece of information comes from.</p>
+          <div class="case-challenge-stat">
+            <div class="case-challenge-stat__accent"></div>
+            <strong class="case-challenge-stat__title">No source transparency</strong>
+            <p class="case-challenge-stat__desc">AI-generated answers without citations erode trust. Users need to verify where each piece of information comes from.</p>
           </div>
         </div>
       </div>
@@ -210,27 +227,21 @@
   <!-- ================================================================
        SECTION 02 — The Approach (Horizontal Architecture Flow)
        ================================================================ -->
-  <section class="case-section case-section--alt" id="approach">
+  <section class="case-section case-section--alt cs-section" id="approach">
     <div class="container">
-      <div class="case__sidecar">
-        <div class="case__sidecar-sticky">
-          <span class="case__sidecar-num">02</span>
-          <p class="case__sidecar-eyebrow" data-split="entrance">The Solution</p>
-          <h2 class="case__sidecar-heading" data-split="entrance">RAG-powered document intelligence</h2>
-          <p class="case__sidecar-desc" data-split="entrance">A Retrieval-Augmented Generation platform that lets users chat with their documents. Every answer includes source citations with page references and confidence scores.</p>
-        </div>
+      <div class="cs-header">
+        <span class="cs-header-num">02</span>
+        <span class="cs-header-label">// The Solution</span>
+      </div>
 
+      <div class="case__sidecar" style="grid-template-columns: 1fr;">
         <div>
-          <p class="case__pull-quote" style="border-left-color: var(--color-border); padding-left: 20px; border-left-width: 1px;">
-            The system ingests documents in multiple formats, creates vector embeddings for semantic search, and routes queries through an LLM that returns answers with source citations. The modular provider architecture supports OpenAI, Gemini, Claude, and Ollama without code changes.
-          </p>
+          <h2 class="case__sidecar-heading" data-split="entrance">RAG-powered document intelligence</h2>
+          <p class="case__sidecar-desc" data-split="entrance" style="text-align: right; max-width: none;">A Retrieval-Augmented Generation platform that lets users chat with their documents. Every answer includes source citations with page references and confidence scores. The system ingests documents in multiple formats, creates vector embeddings for semantic search, and routes queries through an LLM that returns answers with source citations. The modular provider architecture supports OpenAI, Gemini, Claude, and Ollama without code changes.</p>
         </div>
       </div>
-    </div>
 
-    <!-- Full-bleed architecture flow -->
-    <div class="case-section case-section--full" style="margin-top: 60px;">
-      <div class="case-flow" id="archFlow">
+      <div class="case-flow" id="archFlow" style="margin-top: 32px;">
         <div class="case-flow__hint">Scroll horizontally &rarr;</div>
         <div class="case-flow__track">
           <div class="case-flow__node">
@@ -278,74 +289,74 @@
   </section>
 
   <!-- ================================================================
-       SECTION 03 — Key Features (Bento Grid)
+       SECTION 03 — Key Features
        ================================================================ -->
-  <section class="case-section" id="features">
+  <section class="case-section cs-section" id="features">
     <div class="container">
-      <div class="case__sidecar" style="grid-template-columns: 1fr 2fr;">
-        <div>
-          <span class="case__sidecar-num">03</span>
-          <p class="case__sidecar-eyebrow" data-split="entrance">Key Features</p>
-          <h2 class="case__sidecar-heading" data-split="entrance">Built for enterprise scale</h2>
-        </div>
-        <div>
-          <p class="case__pull-quote" style="border-left-color: var(--color-border); padding-left: 20px; border-left-width: 1px; margin-bottom: 0;">
-            Every component designed for production use, from document ingestion to answer delivery.
-          </p>
-        </div>
+      <div class="cs-header">
+        <span class="cs-header-num">03</span>
+        <span class="cs-header-label">// Key Features</span>
       </div>
 
-      <div class="case-bento" id="bentoGrid" data-split="bento">
-        <!-- Hero tile -->
-        <div class="case-bento__tile case-bento__tile--hero">
-          <div class="case-bento__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <h2 class="case__sidecar-heading" data-split="entrance" style="max-width: 600px; margin-bottom: 16px;">Full-stack feature set</h2>
+      <p class="case__sidecar-desc" data-split="entrance" style="max-width: 600px; margin-bottom: 48px;">Every component designed for production use, from document ingestion to answer delivery.</p>
+
+      <div class="cs-features-list">
+
+        <div class="cs-feature-row">
+          <svg class="cs-feature-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <div class="cs-feature-row__content">
+            <h3 class="cs-feature-row__title">Multi-Format Upload</h3>
+            <p class="cs-feature-row__desc">Ingest PDF, DOCX, TXT, Markdown, CSV, Excel, PowerPoint, and scanned images with OCR. Drag-and-drop interface with 20MB file limit, real-time validation, and processing status tracking.</p>
           </div>
-          <h3 class="case-bento__title">Multi-Format Upload</h3>
-          <p class="case-bento__desc">Ingest PDF, DOCX, TXT, Markdown, CSV, Excel, PowerPoint, and scanned images with OCR. Drag-and-drop interface with 20MB file limit, real-time validation, and processing status tracking.</p>
+          <span class="cs-feature-row__arrow">&rarr;</span>
         </div>
 
-        <!-- Standard tiles -->
-        <div class="case-bento__tile">
-          <div class="case-bento__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <div class="cs-feature-row">
+          <svg class="cs-feature-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <div class="cs-feature-row__content">
+            <h3 class="cs-feature-row__title">Semantic Search</h3>
+            <p class="cs-feature-row__desc">Hybrid vector + BM25 retrieval with configurable weighting (default 0.7/0.3), RRF fusion, and cross-encoder re-ranking for maximum relevance.</p>
           </div>
-          <h3 class="case-bento__title">Semantic Search</h3>
-          <p class="case-bento__desc">Hybrid vector + BM25 retrieval with configurable weighting (default 0.7/0.3), RRF fusion, and cross-encoder re-ranking for maximum relevance.</p>
+          <span class="cs-feature-row__arrow">&rarr;</span>
         </div>
 
-        <div class="case-bento__tile">
-          <div class="case-bento__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 10 10c0 5-4 8-10 8-6 0-10-3-10-8 0-5 4-10 10-10z"/><path d="M8 14s2 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        <div class="cs-feature-row">
+          <svg class="cs-feature-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 10 10c0 5-4 8-10 8-6 0-10-3-10-8 0-5 4-10 10-10z"/><path d="M8 14s2 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          <div class="cs-feature-row__content">
+            <h3 class="cs-feature-row__title">Cited Answers</h3>
+            <p class="cs-feature-row__desc">Every answer includes source citations with page references, highlighted passages, and confidence scoring. Verifiable AI you can trust.</p>
           </div>
-          <h3 class="case-bento__title">Cited Answers</h3>
-          <p class="case-bento__desc">Every answer includes source citations with page references, highlighted passages, and confidence scoring. Verifiable AI you can trust.</p>
+          <span class="cs-feature-row__arrow">&rarr;</span>
         </div>
 
-        <div class="case-bento__tile">
-          <div class="case-bento__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+        <div class="cs-feature-row">
+          <svg class="cs-feature-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+          <div class="cs-feature-row__content">
+            <h3 class="cs-feature-row__title">Cloud Connectors</h3>
+            <p class="cs-feature-row__desc">Connect Google Drive, OneDrive, Box, and SharePoint. Ingest documents directly from cloud storage with automatic sync.</p>
           </div>
-          <h3 class="case-bento__title">Cloud Connectors</h3>
-          <p class="case-bento__desc">Connect Google Drive, OneDrive, Box, and SharePoint. Ingest documents directly from cloud storage with automatic sync.</p>
+          <span class="cs-feature-row__arrow">&rarr;</span>
         </div>
 
-        <div class="case-bento__tile">
-          <div class="case-bento__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <div class="cs-feature-row">
+          <svg class="cs-feature-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <div class="cs-feature-row__content">
+            <h3 class="cs-feature-row__title">Cross-Doc Analysis</h3>
+            <p class="cs-feature-row__desc">Compare insights across documents, detect patterns and contradictions, run unified queries across your entire repository.</p>
           </div>
-          <h3 class="case-bento__title">Cross-Doc Analysis</h3>
-          <p class="case-bento__desc">Compare insights across documents, detect patterns and contradictions, run unified queries across your entire repository.</p>
+          <span class="cs-feature-row__arrow">&rarr;</span>
         </div>
 
-        <!-- Wide tile -->
-        <div class="case-bento__tile case-bento__tile--wide">
-          <div class="case-bento__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div class="cs-feature-row">
+          <svg class="cs-feature-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <div class="cs-feature-row__content">
+            <h3 class="cs-feature-row__title">Dashboard &amp; Management</h3>
+            <p class="cs-feature-row__desc">Split-screen analysis interface pairing a PDF viewer with an AI chat panel side-by-side. Document list with filters, tags, bulk actions, project hierarchy, and cross-document comparison tools.</p>
           </div>
-          <h3 class="case-bento__title">Dashboard &amp; Management</h3>
-          <p class="case-bento__desc">Split-screen analysis interface pairing a PDF viewer with an AI chat panel side-by-side. Document list with filters, tags, bulk actions, project hierarchy, and cross-document comparison tools.</p>
+          <span class="cs-feature-row__arrow">&rarr;</span>
         </div>
+
       </div>
     </div>
   </section>
@@ -353,15 +364,14 @@
   <!-- ================================================================
        SECTION 04 — Technical Deep-Dive (Tabbed Interface)
        ================================================================ -->
-  <section class="case-section case-section--alt" id="deepdive">
+  <section class="case-section case-section--alt cs-section" id="deepdive">
     <div class="container">
-      <div class="case__sidecar" style="grid-template-columns: 1fr;">
-        <div>
-          <span class="case__sidecar-num">04</span>
-          <p class="case__sidecar-eyebrow" data-split="entrance">Technical Deep-Dive</p>
-          <h2 class="case__sidecar-heading" data-split="entrance">Modular architecture built for scale</h2>
-        </div>
+      <div class="cs-header">
+        <span class="cs-header-num">04</span>
+        <span class="cs-header-label">// Technical Deep-Dive</span>
       </div>
+
+      <h2 class="case__sidecar-heading" data-split="entrance" style="max-width: 500px; margin-bottom: 36px;">Modular architecture built for scale</h2>
 
       <div class="case-tabs" id="techTabs">
         <div class="case-tabs__bar">
@@ -371,6 +381,13 @@
           <button class="case-tabs__btn" data-tab="security">Security</button>
           <button class="case-tabs__btn" data-tab="frontend">Frontend</button>
         </div>
+        <select class="case-tabs__select" id="tabSelect">
+          <option value="backend">Backend</option>
+          <option value="ai">AI Pipeline</option>
+          <option value="documents">Documents</option>
+          <option value="security">Security</option>
+          <option value="frontend">Frontend</option>
+        </select>
 
         <!-- Backend -->
         <div class="case-tabs__panel case-tabs__panel--active" data-panel="backend">
@@ -438,52 +455,51 @@
   <!-- ================================================================
        SECTION 05 — Results (Animated Counters)
        ================================================================ -->
-  <section class="case-section" id="results">
+  <section class="case-section cs-section" id="results">
     <div class="container">
-      <div class="case__sidecar" style="grid-template-columns: 1fr;">
-        <div style="text-align: center; margin-bottom: 48px;">
-          <span class="case__sidecar-num">05</span>
-          <p class="case__sidecar-eyebrow" data-split="entrance">The Outcome</p>
-          <h2 class="case__sidecar-heading" data-split="entrance" style="max-width: 500px; margin: 0 auto;">Measurable impact, proven performance</h2>
-        </div>
+      <div class="cs-header">
+        <span class="cs-header-num">05</span>
+        <span class="cs-header-label">// The Outcome</span>
       </div>
+
+      <h2 class="case__sidecar-heading" data-split="entrance" style="max-width: 500px; margin: 0 auto 48px; text-align: center;">Measurable impact, proven performance</h2>
 
       <div class="case-results" id="resultsGrid">
         <div class="case-results__card">
-          <div class="case-results__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+          <div class="case-results__accent"></div>
+          <div class="case-results__value">
+            <span class="case-results__number" data-count="80">0</span>
+            <span class="case-results__suffix">%</span>
           </div>
-          <span class="case-results__number" data-count="80">0</span>
-          <span class="case-results__number" style="font-size: 0.8rem; color: var(--color-text-dim); display: inline;">%</span>
           <span class="case-results__label">Reduction in manual search time</span>
         </div>
         <div class="case-results__card">
-          <div class="case-results__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <div class="case-results__accent"></div>
+          <div class="case-results__value">
+            <span class="case-results__number" data-count="10000">0</span>
+            <span class="case-results__suffix">+</span>
           </div>
-          <span class="case-results__number" data-count="10000">0</span>
-          <span class="case-results__number" style="font-size: 0.8rem; color: var(--color-text-dim); display: inline;">+</span>
           <span class="case-results__label">Documents processed through the RAG pipeline</span>
         </div>
         <div class="case-results__card">
-          <div class="case-results__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <div class="case-results__accent"></div>
+          <div class="case-results__value">
+            <span class="case-results__number" data-count="6">0</span>
           </div>
-          <span class="case-results__number" data-count="6">0</span>
           <span class="case-results__label">LLM providers supported with pluggable architecture</span>
         </div>
         <div class="case-results__card">
-          <div class="case-results__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <div class="case-results__accent"></div>
+          <div class="case-results__value">
+            <span class="case-results__number" data-count="100">0</span>
+            <span class="case-results__suffix">%</span>
           </div>
-          <span class="case-results__number" data-count="100">0</span>
-          <span class="case-results__number" style="font-size: 0.8rem; color: var(--color-text-dim); display: inline;">%</span>
           <span class="case-results__label">RAG pipeline completion across all components</span>
         </div>
       </div>
 
-      <div style="max-width: 640px; margin: 48px auto 0; text-align: center;">
-        <p class="case__pull-quote" style="border-left-color: var(--color-border); padding-left: 20px; border-left-width: 1px; margin-bottom: 0; text-align: left;">
+      <div style="max-width: 640px; margin: 48px auto 0;">
+        <p class="case__sidecar-desc" style="text-align: left;">
           The platform enables instant information retrieval across thousands of documents. Users ask natural-language questions and receive answers with source citations, page references, and confidence scores. The modular provider architecture means organizations can choose their preferred LLM, embedding model, and vector store without code changes.
         </p>
       </div>
@@ -648,50 +664,50 @@
         });
 
         /* ============================================
-           PULL QUOTES — Word Reveal
+           CHALLENGE STATS — Reveal + Accent
            ============================================ */
-        var pqContainer = document.querySelector('[data-split="pull-quotes"]');
-        if (pqContainer) {
-          var quotes = pqContainer.querySelectorAll('.case__pull-quote');
-          quotes.forEach(function (q, i) {
-            gsap.set(q, { opacity: 0, x: -20 });
-            ScrollTrigger.create({
-              trigger: q,
-              start: 'top 85%',
-              onEnter: function () {
-                gsap.to(q, { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out', delay: i * 0.15 });
-              },
-              once: true
-            });
-          });
-        }
-
-        /* ============================================
-           BENTO GRID — Stagger Reveal
-           ============================================ */
-        var bentoTiles = document.querySelectorAll('.case-bento__tile');
-        bentoTiles.forEach(function (tile, i) {
-          gsap.set(tile, { opacity: 0, y: 30 });
+        var challengeStats = document.querySelectorAll('.case-challenge-stat');
+        challengeStats.forEach(function (stat, i) {
+          gsap.set(stat, { opacity: 0, y: 24 });
           ScrollTrigger.create({
-            trigger: tile,
+            trigger: stat,
             start: 'top 88%',
             onEnter: function () {
-              gsap.to(tile, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: i * 0.06 });
+              gsap.to(stat, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: i * 0.15 });
+              setTimeout(function () { stat.classList.add('is-visible'); }, i * 150 + 200);
             },
             once: true
           });
         });
 
         /* ============================================
-           RESULT COUNTERS
+           FEATURES LIST — Stagger Reveal
+           ============================================ */
+        var featureRows = document.querySelectorAll('.cs-feature-row');
+        featureRows.forEach(function (row, i) {
+          gsap.set(row, { opacity: 0, y: 30 });
+          ScrollTrigger.create({
+            trigger: row,
+            start: 'top 88%',
+            onEnter: function () {
+              gsap.to(row, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: i * 0.08 });
+            },
+            once: true
+          });
+        });
+
+        /* ============================================
+           RESULT COUNTERS + ACCENT REVEAL
            ============================================ */
         var countEls = document.querySelectorAll('[data-count]');
         countEls.forEach(function (el) {
           var target = parseInt(el.getAttribute('data-count'), 10);
+          var card = el.closest('.case-results__card');
           ScrollTrigger.create({
             trigger: el,
             start: 'top 85%',
             onEnter: function () {
+              if (card) card.classList.add('is-visible');
               gsap.to(el, {
                 textContent: target,
                 duration: 2,
@@ -707,11 +723,11 @@
         });
 
         /* ============================================
-           ARCHITECTURE FLOW — Horizontal Scroll
+           ARCHITECTURE FLOW — Horizontal Scroll (desktop only)
            ============================================ */
         var archFlow = document.getElementById('archFlow');
         var archTrack = archFlow ? archFlow.querySelector('.case-flow__track') : null;
-        if (archFlow && archTrack && ScrollTrigger) {
+        if (archFlow && archTrack && ScrollTrigger && window.innerWidth > 1023) {
           var trackWidth = archTrack.scrollWidth;
           var viewWidth = window.innerWidth;
           var maxScroll = trackWidth - viewWidth;
@@ -733,7 +749,7 @@
         }
       } else {
         /* Fallback: make all animated elements visible */
-        document.querySelectorAll('[data-split] .case-bento__tile, .case__pull-quote, .case-hero__title, .case-hero__tagline').forEach(function (el) {
+        document.querySelectorAll('.cs-feature-row, .case-challenge-stat, .case-hero__title, .case-hero__tagline').forEach(function (el) {
           el.style.opacity = '1';
           el.style.transform = 'none';
         });
@@ -761,6 +777,24 @@
           });
         });
       });
+
+      /* Tab dropdown for mobile */
+      var tabSelect = document.getElementById('tabSelect');
+      if (tabSelect) {
+        tabSelect.addEventListener('change', function () {
+          var tab = tabSelect.value;
+          tabBtns.forEach(function (b) { b.classList.remove('case-tabs__btn--active'); });
+          var matchBtn = document.querySelector('[data-tab="' + tab + '"]');
+          if (matchBtn) matchBtn.classList.add('case-tabs__btn--active');
+          tabPanels.forEach(function (p) {
+            if (p.getAttribute('data-panel') === tab) {
+              p.classList.add('case-tabs__panel--active');
+            } else {
+              p.classList.remove('case-tabs__panel--active');
+            }
+          });
+        });
+      }
 
       /* ============================================
          SCROLL INDICATOR FADE
