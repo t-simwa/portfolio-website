@@ -206,17 +206,18 @@
     if (!el) return;
     try {
       const now = new Date();
-      const time = now.toLocaleTimeString('en-KE', {
+      const time = now.toLocaleTimeString('en-US', {
         timeZone: 'Africa/Nairobi',
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
-        hour12: false
+        hour12: true
       });
-      const parts = time.split(':');
-      el.innerHTML = parts[0] + '<span class="nav__clock-colon">:</span>' + parts[1] + '<span class="nav__clock-colon">:</span>' + parts[2];
+      var parts = time.split(' ');
+      var hmsParts = parts[0].split(':');
+      el.innerHTML = hmsParts[0] + '<span class="nav__clock-colon">:</span>' + hmsParts[1] + '<span class="nav__clock-sec"><span class="nav__clock-colon">:</span>' + hmsParts[2] + '</span> ' + parts[1].toUpperCase();
     } catch (e) {
-      el.innerHTML = '--<span class="nav__clock-colon">:</span>--<span class="nav__clock-colon">:</span>--';
+      el.textContent = '--:--';
     }
   }
 
@@ -310,6 +311,14 @@
       var isOpen = navOverlay.classList.contains('is-open');
       toggleMobileMenu(!isOpen);
     });
+
+    /* close button inside overlay */
+    var closeBtn = document.getElementById('navOverlayClose');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        toggleMobileMenu(false);
+      });
+    }
 
     navOverlay.querySelectorAll('.nav__overlay-link').forEach(function (link) {
       link.addEventListener('click', function () {
@@ -636,37 +645,6 @@
           { clipPath: 'inset(0 0% 0 0)', y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }
         );
 
-      /* animate the quote mark */
-      var mark = el.querySelector('.kw-hero__mark, .kw-card__mark');
-      if (mark) {
-        gsap.fromTo(mark,
-          { scale: 0.6, opacity: 0 },
-          { scale: 1, opacity: 0.15, duration: 0.6, ease: 'back.out(1.7)',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              end: 'top 50%',
-              scrub: 0.5
-            }
-          }
-        );
-      }
-
-      /* animate metric line width */
-      var metricLine = el.querySelector('.kw-metric-line');
-      if (metricLine) {
-        gsap.fromTo(metricLine,
-          { width: 0 },
-          { width: 24, duration: 0.5, ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 75%',
-              end: 'top 45%',
-              scrub: 0.5
-            }
-          }
-        );
-      }
     });
 
     /* stagger cards after hero */
@@ -709,28 +687,56 @@
     }
   }
 
+  /* # CONTACT SPLIT -- SCROLL REVEAL
+   * =================================================================== */
+  var contactReveals = document.querySelectorAll('[data-contact-reveal]');
+  var contactReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (contactReveals.length && !contactReducedMotion && typeof gsap !== 'undefined') {
+    contactReveals.forEach(function (el, i) {
+      gsap.from(el,
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          delay: i * 0.15,
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            end: 'top 50%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    });
+  } else {
+    /* fallback */
+    contactReveals.forEach(function (el) {
+      el.style.opacity = '1';
+    });
+  }
+
   /* # FAQ ACCORDION
    * =================================================================== */
-  (function () {
-    var faqQuestions = document.querySelectorAll('.faq__question');
-    faqQuestions.forEach(function (question) {
-      question.addEventListener('click', function () {
-        var expanded = this.getAttribute('aria-expanded') === 'true';
-        var answer = this.nextElementSibling;
+  var faqQuestions = document.querySelectorAll('.faq__question');
+  faqQuestions.forEach(function (question) {
+    question.addEventListener('click', function () {
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+      var answer = this.nextElementSibling;
 
-        /* close all */
-        faqQuestions.forEach(function (q) {
-          q.setAttribute('aria-expanded', 'false');
-          q.nextElementSibling.classList.remove('is-open');
-        });
-
-        if (!expanded) {
-          this.setAttribute('aria-expanded', 'true');
-          answer.classList.add('is-open');
-        }
+      /* close all */
+      faqQuestions.forEach(function (q) {
+        q.setAttribute('aria-expanded', 'false');
+        q.nextElementSibling.classList.remove('is-open');
       });
+
+      if (!expanded) {
+        this.setAttribute('aria-expanded', 'true');
+        answer.classList.add('is-open');
+      }
     });
-  })();
+  });
 
   console.log('Ted Simwa — Gilded Editorial Portfolio');
   console.log('Designed & Built from scratch with vanilla JS');
