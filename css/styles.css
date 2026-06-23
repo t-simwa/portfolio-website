@@ -2621,12 +2621,15 @@ body.light .timeline__node {
   gap: 2px;
 }
 
-.timeline__entry-num {
-  font-family: var(--font-display);
-  font-size: clamp(0.8rem, 1.2vw, 1rem);
-  letter-spacing: 3px;
-  color: var(--color-text-dim);
-  line-height: 1;
+.timeline__entry-icon {
+  width: clamp(16px, 1.4vw, 20px);
+  height: clamp(16px, 1.4vw, 20px);
+  color: var(--color-gold);
+  flex-shrink: 0;
+}
+
+body.light .timeline__entry-icon {
+  color: #b8942e;
 }
 
 .timeline__entry-date {
@@ -2667,8 +2670,10 @@ body.light .timeline__entry-subtitle {
 }
 
 .timeline__entry-org {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: var(--color-text-muted);
   margin-bottom: 14px;
 }
@@ -3176,13 +3181,9 @@ body.light .faq__chevron {
     padding-top: 0;
   }
 
-  .timeline__entry-num {
-    font-size: 0.75rem;
-    color: var(--color-gold);
-  }
-
-  body.light .timeline__entry-num {
-    color: #b8942e;
+  .timeline__entry-icon {
+    width: 16px;
+    height: 16px;
   }
 
   .timeline__entry-date {
