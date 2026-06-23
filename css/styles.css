@@ -2600,10 +2600,6 @@ body.light .timeline__section-label-line {
   box-shadow: 0 0 0 transparent;
 }
 
-.timeline__node--cap {
-  border-color: var(--color-teal);
-}
-
 body.light .timeline__node {
   background: var(--color-bg);
 }
@@ -2617,7 +2613,7 @@ body.light .timeline__node {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: 4px;
+  padding-top: 6px;
   gap: 10px;
 }
 
