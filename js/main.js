@@ -544,16 +544,10 @@
 
     /* -- reveal each entry with staggered scroll animation -- */
     tlEntries.forEach(function (entry, i) {
-      var node = entry.querySelector('.timeline__node');
       var content = entry.querySelector('.timeline__entry-content');
-      var meta = entry.querySelector('.timeline__entry-meta');
-      var title = entry.querySelector('.timeline__entry-title');
-      var rule = entry.querySelector('.timeline__entry-rule');
 
       /* set initial state */
       gsap.set(entry, { opacity: 0, y: 40 });
-      gsap.set(node, { scale: 0, borderWidth: 3 });
-      gsap.set(rule, { width: 0 });
 
       var tl = gsap.timeline({
         scrollTrigger: {
@@ -564,9 +558,7 @@
         }
       });
 
-      tl.to(entry, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
-        .to(node, { scale: 1, borderWidth: 2, duration: 0.4, ease: 'back.out(1.7)' }, '-=0.3')
-        .to(rule, { width: 32, duration: 0.5, ease: 'power2.out' }, '-=0.2');
+      tl.to(entry, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' });
     });
 
     /* -- reveal section labels -- */
@@ -578,6 +570,28 @@
           gsap.fromTo(label, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out' });
         },
         once: true
+      });
+    });
+
+    /* -- accordion toggle -- */
+    document.querySelectorAll('.timeline__entry-header').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var entry = this.closest('.timeline__entry');
+        var panel = entry.querySelector('.timeline__entry-panel');
+        var isOpen = this.getAttribute('aria-expanded') === 'true';
+
+        /* close all other entries */
+        document.querySelectorAll('.timeline__entry-header').forEach(function (otherBtn) {
+          if (otherBtn !== btn) {
+            otherBtn.setAttribute('aria-expanded', 'false');
+            otherBtn.closest('.timeline__entry').querySelector('.timeline__entry-panel').classList.remove('is-open');
+          }
+        });
+
+        /* toggle this one */
+        var newState = !isOpen;
+        this.setAttribute('aria-expanded', newState);
+        panel.classList.toggle('is-open', newState);
       });
     });
 
