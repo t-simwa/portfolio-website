@@ -621,44 +621,36 @@
 
   /* # KIND WORDS — GSAP SCROLL REVEAL
    * =================================================================== */
-  var kwTrack = document.getElementById('kindWordsTrack');
   var kwReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (kwTrack && !kwReducedMotion && typeof gsap !== 'undefined') {
-    var kwHero = document.querySelector('.kw-hero');
+  if (!kwReducedMotion && typeof gsap !== 'undefined') {
+    var kwFeatured = document.querySelector('.kw-featured');
     var kwCards = gsap.utils.toArray('.kw-card');
-    var kwReveals = [kwHero].concat(kwCards).filter(Boolean);
 
-    kwReveals.forEach(function (el) {
-      var clipReveal = gsap.timeline({
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 88%',
-          end: 'top 45%',
-          scrub: 0.6
+    if (kwFeatured) {
+      gsap.fromTo(kwFeatured,
+        { y: 30, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: {
+            trigger: kwFeatured,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          }
         }
-      });
+      );
+    }
 
-      clipReveal
-        .fromTo(el,
-          { clipPath: 'inset(0 100% 0 0)', y: 30, opacity: 0 },
-          { clipPath: 'inset(0 0% 0 0)', y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }
-        );
-
-    });
-
-    /* stagger cards after hero */
     if (kwCards.length) {
+      gsap.set(kwCards, { y: 20 });
+
       ScrollTrigger.create({
         trigger: '.kw-grid',
         start: 'top 85%',
         onEnter: function () {
           gsap.to(kwCards, {
-            opacity: 1,
-            y: 0,
-            stagger: 0.15,
-            duration: 0.5,
-            ease: 'power2.out',
+            y: 0, opacity: 1, stagger: 0.15,
+            duration: 0.5, ease: 'power2.out',
             overwrite: true
           });
         },
@@ -667,13 +659,12 @@
     }
   } else {
     /* fallback: reveal all on scroll */
-    var kwFallback = document.querySelectorAll('.kw-hero, .kw-card');
+    var kwFallback = document.querySelectorAll('.kw-featured, .kw-card');
     if (kwFallback.length && 'IntersectionObserver' in window) {
       var kwObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
-            entry.target.style.clipPath = 'none';
             kwObserver.unobserve(entry.target);
           }
         });
