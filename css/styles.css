@@ -2847,10 +2847,6 @@ body.light .kw-card__name {
   color: var(--color-text-dim);
 }
 
-.kw-card {
-  opacity: 0;
-}
-
 /* # CONTACT -- Split Editorial Connect
  * =================================================================== */
 
