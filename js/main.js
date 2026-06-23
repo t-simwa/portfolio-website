@@ -728,6 +728,69 @@
     });
   });
 
+  /* # FOOTER GSAP REVEALS
+   * =================================================================== */
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    var footerStatement = document.querySelector('[data-footer-statement]');
+    var footerSocial = document.querySelector('[data-footer-social]');
+    var footerBar = document.querySelector('.footer__bar-inner');
+    var backTop = document.querySelector('[data-back-top]');
+
+    if (footerStatement) gsap.set(footerStatement, { y: 40 });
+    if (footerSocial) gsap.set(footerSocial, { x: 30 });
+    if (footerBar) gsap.set(footerBar, { y: 20 });
+
+    if (footerStatement) {
+      ScrollTrigger.create({
+        trigger: footerStatement,
+        start: 'top 85%',
+        onEnter: function () {
+          gsap.to(footerStatement, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' });
+        },
+        once: true
+      });
+    }
+
+    if (footerSocial) {
+      ScrollTrigger.create({
+        trigger: footerSocial,
+        start: 'top 85%',
+        onEnter: function () {
+          gsap.to(footerSocial, { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out' });
+        },
+        once: true
+      });
+    }
+
+    if (footerBar) {
+      ScrollTrigger.create({
+        trigger: footerBar,
+        start: 'top 90%',
+        onEnter: function () {
+          gsap.to(footerBar, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' });
+        },
+        once: true
+      });
+    }
+
+    /* back to top */
+    if (backTop) {
+      backTop.addEventListener('click', function () {
+        if (typeof lenis !== 'undefined') {
+          lenis.scrollTo(0, { duration: 1.5 });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
+  } else {
+    /* fallback -- make everything visible */
+    var footerEls = document.querySelectorAll(
+      '[data-footer-statement], [data-footer-social], .footer__bar-inner'
+    );
+    footerEls.forEach(function (el) { el.style.opacity = '1'; });
+  }
+
   console.log('Ted Simwa — Gilded Editorial Portfolio');
   console.log('Designed & Built from scratch with vanilla JS');
 })();
