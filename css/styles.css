@@ -2618,12 +2618,12 @@ body.light .timeline__node {
   flex-direction: column;
   align-items: flex-start;
   padding-top: 4px;
-  gap: 2px;
+  gap: 10px;
 }
 
 .timeline__entry-icon {
-  width: clamp(24px, 2.5vw, 32px);
-  height: clamp(24px, 2.5vw, 32px);
+  width: clamp(32px, 3.5vw, 44px);
+  height: clamp(32px, 3.5vw, 44px);
   color: var(--color-gold);
   flex-shrink: 0;
 }
@@ -3182,8 +3182,8 @@ body.light .faq__chevron {
   }
 
   .timeline__entry-icon {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
   }
 
   .timeline__entry-date {
