@@ -2708,7 +2708,12 @@ body.light .timeline__entry-rule {
  * =================================================================== */
 
 .kind-words {
-  padding: 48px 0 80px;
+  padding: 48px 0 24px;
+}
+
+/* Override default section padding to tighten gap to Contact */
+.kind-words + .contact {
+  padding-top: clamp(40px, 6vh, 80px);
 }
 
 .kind-words__header {
@@ -2759,7 +2764,26 @@ body.light .kind-words:hover .kind-words__header-num {
 .kw-card {
   display: flex;
   flex-direction: column;
+  padding: clamp(20px, 2.8vh, 32px) clamp(16px, 2vw, 28px);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  cursor: default;
+  position: relative;
   opacity: 0;
+  transition: padding var(--duration-fast) var(--ease-out-expo),
+              border-color var(--duration-fast) var(--ease-out-expo),
+              opacity var(--duration-fast) var(--ease-out-expo),
+              filter var(--duration-fast) var(--ease-out-expo);
+}
+
+.kw-card:hover {
+  padding-left: clamp(28px, 3vw, 40px);
+  border-color: var(--color-border-gold);
+}
+
+.kw-grid:has(.kw-card:hover) .kw-card:not(:hover) {
+  opacity: 0.25;
+  filter: blur(1px);
 }
 
 .kw-card__mark {
@@ -2798,8 +2822,9 @@ body.light .kw-card__quote {
 
 .kw-card__name {
   font-family: var(--font-heading);
-  font-size: 0.72rem;
-  letter-spacing: 0.5px;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: var(--color-gold);
 }
 
@@ -2808,8 +2833,10 @@ body.light .kw-card__name {
 }
 
 .kw-card__role {
-  font-family: var(--font-body);
-  font-size: 0.68rem;
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: var(--color-text-dim);
 }
 
