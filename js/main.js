@@ -624,22 +624,7 @@
   var kwReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!kwReducedMotion && typeof gsap !== 'undefined') {
-    var kwFeatured = document.querySelector('.kw-featured');
     var kwCards = gsap.utils.toArray('.kw-card');
-
-    if (kwFeatured) {
-      gsap.fromTo(kwFeatured,
-        { y: 30, opacity: 0 },
-        {
-          y: 0, opacity: 1, duration: 0.8, ease: 'power2.out',
-          scrollTrigger: {
-            trigger: kwFeatured,
-            start: 'top 85%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-    }
 
     if (kwCards.length) {
       gsap.set(kwCards, { y: 20 });
@@ -659,7 +644,7 @@
     }
   } else {
     /* fallback: reveal all on scroll */
-    var kwFallback = document.querySelectorAll('.kw-featured, .kw-card');
+    var kwFallback = document.querySelectorAll('.kw-card');
     if (kwFallback.length && 'IntersectionObserver' in window) {
       var kwObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
