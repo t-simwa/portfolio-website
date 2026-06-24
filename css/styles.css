@@ -1094,6 +1094,93 @@ body.light .btn--secondary:hover {
   }
 }
 
+/* Social rail */
+.hero__social {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 2;
+}
+
+.hero__social::before {
+  content: '';
+  position: absolute;
+  top: -48px;
+  bottom: -48px;
+  left: 50%;
+  width: 1px;
+  background: var(--color-border-strong);
+  transform: translateX(-50%);
+}
+
+.hero__social-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-muted);
+  background: transparent;
+  text-decoration: none;
+  transition: all 0.35s var(--ease-out-expo);
+  z-index: 1;
+}
+
+.hero__social-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+.hero__social-label {
+  position: absolute;
+  right: calc(100% + 14px);
+  white-space: nowrap;
+  font-family: var(--font-syne), Syne, sans-serif;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-gold);
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.35s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.hero__social-link:hover {
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+  background: var(--color-gold-dim);
+  transform: scale(1.12);
+}
+
+.hero__social-link:hover .hero__social-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+body.light .hero__social-link {
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
+}
+
+body.light .hero__social-link:hover {
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+  background: var(--color-gold-dim);
+}
+
+body.light .hero__social::before {
+  background: var(--color-border);
+}
+
 /* # HERO ANIMATIONS
  * =================================================================== */
 
@@ -1133,6 +1220,13 @@ body.light .btn--secondary:hover {
 .hero [data-entrance-stagger="2"] { animation-delay: 0.6s; }
 .hero [data-entrance-stagger="3"] { animation-delay: 0.8s; }
 .hero [data-entrance-stagger="4"] { animation-delay: 1.0s; }
+.hero [data-entrance-stagger="5"] { animation-delay: 1.2s; }
+
+.hero__social[data-entrance-stagger="5"] {
+  transform: translateY(-50%);
+  opacity: 0;
+  animation: hero-fade-in 0.6s var(--ease-out-expo) 1.2s forwards;
+}
 
 @keyframes hero-fade-up {
   to {
@@ -5242,6 +5336,10 @@ body.light .faq__chevron {
 
   .btn {
     width: 100%;
+  }
+
+  .hero__social {
+    display: none;
   }
 
   .hero__scroll {
