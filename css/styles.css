@@ -2598,6 +2598,98 @@ body.light .footer__back-top:hover {
   opacity: 0;
 }
 
+/* # STICKY MOBILE CTA
+ * =================================================================== */
+.mobile-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--color-border);
+  padding: 12px 16px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  max-width: 160px;
+  padding: 12px 20px;
+  font-family: var(--font-syne), Syne, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.mobile-cta__btn svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.mobile-cta__btn--primary {
+  background: var(--color-gold);
+  color: var(--color-bg);
+  border: 1px solid var(--color-gold);
+}
+
+.mobile-cta__btn--primary:hover {
+  background: transparent;
+  color: var(--color-gold);
+}
+
+.mobile-cta__btn--outline {
+  background: transparent;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+}
+
+.mobile-cta__btn--outline:hover {
+  background: var(--color-gold-dim);
+}
+
+@media screen and (max-width: 767px) {
+  .mobile-cta {
+    display: flex;
+  }
+
+  .footer__bar-inner {
+    padding-bottom: calc(18px + 70px);
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .mobile-cta {
+    padding: 10px 12px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    gap: 10px;
+  }
+
+  .mobile-cta__btn {
+    padding: 10px 14px;
+    font-size: 0.7rem;
+  }
+
+  .footer__bar-inner {
+    padding-bottom: calc(18px + 64px);
+  }
+}
+
 /* # EXPERIENCE / EDUCATION -- Scroll-Driven Timeline
  * =================================================================== */
 
