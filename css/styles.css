@@ -1107,17 +1107,6 @@ body.light .btn--secondary:hover {
   z-index: 2;
 }
 
-.hero__social::before {
-  content: '';
-  position: absolute;
-  top: -48px;
-  bottom: -48px;
-  left: 50%;
-  width: 1px;
-  background: var(--color-border-strong);
-  transform: translateX(-50%);
-}
-
 .hero__social-link {
   position: relative;
   display: flex;
@@ -1175,10 +1164,6 @@ body.light .hero__social-link:hover {
   color: var(--color-gold);
   border-color: var(--color-gold);
   background: var(--color-gold-dim);
-}
-
-body.light .hero__social::before {
-  background: var(--color-border);
 }
 
 /* # HERO ANIMATIONS
