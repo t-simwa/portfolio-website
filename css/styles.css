@@ -35,6 +35,7 @@
   --font-display: 'Mission Control', sans-serif;
   --font-heading: 'Syne', sans-serif;
   --font-body: 'Inter', sans-serif;
+  --font-syne: 'Syne', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
@@ -2607,15 +2608,21 @@ body.light .footer__back-top:hover {
   left: 0;
   right: 0;
   z-index: 900;
-  background: rgba(10, 10, 10, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--color-bg-elevated) 95%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-top: 1px solid var(--color-border);
-  padding: 12px 16px;
-  padding-bottom: calc(12px + env(safe-area-inset-bottom));
-  gap: 12px;
+  padding: 16px 24px;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  gap: 16px;
   justify-content: center;
   align-items: center;
+}
+
+@supports not (background: color-mix(in srgb, red, transparent)) {
+  .mobile-cta {
+    background: var(--color-bg-elevated);
+  }
 }
 
 .mobile-cta__btn {
@@ -2624,8 +2631,8 @@ body.light .footer__back-top:hover {
   justify-content: center;
   gap: 8px;
   flex: 1;
-  max-width: 160px;
-  padding: 12px 20px;
+  max-width: 180px;
+  padding: 14px 24px;
   font-family: var(--font-syne), Syne, sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
@@ -2653,6 +2660,15 @@ body.light .footer__back-top:hover {
   color: var(--color-gold);
 }
 
+body.light .mobile-cta__btn--primary {
+  color: var(--color-text);
+}
+
+body.light .mobile-cta__btn--primary:hover {
+  color: var(--color-gold);
+  background: var(--color-gold-dim);
+}
+
 .mobile-cta__btn--outline {
   background: transparent;
   border: 1px solid var(--color-gold);
@@ -2669,24 +2685,25 @@ body.light .footer__back-top:hover {
   }
 
   .footer__bar-inner {
-    padding-bottom: calc(18px + 70px);
+    padding-bottom: calc(18px + 72px);
   }
 }
 
 @media screen and (max-width: 479px) {
   .mobile-cta {
-    padding: 10px 12px;
-    padding-bottom: calc(10px + env(safe-area-inset-bottom));
-    gap: 10px;
+    padding: 14px 18px;
+    padding-bottom: calc(14px + env(safe-area-inset-bottom));
+    gap: 14px;
   }
 
   .mobile-cta__btn {
-    padding: 10px 14px;
+    padding: 12px 18px;
+    max-width: 160px;
     font-size: 0.7rem;
   }
 
   .footer__bar-inner {
-    padding-bottom: calc(18px + 64px);
+    padding-bottom: calc(18px + 66px);
   }
 }
 
