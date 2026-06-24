@@ -2644,10 +2644,15 @@ body.light .footer__back-top:hover {
   transition: all 0.3s ease;
 }
 
-.mobile-cta__btn svg {
+.mobile-cta__btn svg,
+.mobile-cta__btn img {
   flex-shrink: 0;
   width: 16px;
   height: 16px;
+}
+
+.mobile-cta__btn img {
+  object-fit: contain;
 }
 
 .mobile-cta__btn--primary {
