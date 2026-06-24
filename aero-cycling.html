@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AERO Precision Cycling &ndash; Case Study | Ted Simwa</title>
+  <meta name="description" content="AERO Precision Cycling case study &ndash; a luxury brand marketing website for a fictional high-end bicycle manufacturer, built with vanilla HTML, CSS, and JavaScript.">
+  <meta name="author" content="Ted Simwa">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AERO Precision Cycling &ndash; Case Study | Ted Simwa">
+  <meta property="og:description" content="A cinematic brand showroom for a premium cycling marque — 8 pages, zero frameworks, pure vanilla web craftsmanship.">
+  <meta property="og:image" content="images/projects/aero-cycling.png">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ted-simwa.vercel.app/aero-cycling.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Resource Hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="fonts/mission-control.otf" as="font" type="font/otf" crossorigin="anonymous">
+  <link rel="dns-prefetch" href="https://plausible.io">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="favicon.ico">
+
+  <!-- PWA -->
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Plausible Analytics -->
+  <script defer data-domain="ted-simwa.vercel.app" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+
+  <!-- # PRELOADER -->
+  <div class="preloader" id="preloader">
+    <span class="preloader__text">TED SIMWA.</span>
+  </div>
+  <script>(function(){var p=document.getElementById('preloader');if(p){p.style.display='none';document.body.classList.add('loaded');}})();</script>
+
+  <!-- # CUSTOM CURSOR -->
+  <div class="cursor" id="cursor">
+    <div class="cursor__dot" id="cursorDot"></div>
+    <div class="cursor__ring" id="cursorRing">
+      <span class="cursor__ring-text">VIEW</span>
+    </div>
+    <div class="cursor__trail" id="cursorTrail">
+      <div class="cursor__trail-dot"></div>
+      <div class="cursor__trail-dot"></div>
+      <div class="cursor__trail-dot"></div>
+    </div>
+  </div>
+
+  <!-- # SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- # NAVIGATION -->
+  <nav class="nav" id="nav" data-at-top="true">
+    <div class="nav__pill">
+      <a href="index.html" class="nav__brand">TED SIMWA.</a>
+      <div class="nav__divider"></div>
+      <ul class="nav__links">
+        <li><a href="index.html#work" class="nav__link">Work</a></li>
+        <li><a href="index.html#about" class="nav__link">About</a></li>
+        <li><a href="index.html#contact" class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <span class="nav__clock" id="navClock">
+          <svg class="nav__clock-flag" viewBox="0 0 24 24" fill="none">
+            <rect x="1" y="4" width="22" height="4" fill="#000"/>
+            <rect x="1" y="8" width="22" height="1.5" fill="#fff"/>
+            <rect x="1" y="9.5" width="22" height="5" fill="#c8102e"/>
+            <rect x="1" y="14.5" width="22" height="1.5" fill="#fff"/>
+            <rect x="1" y="16" width="22" height="4" fill="#006600"/>
+          </svg>
+          <span id="navClockTime">--:--:--</span>
+        </span>
+        <span class="nav__availability" title="Open to freelance &amp; full-time roles">
+          <span class="nav__availability-dot"></span>
+        </span>
+        <button class="nav__toggle" id="recruiterToggle" aria-label="Toggle Recruiter Mode" title="Recruiter Mode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </button>
+        <button class="nav__toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+          <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+      <button class="nav__hamburger" id="hamburger" aria-label="Menu" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- # MOBILE NAV OVERLAY -->
+  <div class="nav__overlay" id="navOverlay">
+    <button class="nav__overlay-close" id="navOverlayClose" aria-label="Close menu" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="index.html#work" class="nav__overlay-link">
+      <span class="nav__overlay-index">01</span>
+      <span class="nav__overlay-text">WORK</span>
+    </a>
+    <a href="index.html#about" class="nav__overlay-link">
+      <span class="nav__overlay-index">02</span>
+      <span class="nav__overlay-text">ABOUT</span>
+    </a>
+    <a href="index.html#contact" class="nav__overlay-link">
+      <span class="nav__overlay-index">03</span>
+      <span class="nav__overlay-text">CONTACT</span>
+    </a>
+  </div>
+
+  <!-- ================================================================
+       HERO — Split: Left Text + Right Neural Visual
+       ================================================================ -->
+  <section class="case-hero" id="caseHero">
+    <div class="hero__grid"></div>
+    <span class="hero__corner hero__corner--tl"></span>
+    <span class="hero__corner hero__corner--tr"></span>
+    <span class="hero__corner hero__corner--bl"></span>
+    <span class="hero__corner hero__corner--br"></span>
+
+    <div class="container">
+      <div class="case-hero__inner">
+        <div class="case-hero__left">
+          <div class="case-hero__label" data-split="entrance" style="margin-bottom: 32px;">Case Study</div>
+
+          <h1 class="case-hero__title" data-split="hero-title">
+            <span class="case-hero__title-line case-hero__title-line--filled">AERO</span>
+            <span class="case-hero__title-line case-hero__title-line--outlined">Precision Cycling</span>
+          </h1>
+
+          <p class="case-hero__tagline" data-split="entrance" style="margin-top: 32px; text-transform: uppercase; font-family: var(--font-syne, Syne, sans-serif); letter-spacing: 0.06em; font-size: 0.8rem;">Luxury Bicycle Brand Showroom &amp; Digital Experience</p>
+
+
+
+          <div class="case-hero__links" data-split="entrance">
+            <a href="https://github.com/t-simwa/aero-cycling-website" target="_blank" rel="noopener noreferrer" class="case-hero__btn case-hero__btn--primary">
+              <svg class="case-hero__btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Source
+            </a>
+            <a href="https://github.com/t-simwa/aero-cycling-website" target="_blank" rel="noopener noreferrer" class="case-hero__btn case-hero__btn--primary">
+              <svg class="case-hero__btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              GitHub
+            </a>
+            <a href="index.html#work" class="case-hero__btn case-hero__btn--secondary">
+              <svg class="case-hero__btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              All Projects
+            </a>
+          </div>
+        </div>
+
+        <div class="case-hero__right">
+          <div class="case-hero__neural" id="neuralNet">
+            <!-- Dots + lines injected by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-hero__scroll" id="caseScroll">
+      <span>SCROLL</span>
+      <svg class="case-hero__scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </section>
+
+  <!-- # TECH STACK MARQUEE -->
+  <div class="marquee" id="marquee">
+    <div class="marquee__track">
+      <span class="marquee__card">
+        <svg class="marquee__card-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#E34F26" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg>
+        <span class="marquee__card-name">HTML5</span>
+      </span>
+      <span class="marquee__sep" aria-hidden="true">&#9670;</span>
+      <span class="marquee__card">
+        <svg class="marquee__card-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#1572B6" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716H7.231l.225 2.719h5.811l-.25 2.696-2.904.804-2.955-.81-.188-2.11h-2.66l.33 4.171L12 19.352l5.379-1.443.744-8.157H8.531l-.224-2.82h10.535l.224-2.519z"/></svg>
+        <span class="marquee__card-name">CSS3</span>
+      </span>
+      <span class="marquee__sep" aria-hidden="true">&#9670;</span>
+      <span class="marquee__card">
+        <svg class="marquee__card-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#F7DF1E" d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.739 1.005c.36.72.81 1.2 1.5 1.575 1.275.66 3.36.855 4.635-.24.105-.09.285-.255.375-.42.57-.555.765-1.35.585-2.175-.06-.375-.255-.735-.48-1.125-.27-.449-.615-.766-1.215-1.065-1.275-.675-1.89-1.14-1.89-2.07 0-.555.195-1.035.69-1.41.555-.39 1.26-.555 2.1-.465.675.075 1.155.3 1.575.84l1.575-.975c-.54-.75-1.095-1.05-1.8-1.35-1.11-.45-2.7-.54-3.78-.195-2.175.585-3.045 2.37-3.045 4.095 0 2.025 1.35 3.18 2.925 3.945 1.245.615 2.34 1.005 2.61 1.725.39.9-.195 1.68-1.155 1.875-.81.135-1.635-.135-2.205-.765-.33-.345-.585-.72-.78-1.155l-1.755 1.005c.465.975 1.11 1.635 2.085 2.085 2.07.87 4.965.195 5.415-2.475.045-.27.045-.63.03-.885z"/></svg>
+        <span class="marquee__card-name">JavaScript ES6+</span>
+      </span>
+      <span class="marquee__sep" aria-hidden="true">&#9670;</span>
+      <span class="marquee__card">
+        <svg class="marquee__card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="#7C4DFF" stroke-width="2" fill="none"/><path d="M12 3v18M3 12h18" stroke="#7C4DFF" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" fill="#7C4DFF"/></svg>
+        <span class="marquee__card-name">IntersectionObserver</span>
+      </span>
+      <span class="marquee__sep" aria-hidden="true">&#9670;</span>
+      <span class="marquee__card">
+        <svg class="marquee__card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#00BCD4" stroke-width="2" stroke-linejoin="round" fill="none"/><path d="M2 17l10 5 10-5" stroke="#00BCD4" stroke-width="2" stroke-linejoin="round" fill="none"/><path d="M2 12l10 5 10-5" stroke="#00BCD4" stroke-width="2" stroke-linejoin="round" fill="none"/></svg>
+        <span class="marquee__card-name">CSS Animations</span>
+      </span>
+      <span class="marquee__sep" aria-hidden="true">&#9670;</span>
+      <span class="marquee__card">
+        <svg class="marquee__card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="2" y="20" font-family="serif" font-size="20" font-weight="bold" fill="#FF5722">G</text><text x="12" y="20" font-family="serif" font-size="20" font-weight="bold" fill="#4285F4">f</text></svg>
+        <span class="marquee__card-name">Google Fonts</span>
+      </span>
+      <span class="marquee__sep" aria-hidden="true">&#9670;</span>
+      <!-- Duplicate for seamless scroll -->
+      <span class="marquee__card">
+        <svg class="marquee__card-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#E34F26" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg>
+        <span class="marquee__card-name">HTML5</span>
+      </span>
+      <span class="marquee__sep" aria-hidden="true">&#9670;</span>
+      <span class="marquee__card">
+        <svg class="marquee__card-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#1572B6" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716H7.231l.225 2.719h5.811l-.25 2.696-2.904.804-2.955-.81-.188-2.11h-2.66l.33 4.171L12 19.352l5.379-1.443.744-8.157H8.531l-.224-2.82h10.535l.224-2.519z"/></svg>
+        <span class="marquee__card-name">CSS3</span>
+      </span>
+      <span class="marquee__sep" aria-hidden="true">&#9670;</span>
+      <span class="marquee__card">
+        <svg class="marquee__card-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#F7DF1E" d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.739 1.005c.36.72.81 1.2 1.5 1.575 1.275.66 3.36.855 4.635-.24.105-.09.285-.255.375-.42.57-.555.765-1.35.585-2.175-.06-.375-.255-.735-.48-1.125-.27-.449-.615-.766-1.215-1.065-1.275-.675-1.89-1.14-1.89-2.07 0-.555.195-1.035.69-1.41.555-.39 1.26-.555 2.1-.465.675.075 1.155.3 1.575.84l1.575-.975c-.54-.75-1.095-1.05-1.8-1.35-1.11-.45-2.7-.54-3.78-.195-2.175.585-3.045 2.37-3.045 4.095 0 2.025 1.35 3.18 2.925 3.945 1.245.615 2.34 1.005 2.61 1.725.39.9-.195 1.68-1.155 1.875-.81.135-1.635-.135-2.205-.765-.33-.345-.585-.72-.78-1.155l-1.755 1.005c.465.975 1.11 1.635 2.085 2.085 2.07.87 4.965.195 5.415-2.475.045-.27.045-.63.03-.885z"/></svg>
+        <span class="marquee__card-name">JavaScript ES6+</span>
+      </span>
+      <span class="marquee__sep" aria-hidden="true">&#9670;</span>
+      <span class="marquee__card">
+        <svg class="marquee__card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="#7C4DFF" stroke-width="2" fill="none"/><path d="M12 3v18M3 12h18" stroke="#7C4DFF" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" fill="#7C4DFF"/></svg>
+        <span class="marquee__card-name">IntersectionObserver</span>
+      </span>
+      <span class="marquee__sep" aria-hidden="true">&#9670;</span>
+      <span class="marquee__card">
+        <svg class="marquee__card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#00BCD4" stroke-width="2" stroke-linejoin="round" fill="none"/><path d="M2 17l10 5 10-5" stroke="#00BCD4" stroke-width="2" stroke-linejoin="round" fill="none"/><path d="M2 12l10 5 10-5" stroke="#00BCD4" stroke-width="2" stroke-linejoin="round" fill="none"/></svg>
+        <span class="marquee__card-name">CSS Animations</span>
+      </span>
+      <span class="marquee__sep" aria-hidden="true">&#9670;</span>
+      <span class="marquee__card">
+        <svg class="marquee__card-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="2" y="20" font-family="serif" font-size="20" font-weight="bold" fill="#FF5722">G</text><text x="12" y="20" font-family="serif" font-size="20" font-weight="bold" fill="#4285F4">f</text></svg>
+        <span class="marquee__card-name">Google Fonts</span>
+      </span>
+      <span class="marquee__sep" aria-hidden="true">&#9670;</span>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       SECTION 01 — The Problem
+       ================================================================ -->
+  <section class="case-section cs-section" id="problem">
+    <div class="container">
+      <div class="cs-header">
+        <span class="cs-header-num">01</span>
+        <span class="cs-header-label">// The Challenge</span>
+      </div>
+
+      <div class="case__sidecar">
+        <div class="case__sidecar-sticky">
+          <h2 class="case__sidecar-heading" data-split="entrance">A luxury brand deserves a luxury digital experience</h2>
+          <p class="case__sidecar-desc" data-split="entrance">High-end bicycle brands compete on engineering pedigree and brand aura, but most cycling websites fail to convey the precision, craftsmanship, and obsessive attention to detail that defines a premium marque &mdash; relying instead on generic templates that dilute exclusivity.</p>
+        </div>
+
+        <div class="case-challenge-stats" data-split="challenge-stats">
+          <div class="case-challenge-stat">
+            <div class="case-challenge-stat__accent"></div>
+            <strong class="case-challenge-stat__title">No brand identity online</strong>
+            <p class="case-challenge-stat__desc">Existing cycling websites rely on generic e-commerce templates that cannot convey the engineering sophistication and exclusivity that a $10,000+ bicycle purchase demands.</p>
+          </div>
+          <div class="case-challenge-stat">
+            <div class="case-challenge-stat__accent"></div>
+            <strong class="case-challenge-stat__title">Generic product presentation</strong>
+            <p class="case-challenge-stat__desc">Bicycle product pages are often cluttered and lack the cinematic, detail-oriented presentation that luxury buyers expect from a premium brand experience.</p>
+          </div>
+          <div class="case-challenge-stat">
+            <div class="case-challenge-stat__accent"></div>
+            <strong class="case-challenge-stat__title">Fragmented storytelling</strong>
+            <p class="case-challenge-stat__desc">Brand philosophy, engineering credentials, product specifications, and editorial content are disconnected with no cohesive visual language tying them together.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTION 02 — The Approach (Horizontal Architecture Flow)
+       ================================================================ -->
+  <section class="case-section case-section--alt cs-section" id="approach">
+    <div class="container">
+      <div class="cs-header">
+        <span class="cs-header-num">02</span>
+        <span class="cs-header-label">// The Solution</span>
+      </div>
+
+      <div class="case__sidecar" style="grid-template-columns: 1fr;">
+        <div>
+          <h2 class="case__sidecar-heading" data-split="entrance">A brand-first static experience with cinematic storytelling</h2>
+          <p class="case__sidecar-desc" data-split="entrance" style="text-align: right; max-width: none;">Every line of code hand-crafted with vanilla HTML, CSS, and JavaScript &mdash; no frameworks, no build tools, no dependencies. A dark, industrial aesthetic with neon green accents, parallax scrolling, custom cursor system, scroll-triggered curtain reveals, and a cohesive visual language that treats each bicycle model as a design artifact.</p>
+        </div>
+      </div>
+
+      <div class="case-flow" id="archFlow" style="margin-top: 32px;">
+        <div class="case-flow__hint">Scroll horizontally &rarr;</div>
+        <div class="case-flow__track">
+          <div class="case-flow__node">
+            <div class="case-flow__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <span class="case-flow__label">Brand Arrival</span>
+            <div class="case-flow__tooltip">Loading the dark-themed homepage with custom preloader, parallax hero, and marquee ticker establishing the brand ethos</div>
+          </div>
+          <div class="case-flow__arrow"></div>
+          <div class="case-flow__node">
+            <div class="case-flow__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <span class="case-flow__label">Product Discovery</span>
+            <div class="case-flow__tooltip">Browsing the fleet of 4 bicycles or 4 equipment items through catalog pages with staggered reveals and curtain transitions</div>
+          </div>
+          <div class="case-flow__arrow"></div>
+          <div class="case-flow__node">
+            <div class="case-flow__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <span class="case-flow__label">Detail Immersion</span>
+            <div class="case-flow__tooltip">Exploring individual product pages with sticky specs tables, detail images, and technical specifications</div>
+          </div>
+          <div class="case-flow__arrow"></div>
+          <div class="case-flow__node">
+            <div class="case-flow__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 4H2v16h20V4zM2 8h20"/><path d="M6 12h4"/><path d="M14 12h4"/><path d="M6 16h8"/></svg>
+            </div>
+            <span class="case-flow__label">Editorial Engagement</span>
+            <div class="case-flow__tooltip">Reading journal articles, viewing the brand manifesto, and absorbing the engineering narrative</div>
+          </div>
+          <div class="case-flow__arrow"></div>
+          <div class="case-flow__node case-flow__node--output">
+            <div class="case-flow__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <span class="case-flow__label">Brand Connection</span>
+            <div class="case-flow__tooltip">Newsletter signup, social media links, and configuration/purchase call-to-action buttons</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTION 03 — Key Features
+       ================================================================ -->
+  <section class="case-section cs-section" id="features">
+    <div class="container">
+      <div class="cs-header">
+        <span class="cs-header-num">03</span>
+        <span class="cs-header-label">// Key Features</span>
+      </div>
+
+      <h2 class="case__sidecar-heading" data-split="entrance" style="max-width: 600px; margin-bottom: 16px;">Cinematic brand experience, hand-crafted</h2>
+      <p class="case__sidecar-desc" data-split="entrance" style="max-width: 600px; margin-bottom: 48px;">Every interaction designed to feel tactile, deliberate, and premium &mdash; from the cursor to the scroll to the image reveals.</p>
+
+      <div class="cs-features-list">
+
+        <div class="cs-feature-row">
+          <svg class="cs-feature-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <div class="cs-feature-row__content">
+            <h3 class="cs-feature-row__title">Custom Neon Cursor</h3>
+            <p class="cs-feature-row__desc">Four-state cursor system (default, hover, explore/ride/shop/read) with neon green (#D4FF00) trail and ring that transforms on interaction. Built entirely with vanilla JS and CSS.</p>
+          </div>
+          <span class="cs-feature-row__arrow">&rarr;</span>
+        </div>
+
+        <div class="cs-feature-row">
+          <svg class="cs-feature-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <div class="cs-feature-row__content">
+            <h3 class="cs-feature-row__title">Scroll-Triggered Animation System</h3>
+            <p class="cs-feature-row__desc">IntersectionObserver-powered reveal engine with fade-up, curtain-reveal on images, staggered text reveals, and sticky spec table headers &mdash; all at 60fps with zero dependencies.</p>
+          </div>
+          <span class="cs-feature-row__arrow">&rarr;</span>
+        </div>
+
+        <div class="cs-feature-row">
+          <svg class="cs-feature-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div class="cs-feature-row__content">
+            <h3 class="cs-feature-row__title">Parallax Hero Scrolling</h3>
+            <p class="cs-feature-row__desc">Hero background images moving at 40% scroll speed for an immersive depth effect, combined with stroke typography and layered visual hierarchy across all 8 pages.</p>
+          </div>
+          <span class="cs-feature-row__arrow">&rarr;</span>
+        </div>
+
+        <div class="cs-feature-row">
+          <svg class="cs-feature-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <div class="cs-feature-row__content">
+            <h3 class="cs-feature-row__title">Magnetic Interactive Elements</h3>
+            <p class="cs-feature-row__desc">Buttons that follow cursor position within their bounding box using mousemove calculations, creating a tactile, responsive feel that elevates every clickable element.</p>
+          </div>
+          <span class="cs-feature-row__arrow">&rarr;</span>
+        </div>
+
+        <div class="cs-feature-row">
+          <svg class="cs-feature-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="cs-feature-row__content">
+            <h3 class="cs-feature-row__title">Marquee News Ticker</h3>
+            <p class="cs-feature-row__desc">Infinite scrolling brand slogan banners using CSS @keyframe animations, cycling through engineering philosophy messages with seamless loop and stop-on-hover behavior.</p>
+          </div>
+          <span class="cs-feature-row__arrow">&rarr;</span>
+        </div>
+
+        <div class="cs-feature-row">
+          <svg class="cs-feature-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <div class="cs-feature-row__content">
+            <h3 class="cs-feature-row__title">Curtain Reveal Image Transitions</h3>
+            <p class="cs-feature-row__desc">Images initially hidden behind a dark overlay that scales down vertically on scroll reveal, transitioning from grayscale to full color on hover &mdash; reinforcing the technical precision aesthetic.</p>
+          </div>
+          <span class="cs-feature-row__arrow">&rarr;</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTION 04 — Technical Deep-Dive (Tabbed Interface)
+       ================================================================ -->
+  <section class="case-section case-section--alt cs-section" id="deepdive">
+    <div class="container">
+      <div class="cs-header">
+        <span class="cs-header-num">04</span>
+        <span class="cs-header-label">// Technical Deep-Dive</span>
+      </div>
+
+      <h2 class="case__sidecar-heading" data-split="entrance" style="max-width: 500px; margin-bottom: 36px;">Zero-dependency vanilla craftsmanship</h2>
+
+      <div class="case-tabs" id="techTabs">
+        <div class="case-tabs__bar">
+          <button class="case-tabs__btn case-tabs__btn--active" data-tab="frontend">Frontend</button>
+          <button class="case-tabs__btn" data-tab="styling">Design System</button>
+          <button class="case-tabs__btn" data-tab="maps">Interactions</button>
+          <button class="case-tabs__btn" data-tab="integrations">Performance</button>
+        </div>
+        <select class="case-tabs__select" id="tabSelect">
+          <option value="frontend">Frontend</option>
+          <option value="styling">Design System</option>
+          <option value="maps">Interactions</option>
+          <option value="integrations">Performance</option>
+        </select>
+
+        <!-- Frontend -->
+        <div class="case-tabs__panel case-tabs__panel--active" data-panel="frontend">
+          <div class="case-tabs__tech-grid">
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#E34F26" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"/></svg>HTML5 Semantic</span><span class="case-tabs__tech-desc">Clean semantic structure across 8 pages with proper heading hierarchy, landmark elements, and accessible HTML</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#1572B6" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716H7.231l.225 2.719h5.811l-.25 2.696-2.904.804-2.955-.81-.188-2.11h-2.66l.33 4.171L12 19.352l5.379-1.443.744-8.157H8.531l-.224-2.82h10.535l.224-2.519z"/></svg>CSS3 Custom Properties</span><span class="case-tabs__tech-desc">CSS variables for brand colors, spacing, typography scales, animation timing, and theme consistency</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#F7DF1E" d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.739 1.005c.36.72.81 1.2 1.5 1.575 1.275.66 3.36.855 4.635-.24.105-.09.285-.255.375-.42.57-.555.765-1.35.585-2.175-.06-.375-.255-.735-.48-1.125-.27-.449-.615-.766-1.215-1.065-1.275-.675-1.89-1.14-1.89-2.07 0-.555.195-1.035.69-1.41.555-.39 1.26-.555 2.1-.465.675.075 1.155.3 1.575.84l1.575-.975c-.54-.75-1.095-1.05-1.8-1.35-1.11-.45-2.7-.54-3.78-.195-2.175.585-3.045 2.37-3.045 4.095 0 2.025 1.35 3.18 2.925 3.945 1.245.615 2.34 1.005 2.61 1.725.39.9-.195 1.68-1.155 1.875-.81.135-1.635-.135-2.205-.765-.33-.345-.585-.72-.78-1.155l-1.755 1.005c.465.975 1.11 1.635 2.085 2.085 2.07.87 4.965.195 5.415-2.475.045-.27.045-.63.03-.885z"/></svg>Vanilla JavaScript ES6+</span><span class="case-tabs__tech-desc">Zero dependencies &mdash; all interactivity hand-rolled with modern DOM APIs, IntersectionObserver, and CSS transitions</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="2" y="20" font-family="serif" font-size="20" font-weight="bold" fill="#FF5722">G</text><text x="12" y="20" font-family="serif" font-size="20" font-weight="bold" fill="#4285F4">f</text></svg>Google Fonts Integration</span><span class="case-tabs__tech-desc">Syne for display headings, Inter for body text, JetBrains Mono for technical specs &mdash; loaded via Google Fonts API</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#00BCD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 2v20"/><path d="M2 12h20"/></svg>Responsive Design</span><span class="case-tabs__tech-desc">Single breakpoint at 968px with mobile-first approach, adaptive grids, and optimized touch interactions</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#FF9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>No Build Step</span><span class="case-tabs__tech-desc">Directly served from any static host &mdash; no bundlers, no compilers, no npm, no node_modules</span></div>
+          </div>
+        </div>
+
+        <!-- Design System -->
+        <div class="case-tabs__panel" data-panel="styling">
+          <div class="case-tabs__tech-grid">
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Dark Theme Foundation</span><span class="case-tabs__tech-desc">Background #020202 near-black with #F4F4F4 off-white text, exclusively dark mode for premium cinema-like experience</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Neon Accent Palette</span><span class="case-tabs__tech-desc">Lime green #D4FF00 as the single accent color applied consistently across cursors, links, borders, highlights, and hover states</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>Stroke Typography</span><span class="case-tabs__tech-desc">Transparent/stroke text treatments for hero headings and section numbers, creating a blueprint-inspired industrial aesthetic</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#7C4DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Grayscale-to-Color</span><span class="case-tabs__tech-desc">All product images start at 100% grayscale, desaturating to full color only on hover and scroll reveal for a clinical, technical feel</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#FF5252" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Industrial Grid System</span><span class="case-tabs__tech-desc">Consistent 2-column layouts, defined spacing rhythm, proportional image sizing, and alignment with the brand's engineering identity</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#E91E63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Cinematic Imagery</span><span class="case-tabs__tech-desc">Curated Unsplash photography treated as product hero shots with overlay gradients, curtain reveals, and parallax depth</span></div>
+          </div>
+        </div>
+
+        <!-- Interactions -->
+        <div class="case-tabs__panel" data-panel="maps">
+          <div class="case-tabs__tech-grid">
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#7C4DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" stroke="#7C4DFF" stroke-width="2" fill="none"/><path d="M12 3v18M3 12h18" stroke="#7C4DFF" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" fill="#7C4DFF"/></svg>Custom Cursor Engine</span><span class="case-tabs__tech-desc">Dot + ring + trail with 4 interaction states (default, hovered, explore/ride/shop/read), SVG-based scaling, and brand-accent glow</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" stroke="#00BCD4" stroke-width="2" fill="none"/><path d="M12 3v18M3 12h18" stroke="#00BCD4" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" fill="#00BCD4"/></svg>IntersectionObserver Reveals</span><span class="case-tabs__tech-desc">Scroll-triggered fade-up, curtain-reveal, and staggered text animations across all elements with configurable thresholds</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#FF9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#00BCD4" stroke-width="2" stroke-linejoin="round" fill="none"/><path d="M2 17l10 5 10-5" stroke="#00BCD4" stroke-width="2" stroke-linejoin="round" fill="none"/><path d="M2 12l10 5 10-5" stroke="#00BCD4" stroke-width="2" stroke-linejoin="round" fill="none"/></svg>Parallax Scroll</span><span class="case-tabs__tech-desc">Hero backgrounds at 40% scroll speed using requestAnimationFrame for smooth 60fps performance without jank</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#2196F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Magnetic Button Effect</span><span class="case-tabs__tech-desc">Buttons track cursor proximity with CSS transform offsets, providing tactile feedback that follows user intent</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#9C27B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" stroke="#00BCD4" stroke-width="2" fill="none"/><path d="M12 2v20" stroke="#00BCD4" stroke-width="2"/><path d="M2 8.5l10 6.5 10-6.5" stroke="#00BCD4" stroke-width="2"/></svg>Marquee Animation</span><span class="case-tabs__tech-desc">CSS @keyframes infinite scroll for brand ticker with seamless loop, pause-on-hover, and dual-direction variants</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#607D8B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Curtain Reveal</span><span class="case-tabs__tech-desc">Image clip/scale animation using CSS pseudo-elements and transform, triggered by IntersectionObserver callback</span></div>
+          </div>
+        </div>
+
+        <!-- Performance -->
+        <div class="case-tabs__panel" data-panel="integrations">
+          <div class="case-tabs__tech-grid">
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#FF4B4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Zero Dependencies</span><span class="case-tabs__tech-desc">No external JS libraries, no CSS frameworks, no runtime overhead &mdash; every byte of code is hand-written vanilla web technology</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Modern Image Formats</span><span class="case-tabs__tech-desc">AVIF and WebP formats for all product and hero images with significant file size reduction over legacy formats</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#FF9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 2v20"/><path d="M2 12h20"/></svg>Minimal CSS Footprint</span><span class="case-tabs__tech-desc">Shared patterns duplicated across pages intentionally for zero-request critical CSS with no external stylesheet blocking</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#2196F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><path d="M12 2v20"/><path d="M2 8.5l10 6.5 10-6.5"/></svg>Efficient Animations</span><span class="case-tabs__tech-desc">CSS transforms and opacity-only animations throughout for GPU-accelerated rendering at consistent 60fps</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#9C27B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Passive Scroll Listeners</span><span class="case-tabs__tech-desc">All scroll events use passive: true to prevent blocking the main thread and improve frame rate during parallax</span></div>
+            <div class="case-tabs__tech-item"><span class="case-tabs__tech-name"><svg viewBox="0 0 24 24" fill="none" stroke="#607D8B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14 2 14 8 20 8"/><path d="M16 22H2a2 2 0 0 1-2-2V6"/><path d="M18 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10"/></svg>No Render-Blocking</span><span class="case-tabs__tech-desc">All scripts deferred or positioned at end of body, critical styles inlined in head for fastest possible first paint</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       SECTION 05 — Results (Animated Counters)
+       ================================================================ -->
+  <section class="case-section cs-section" id="results">
+    <div class="container">
+      <div class="cs-header">
+        <span class="cs-header-num">05</span>
+        <span class="cs-header-label">// The Outcome</span>
+      </div>
+
+      <h2 class="case__sidecar-heading" data-split="entrance" style="max-width: 500px; margin: 0 auto 48px; text-align: center;">Pure craftsmanship, zero complexity</h2>
+
+      <div class="case-results" id="resultsGrid">
+        <div class="case-results__card">
+          <div class="case-results__accent"></div>
+          <div class="case-results__value">
+            <span class="case-results__number" data-count="8">0</span>
+          </div>
+          <span class="case-results__label">Pages across the complete brand ecosystem</span>
+        </div>
+        <div class="case-results__card">
+          <div class="case-results__accent"></div>
+          <div class="case-results__value">
+            <span class="case-results__number" data-count="8">0</span>
+          </div>
+          <span class="case-results__label">Product SKUs including bicycles and equipment</span>
+        </div>
+        <div class="case-results__card">
+          <div class="case-results__accent"></div>
+          <div class="case-results__value">
+            <span class="case-results__number" data-count="0">0</span>
+          </div>
+          <span class="case-results__label">External dependencies or build tools</span>
+        </div>
+        <div class="case-results__card">
+          <div class="case-results__accent"></div>
+          <div class="case-results__value">
+            <span class="case-results__number" data-count="100">0</span>
+            <span class="case-results__suffix">%</span>
+          </div>
+          <span class="case-results__label">Vanilla HTML, CSS, and JavaScript</span>
+        </div>
+      </div>
+
+      <div style="max-width: 640px; margin: 48px auto 0;">
+        <p class="case__sidecar-desc" style="text-align: left;">
+          AERO Precision Cycling is a complete luxury brand website that proves a premium digital experience does not require a single framework or build tool. Every animation, transition, and interaction is hand-crafted with vanilla web technologies &mdash; delivering a cinematic, cohesive brand journey across 8 pages that positions each bicycle model as a design artifact. From the custom neon cursor to the scroll-triggered curtain reveals, the project demonstrates deep mastery of frontend fundamentals, design system creation, and immersive storytelling through pure code.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       CTA — Gold Full-Bleed Banner
+       ================================================================ -->
+  <section class="case-cta-banner" id="cta">
+    <div class="container">
+      <h2 class="case-cta-banner__heading">Have a similar project?</h2>
+      <p class="case-cta-banner__text">Let's build something beautiful together.</p>
+      <div class="case-cta-banner__actions">
+        <a href="mailto:simwated@gmail.com?subject=Project%20Inquiry" class="case-cta-banner__btn case-cta-banner__btn--primary">Let's Talk</a>
+        <a href="index.html" class="case-cta-banner__btn case-cta-banner__btn--secondary">&larr; Back to Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- # FOOTER -->
+  <footer class="footer">
+    <div class="footer__statement">
+      <div class="container">
+        <p class="footer__statement-text" data-footer-statement>Let's build something iconic.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="footer__split">
+        <div class="footer__social-group" data-footer-social>
+          <a href="https://www.linkedin.com/in/ted-simwa" target="_blank" rel="noopener noreferrer" class="footer__pill">
+            <svg class="footer__pill-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/t-simwa" target="_blank" rel="noopener noreferrer" class="footer__pill">
+            <svg class="footer__pill-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="mailto:simwated@gmail.com" class="footer__pill footer__pill--primary">
+            <svg class="footer__pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+            <span>Email</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <div class="container">
+        <div class="footer__bar-inner">
+          <span class="footer__copyright">Crafted with intention by Ted Simwa</span>
+          <button class="footer__back-top" aria-label="Back to top" data-back-top>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- CASE-SPECIFIC JS -->
+  <script>
+    (function () {
+      /* ============================================
+         NEURAL NETWORK VISUAL
+         ============================================ */
+      var neural = document.getElementById('neuralNet');
+      if (neural) {
+        var dotCount = 16;
+        var dots = [];
+        var lines = [];
+
+        for (var i = 0; i < dotCount; i++) {
+          var dot = document.createElement('div');
+          dot.className = 'case-hero__neural-dot';
+          var x = 10 + Math.random() * 80;
+          var y = 10 + Math.random() * 80;
+          var size = 4 + Math.random() * 4;
+          dot.style.left = x + '%';
+          dot.style.top = y + '%';
+          dot.style.width = size + 'px';
+          dot.style.height = size + 'px';
+          dot.style.opacity = 0.15 + Math.random() * 0.25;
+          neural.appendChild(dot);
+          dots.push({ el: dot, x: x, y: y, delay: Math.random() * 2 });
+        }
+
+        /* Connect nearby dots with lines */
+        for (var i = 0; i < dots.length; i++) {
+          for (var j = i + 1; j < dots.length; j++) {
+            var dx = dots[i].x - dots[j].x;
+            var dy = dots[i].y - dots[j].y;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 35) {
+              var line = document.createElement('div');
+              line.className = 'case-hero__neural-line';
+              var angle = Math.atan2(dots[j].y - dots[i].y, dots[j].x - dots[i].x) * 180 / Math.PI;
+              line.style.left = dots[i].x + '%';
+              line.style.top = dots[i].y + '%';
+              line.style.width = dist + '%';
+              line.style.transform = 'rotate(' + angle + 'deg)';
+              line.style.transformOrigin = '0 0';
+              line.style.opacity = 0.06 + Math.random() * 0.1;
+              neural.appendChild(line);
+            }
+          }
+        }
+
+        /* GSAP pulse on dots */
+        if (typeof gsap !== 'undefined') {
+          dots.forEach(function (d) {
+            gsap.to(d.el, {
+              opacity: 0.4 + Math.random() * 0.3,
+              duration: 1.2 + Math.random() * 1,
+              repeat: -1,
+              yoyo: true,
+              ease: 'sine.inOut',
+              delay: d.delay
+            });
+          });
+        }
+      }
+
+      /* ============================================
+         SPLIT TEXT — Hero Title
+         ============================================ */
+      if (typeof gsap !== 'undefined' && typeof SplitText !== 'undefined') {
+        var heroTitle = document.querySelector('.case-hero__title');
+        if (heroTitle) {
+          var split = new SplitText(heroTitle, { type: 'chars' });
+          gsap.set(split.chars, { opacity: 0, y: 40, rotateX: -20 });
+          ScrollTrigger.create({
+            trigger: heroTitle,
+            start: 'top 85%',
+            onEnter: function () {
+              gsap.to(split.chars, {
+                opacity: 1, y: 0, rotateX: 0,
+                duration: 0.7, stagger: 0.035,
+                ease: 'power3.out'
+              });
+            },
+            once: true
+          });
+        }
+
+        /* Entrance fades for remaining hero elements */
+        var entrances = document.querySelectorAll('[data-split="entrance"]');
+        entrances.forEach(function (el, i) {
+          gsap.set(el, { opacity: 0, y: 20 });
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top 88%',
+            onEnter: function () {
+              gsap.to(el, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: i * 0.1 });
+            },
+            once: true
+          });
+        });
+
+        /* ============================================
+           CHALLENGE STATS — Reveal + Accent
+           ============================================ */
+        var challengeStats = document.querySelectorAll('.case-challenge-stat');
+        challengeStats.forEach(function (stat, i) {
+          gsap.set(stat, { opacity: 0, y: 24 });
+          ScrollTrigger.create({
+            trigger: stat,
+            start: 'top 88%',
+            onEnter: function () {
+              gsap.to(stat, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: i * 0.15 });
+              setTimeout(function () { stat.classList.add('is-visible'); }, i * 150 + 200);
+            },
+            once: true
+          });
+        });
+
+        /* ============================================
+           FEATURES LIST — Stagger Reveal
+           ============================================ */
+        var featureRows = document.querySelectorAll('.cs-feature-row');
+        featureRows.forEach(function (row, i) {
+          gsap.set(row, { opacity: 0, y: 30 });
+          ScrollTrigger.create({
+            trigger: row,
+            start: 'top 88%',
+            onEnter: function () {
+              gsap.to(row, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: i * 0.08 });
+            },
+            once: true
+          });
+        });
+
+        /* ============================================
+           RESULT COUNTERS + ACCENT REVEAL
+           ============================================ */
+        var countEls = document.querySelectorAll('[data-count]');
+        countEls.forEach(function (el) {
+          var target = parseInt(el.getAttribute('data-count'), 10);
+          var card = el.closest('.case-results__card');
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top 85%',
+            onEnter: function () {
+              if (card) card.classList.add('is-visible');
+              gsap.to(el, {
+                textContent: target,
+                duration: 2,
+                ease: 'power2.out',
+                snap: { textContent: 1 },
+                onUpdate: function () {
+                  el.textContent = parseInt(el.textContent).toLocaleString();
+                }
+              });
+            },
+            once: true
+          });
+        });
+
+        /* ============================================
+           ARCHITECTURE FLOW — Horizontal Scroll (desktop only)
+           ============================================ */
+        var archFlow = document.getElementById('archFlow');
+        var archTrack = archFlow ? archFlow.querySelector('.case-flow__track') : null;
+        if (archFlow && archTrack && ScrollTrigger && window.innerWidth > 1023) {
+          var trackWidth = archTrack.scrollWidth;
+          var viewWidth = window.innerWidth;
+          var maxScroll = trackWidth - viewWidth;
+
+          if (maxScroll > 0) {
+            ScrollTrigger.create({
+              trigger: archFlow,
+              pin: true,
+              start: 'top top',
+              end: function () { return '+=' + (maxScroll + 200); },
+              scrub: 1,
+              invalidateOnRefresh: true,
+              onUpdate: function (self) {
+                var x = -(maxScroll * self.progress);
+                gsap.set(archTrack, { x: x });
+              }
+            });
+          }
+        }
+      } else {
+        /* Fallback: make all animated elements visible */
+        document.querySelectorAll('.cs-feature-row, .case-challenge-stat, .case-hero__title, .case-hero__tagline').forEach(function (el) {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+      }
+
+      /* ============================================
+         TABS
+         ============================================ */
+      var tabBtns = document.querySelectorAll('.case-tabs__btn');
+      var tabPanels = document.querySelectorAll('.case-tabs__panel');
+
+      tabBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var tab = btn.getAttribute('data-tab');
+
+          tabBtns.forEach(function (b) { b.classList.remove('case-tabs__btn--active'); });
+          btn.classList.add('case-tabs__btn--active');
+
+          tabPanels.forEach(function (p) {
+            if (p.getAttribute('data-panel') === tab) {
+              p.classList.add('case-tabs__panel--active');
+            } else {
+              p.classList.remove('case-tabs__panel--active');
+            }
+          });
+        });
+      });
+
+      /* Tab dropdown for mobile */
+      var tabSelect = document.getElementById('tabSelect');
+      if (tabSelect) {
+        tabSelect.addEventListener('change', function () {
+          var tab = tabSelect.value;
+          tabBtns.forEach(function (b) { b.classList.remove('case-tabs__btn--active'); });
+          var matchBtn = document.querySelector('[data-tab="' + tab + '"]');
+          if (matchBtn) matchBtn.classList.add('case-tabs__btn--active');
+          tabPanels.forEach(function (p) {
+            if (p.getAttribute('data-panel') === tab) {
+              p.classList.add('case-tabs__panel--active');
+            } else {
+              p.classList.remove('case-tabs__panel--active');
+            }
+          });
+        });
+      }
+
+      /* ============================================
+         SCROLL INDICATOR FADE
+         ============================================ */
+      var caseScroll = document.getElementById('caseScroll');
+      if (caseScroll) {
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 120) {
+            caseScroll.style.opacity = '0';
+            caseScroll.style.pointerEvents = 'none';
+          } else {
+            caseScroll.style.opacity = '1';
+            caseScroll.style.pointerEvents = '';
+          }
+        }, { passive: true });
+      }
+
+      /* ============================================
+         RECALCULATE ON RESIZE
+         ============================================ */
+      window.addEventListener('resize', function () {
+        ScrollTrigger.refresh();
+      });
+    })();
+  </script>
+</body>
+</html>
