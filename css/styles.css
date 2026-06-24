@@ -531,6 +531,7 @@ body.light .nav__link {
   border: none;
   cursor: pointer;
   padding: 6px;
+  text-decoration: none;
   color: var(--color-text);
   border-radius: 8px;
   transition: color var(--duration-fast) var(--ease-out-expo),
