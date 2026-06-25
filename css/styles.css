@@ -59,6 +59,10 @@ body.light {
   --color-text-dim: #a09884;
   --color-border: rgba(26, 24, 20, 0.08);
   --color-border-strong: rgba(26, 24, 20, 0.15);
+  --color-gold: #b8942e;
+  --color-gold-dim: rgba(184, 148, 46, 0.12);
+  --color-gold-glow: rgba(184, 148, 46, 0.25);
+  --color-border-gold: rgba(184, 148, 46, 0.3);
 }
 
 /* # GLOBAL RESET
@@ -4736,10 +4740,6 @@ body.light .contact:hover .contact__header-num {
   line-height: 1.15;
   color: var(--color-gold);
   margin: 0 0 20px;
-}
-
-body.light .contact__heading {
-  color: #b8942e;
 }
 
 .contact__body {
