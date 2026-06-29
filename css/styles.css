@@ -4586,9 +4586,8 @@ body.light .kind-words:hover .kind-words__header-num {
 
 /* -- Grid -- */
 .kw-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  display: flex;
+  justify-content: center;
 }
 
 /* -- Card -- */
@@ -4615,13 +4614,6 @@ body.light .kind-words:hover .kind-words__header-num {
 .kw-grid:has(.kw-card:hover) .kw-card:not(:hover) {
   opacity: 0.25;
   filter: blur(1px);
-}
-
-/* Vertical divider between grid columns */
-@media (min-width: 768px) {
-  .kw-card:not(:first-child) {
-    border-left: 1px solid var(--color-border);
-  }
 }
 
 .kw-card__mark {
@@ -4979,10 +4971,6 @@ body.light .faq__chevron {
 /* # KIND WORDS RESPONSIVE
  * =================================================================== */
 @media (max-width: 1023px) {
-  .kw-grid {
-    gap: 28px;
-  }
-
   .kw-card__quote {
     font-size: 0.82rem;
   }
@@ -4998,7 +4986,6 @@ body.light .faq__chevron {
   }
 
   .kw-grid {
-    grid-template-columns: 1fr;
     gap: 32px;
   }
 
