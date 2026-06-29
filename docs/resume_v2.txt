@@ -1,0 +1,82 @@
+Ted Simwa
+Nairobi, KE | +254 723356800 | simwated@gmail.com
+[LinkedIn](linkedin.com/in/ted-simwa) | [GitHub](github.com/t-simwa) | [Portfolio](https://ted-simwa.vercel.app)
+
+PROFESSIONAL SUMMARY
+Full-Stack Software Engineer with 5+ years of experience in Python, TypeScript, and cloud-native architectures, specializing in AI-powered Retrieval-Augmented Generation (RAG) systems and high-performance Application Programming Interface (API) platforms.
+
+WORK EXPERIENCE
+
+Freelance Full-Stack Developer | Self-Employed                              Jan 2020 – Present
+Remote
+
+- **Engineered** custom AI features including Large Language Model (LLM)-powered semantic search and Retrieval-Augmented Generation (RAG)-based document analysis, delivering intelligent document processing for client business logic
+- **Architected** a multi-tenant cloud infrastructure on Amazon Web Services (AWS) EC2 using Docker and Ubuntu/Linux, supporting 10+ client applications with 99% production uptime
+- **Automated** deployment pipelines using Docker and Continuous Integration and Continuous Deployment (CI/CD) on AWS EC2, enabling repeatable releases across 10+ production applications
+- **Developed** RESTful APIs with JSON Web Token (JWT)/OAuth 2.0 authentication, powering dynamic data dashboards for 5+ concurrent Software as a Service (SaaS) and eCommerce client projects
+- **Optimized** frontend page load speeds by 30% through code splitting, performance tuning, and cross-browser optimization for client-facing applications
+
+AI Trainer & Code Evaluator | Prolific                                          Jun 2024 – Aug 2025
+Remote
+
+- **Designed** evaluation frameworks for AI-generated code across multiple model variants, enforcing quality standards that improved model accuracy by 15%
+- **Partnered** with cross-functional data scientists and engineers to refine model adaptability, boosting predictive accuracy by 10% across multiple model iterations
+- **Executed** Natural Language Processing (NLP) training workflows using prompt engineering and data evaluation techniques across diverse datasets, enhancing model performance for production use cases
+- **Authored** detailed usability feedback and automation recommendations, streamlining team workflows and increasing productivity by 5%
+
+Software Engineering Intern | Peak and Dale Solutions Ltd               Feb 2024 – May 2024
+Nairobi, KE
+
+- **Structured** the frontend architecture for a secure enterprise timesheet system, organizing modules for reporting, compliance, and workflow tracking
+- **Built** responsive UI components using React.js, Chakra UI, and REST APIs, accelerating user workflow speed by 25% for the enterprise platform
+- **Created** a reusable component library for Projects, Tasks, and Admin dashboards, enforcing modular design patterns across the entire application
+- **Shipped** secure enterprise modules within 2-week Agile sprints, coordinating with backend engineers and product managers to manage cross-team dependencies
+
+PROJECTS
+
+Simca Agencies | Corporate Website Platform                                          2025
+Tech Stack: Next.js 15, TypeScript, Tailwind CSS, Framer Motion, Radix UI, Resend, Leaflet
+
+- **Architected** a 20+ page corporate platform with Next.js 15 App Router and TypeScript, transforming a zero-digital cleaning business into a full online booking and service discovery system
+- **Integrated** interactive Leaflet maps with Nominatim geocoding across 5 service locations, a Resend-powered booking form with transactional email confirmations, and WhatsApp webhook for lead capture
+- **Implemented** extensive JavaScript Object Notation for Linked Data (JSON-LD) structured data for Organization, LocalBusiness, and Service schemas, optimizing search visibility and enabling AI-powered discovery across search engines
+
+Documind AI Document Analyzer                                                      2025
+Tech Stack: Python, TypeScript/React, REST APIs, Vector Search
+
+- **Designed** a vector ingestion pipeline for large-document intelligence, enabling semantic search and structured data extraction across multi-page documents
+- **Developed** a TypeScript/React frontend with typed REST API integration and async state management, handling heavy analytical workloads with zero-latency tolerance
+- **Optimized** the Python processing engine through disciplined profiling and testing, ensuring strict correctness when parsing large datasets
+
+ShopHub E-Commerce Platform                                                          2024
+Tech Stack: Node.js/Express.js, React/TypeScript, PostgreSQL, Docker, AWS EC2
+
+- **Delivered** a full-stack e-commerce system with secure payment integration and real-time inventory management, achieving 98% uptime over 12 months of live operation
+- **Established** CI/CD pipelines using Docker and GitHub Actions on AWS EC2, ensuring safe, controlled releases for a production platform
+- **Composed** modular React/Node.js components with RESTful APIs, ensuring maintainable architecture and seamless user experiences
+
+CERTIFICATIONS
+
+- IBM Full Stack Cloud Developer Professional Certificate                                          Jan 2026
+- IBM RAG & Agentic AI Professional Certificate                                                        Feb 2026
+- IBM Systems & Solutions Architect Professional Certificate                                      Mar 2026
+- Google Project Management Professional Certificate                                                 Apr 2026
+- AWS Cloud Solutions Architect Professional Certificate                                             May 2026
+
+EDUCATION
+
+Alliance High School                                                                               Kikuyu, KE
+Kenya Certificate of Secondary Education                                                          Nov 2015
+Grade: A
+
+Africa Nazarene University                                                                         Nairobi, KE
+BS in Computer Science                                                                             July 2026
+
+SKILLS
+
+Languages: JavaScript (ES6+), TypeScript, Python, Structured Query Language (SQL)
+Frameworks & Libraries: React, Node.js, Express.js, Next.js, Django, Chakra UI, Tailwind CSS
+AI & Data: LangChain, RAG, NLP, Prompt Engineering, Vector Search, Pandas, Scikit-learn
+Databases: PostgreSQL, MongoDB, Redis
+Cloud & DevOps: Docker, AWS (EC2), CI/CD (GitHub Actions), Git, Vercel
+Operating Systems: Ubuntu, Debian, Linux System Administration

@@ -4805,54 +4805,6 @@ body.light .contact__status-text {
   white-space: nowrap;
 }
 
-/* -- Pricing -- */
-.contact__pricing {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 6px;
-  padding-top: 20px;
-  border-top: 1px solid var(--color-border);
-  width: 100%;
-}
-
-.contact__pricing-label {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  color: var(--color-text-dim);
-  letter-spacing: 0.5px;
-}
-
-.contact__pricing-amount {
-  font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-  color: var(--color-gold);
-  line-height: 1;
-  letter-spacing: -0.5px;
-}
-
-body.light .contact__pricing-amount {
-  color: #b8942e;
-}
-
-.contact__pricing-sep {
-  font-size: 0.5rem;
-  color: var(--color-gold);
-  opacity: 0.4;
-  line-height: 1;
-}
-
-body.light .contact__pricing-sep {
-  color: #b8942e;
-}
-
-.contact__pricing-desc {
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  color: var(--color-text-dim);
-  letter-spacing: 0.2px;
-}
-
 /* -- Aside column (FAQ) -- */
 .contact__aside {
   display: flex;
@@ -5105,19 +5057,6 @@ body.light .faq__chevron {
   .btn__icon {
     width: 12px;
     height: 12px;
-  }
-
-  .contact__pricing {
-    gap: 4px;
-    padding-top: 14px;
-  }
-
-  .contact__pricing-amount {
-    font-size: 1.1rem;
-  }
-
-  .contact__pricing-desc {
-    font-size: 0.68rem;
   }
 
   .contact__aside-label {
