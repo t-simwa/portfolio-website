@@ -473,12 +473,25 @@
       </div>
 
       <p class="projects__intro" data-entrance>
-        Three selected projects that demonstrate real outcomes across AI, web, and infrastructure.
+        Five selected projects that demonstrate real outcomes across AI, web, API, and infrastructure.
       </p>
 
-      <div class="projects__grid">
+      <div class="case-tabs">
+        <div class="case-tabs__bar">
+          <button class="case-tabs__btn case-tabs__btn--active" data-tab="all">All</button>
+          <button class="case-tabs__btn" data-tab="fullstack">Full-Stack</button>
+          <button class="case-tabs__btn" data-tab="ai-api">AI &amp; API</button>
+          <button class="case-tabs__btn" data-tab="brand">Brand</button>
+        </div>
+        <select class="case-tabs__select" id="projectTabSelect">
+          <option value="all">All</option>
+          <option value="fullstack">Full-Stack</option>
+          <option value="ai-api">AI &amp; API</option>
+          <option value="brand">Brand</option>
+        </select>
+      <div class="projects__grid" id="projectsGrid">
         <!-- DocuMind AI -->
-        <article class="project-frame project-target">
+        <article class="project-frame project-target" data-category="ai-api">
           <div class="project-frame__visual">
             <img src="images/projects/documind.png" alt="DocuMind AI | Document Intelligence System" loading="lazy">
             <div class="project-frame__shade"></div>
@@ -501,7 +514,7 @@
         </article>
 
         <!-- Simca Agencies -->
-        <article class="project-frame project-target">
+        <article class="project-frame project-target" data-category="fullstack">
           <div class="project-frame__visual">
             <img src="images/projects/simca.png" alt="Simca Agencies | Service Booking Platform" loading="lazy">
             <div class="project-frame__shade"></div>
@@ -524,7 +537,7 @@
         </article>
 
         <!-- SwiftCart -->
-        <article class="project-frame project-target">
+        <article class="project-frame project-target" data-category="fullstack">
           <div class="project-frame__visual">
             <img src="images/projects/swiftcart.png" alt="SwiftCart | High-Uptime E-Commerce Platform" loading="lazy">
             <div class="project-frame__shade"></div>
@@ -546,12 +559,35 @@
           </div>
         </article>
 
+        <!-- Enterprise Gateway API -->
+        <article class="project-frame project-target" data-category="ai-api">
+          <div class="project-frame__visual">
+            <img src="images/projects/enterprise-api.png" alt="Enterprise Gateway API | Production-Grade API Gateway" loading="lazy">
+            <div class="project-frame__shade"></div>
+            <span class="project-frame__number">04</span>
+            <span class="project-frame__tag">API / Backend</span>
+            <div class="project-frame__panel">
+              <div class="project-frame__panel-head">
+                <h3 class="project-frame__title">Enterprise Gateway API</h3>
+                <span class="project-frame__year">2026</span>
+              </div>
+              <div class="project-frame__panel-body">
+                <p class="project-frame__desc">Production-grade API gateway with FastAPI, PostgreSQL, Redis, Celery, and a React admin dashboard. Centralizes auth, rate limiting, caching, and observability across microservices.</p>
+                <div class="project-frame__cta-row">
+                  <a href="enterprise-api.html" class="project-frame__cta-btn project-frame__cta-btn--primary">Case Study</a>
+                  <a href="https://github.com/t-simwa/enterprise-gateway-api" target="_blank" rel="noopener noreferrer" class="project-frame__cta-btn project-frame__cta-btn--secondary">Source &nearr;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
         <!-- AERO Cycling -->
-        <article class="project-frame project-target">
+        <article class="project-frame project-target" data-category="brand">
           <div class="project-frame__visual">
             <img src="images/projects/aero-cycling.avif" alt="AERO Precision Cycling | Brand & Web Experience" loading="lazy">
             <div class="project-frame__shade"></div>
-            <span class="project-frame__number">04</span>
+            <span class="project-frame__number">05</span>
             <span class="project-frame__tag">Brand / Web</span>
             <div class="project-frame__panel">
               <div class="project-frame__panel-head">
@@ -568,8 +604,9 @@
             </div>
           </div>
         </article>
-      </div>
-    </div>
+      </div> <!-- /projects__grid -->
+    </div> <!-- /case-tabs -->
+  </div>
   </section>
 
 <!-- # PROCESS -->
@@ -1062,6 +1099,36 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
+
+  <script>
+  (function() {
+    var bar = document.querySelector('.case-tabs__bar');
+    var select = document.getElementById('projectTabSelect');
+    var articles = document.querySelectorAll('#projectsGrid .project-frame');
+
+    function filterProjects(tab) {
+      articles.forEach(function(art) {
+        art.style.display = (tab === 'all' || art.getAttribute('data-category') === tab) ? '' : 'none';
+      });
+      bar.querySelectorAll('.case-tabs__btn').forEach(function(b) {
+        b.classList.toggle('case-tabs__btn--active', b.getAttribute('data-tab') === tab);
+      });
+      select.value = tab;
+    }
+
+    bar.querySelectorAll('.case-tabs__btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        filterProjects(btn.getAttribute('data-tab'));
+      });
+    });
+
+    if (select) {
+      select.addEventListener('change', function() {
+        filterProjects(select.value);
+      });
+    }
+  })();
+  </script>
   <!-- # STICKY MOBILE CTA -->
   <div class="mobile-cta">
     <a href="mailto:simwated@gmail.com?subject=Portfolio%20Inquiry&amp;body=Hi%20Ted%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project.%0A%0AHere%20are%20a%20few%20details%3A%0A-%20Name%3A%20%5BYour%20Name%5D%0A-%20Project%3A%20%5BBrief%20description%5D%0A%0AI%20look%20forward%20to%20hearing%20from%20you.%0A%0ABest%2C%0A%5BYour%20Name%5D" class="mobile-cta__btn mobile-cta__btn--primary">
